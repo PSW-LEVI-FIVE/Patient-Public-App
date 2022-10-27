@@ -1,6 +1,39 @@
 .mat-stroked-button {
-    color: #382110;
+    color: #334155;
+    background-color: #06b6d4;
     width: 150px;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: #06b6d4 !important;
+   }
+  
+   ::ng-deep.mat-form-field-underline ::ng-deep.mat-form-field-ripple {
+    background-color: #06b6d4 !important;
+    color: #06b6d4 !important;
+  } 
+  ::ng-deep.mat-form-field-label- ::ng-deep.mat-form-field-ripple{
+    background-color: #06b6d4 !important;
+    color: #06b6d4 !important;
+  } 
+
+  ::ng-deep.mat-form-field-empty.mat-form-field-label {
+    color: #06b6d4 !important;
+}
+
+.mat-form-field-appearance-outline:not(.mat-form-field-disabled) .mat-form-field-flex .mat-form-field-outline ::ng-deep.mat-form-field-underline{
+    opacity: 0;
+    transition: opacity .6s cubic-bezier(.25,.8,.25,1);
+}
+
+input {
+    color: #06b6d4;
+  }
+
+.mat-inputfield {
+    color: #334155 !important;
+    background-color: #06b6d4 !important;
 }
 
 div {
