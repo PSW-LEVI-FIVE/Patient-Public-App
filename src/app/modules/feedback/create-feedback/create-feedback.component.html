@@ -2,9 +2,13 @@
 <div>
     <table class="center">
     <tr>
-<textarea name="message" rows="8" [(ngModel)]="feedbackContent" class="smalltext" rows = "5" cols = "60" name = "description">
+<textarea name="message" rows="8" [(ngModel)]="feedback.feedbackContent" class="smalltext" rows = "5" cols = "60" name = "description">
  </textarea>
     </tr>
+    <tr>
+        <td><input type="checkbox" name="privateFlag" [(ngModel)]="privateFlag"/>I want my feedback to remain private</td>
+    </tr>
+    
     <tr>
     <button class="smalltext" type="submit" (click)="createFeedback()">
     Submit!</button>
