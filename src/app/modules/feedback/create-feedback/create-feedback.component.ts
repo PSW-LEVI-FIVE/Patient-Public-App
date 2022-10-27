@@ -14,13 +14,23 @@ export class CreateFeedbackComponent implements OnInit {
 
   public patientId : number = 0;
   public feedbackContent : string = "";
+  public privateFlag : boolean = false;
+  private privateFlagInt : number = 1;
 
   ngOnInit(): void {
   }
 
   public createFeedback() {
     if (!this.isValidInput()) return;
-    const feedback : IFeedback = {id:0,patientId : this.patientId, feedbackContent : this.feedbackContent}
+
+                
+    if(this.privateFlag){
+      this.privateFlagInt = 0
+    }else{
+      this.privateFlagInt = 1
+    }
+
+    const feedback : IFeedback = {id:0,patientId : this.patientId, feedbackContent : this.feedbackContent, feedbackStatus:this.privateFlagInt}
     this.feedbackService.createFeedback(feedback).subscribe(res => {
       this.router.navigate(['/']);
     });

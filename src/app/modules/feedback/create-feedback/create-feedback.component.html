@@ -6,6 +6,10 @@
  </textarea>
     </tr>
     <tr>
+        <td><input type="checkbox" name="privateFlag" [(ngModel)]="privateFlag"/>I want my feedback to remain private</td>
+    </tr>
+    
+    <tr>
     <button class="smalltext" type="submit" (click)="createFeedback()">
     Submit!</button>
     </tr>
