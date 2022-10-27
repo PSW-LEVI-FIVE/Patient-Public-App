@@ -24,8 +24,9 @@ export class CreateFeedbackComponent implements OnInit {
 
   public createFeedback() {
     if (!this.isValidInput()) return;
-
-                
+    
+    this.feedback.publishment = false;            
+    
     if(this.privateFlag){
       this.feedbackStatus = FeedbackStatus.Private
     }
