@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent implements OnInit {
-
+  HospitalImage : string = "../../../../assets/HospitalImage.png";
+  HospitalSign : string = "../../../../assets/hospitalSign.png";
   constructor() { }
 
   ngOnInit(): void {
   }
+  
 
 }

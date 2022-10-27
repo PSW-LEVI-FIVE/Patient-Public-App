@@ -5,6 +5,40 @@ body {
     padding: 0 !important;
     background-color: #1e293b;
 }
-p h1 h2 h3 h4 h5 h6 span {
-    color: rgb(209 213 219);
+.textColor {
+    color: #06b6d4 !important;
+}
+
+.mat-stroked-button {
+    color: #334155;
+    background-color: #06b6d4;
+    width: 150px;
+}
+
+.mat-form-field-label {
+    /*change color of label*/
+    color: #06b6d4 !important;
+  }
+  
+.mat-form-field-ripple {
+  color: #06b6d4 !important;
+  background-color: #06b6d4 !important;
+}
+
+.mat-form-field-empty.mat-form-field-label{
+    color: #06b6d4 !important;
+}
+
+.mat-form-field-underline{
+  color: #06b6d4 !important;
+  background-color: #06b6d4 !important;
+}
+
+.mat-form-field-underline {
+  color: #06b6d4 !important;
+  background-color: #06b6d4 !important;
+}
+
+input{
+    color: #06b6d4 !important;
 }
