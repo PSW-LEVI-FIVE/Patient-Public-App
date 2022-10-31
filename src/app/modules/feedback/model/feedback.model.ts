@@ -2,5 +2,7 @@ export interface IFeedback {
     id?: number;
     patientId: number;
     feedbackContent: string;
-    feedbackStatus?: number;
+    allowPublishment : boolean;
+    published: boolean;
+    anonymity: boolean;
 }
