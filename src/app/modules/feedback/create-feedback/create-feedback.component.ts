@@ -22,7 +22,7 @@ export class CreateFeedbackComponent implements OnInit {
     if (!this.isValidInput()) return;
     this.feedback.id = 0;
     this.feedback.patientId = 4;
-    this.feedback.aninimity = false;
+    this.feedback.anonymity = false;
     this.feedback.published = false;
     this.feedback.allowPublishment = !this.ForbidPublishment;
     this.feedbackService.createFeedback(this.feedback).subscribe(res => {
