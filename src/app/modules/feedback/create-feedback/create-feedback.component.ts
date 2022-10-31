@@ -13,6 +13,7 @@ export class CreateFeedbackComponent implements OnInit {
   constructor(private feedbackService: FeedbackService, private router: Router) { }
 
   public feedback : IFeedback = {} as IFeedback
+  public ForbidPublishment : boolean = false;
 
   ngOnInit(): void {
   }
@@ -23,7 +24,7 @@ export class CreateFeedbackComponent implements OnInit {
     this.feedback.patientId = 4;
     this.feedback.aninimity = false;
     this.feedback.published = false;
-    this.feedback.allowPublishment = true;
+    this.feedback.allowPublishment = !this.ForbidPublishment;
     this.feedbackService.createFeedback(this.feedback).subscribe(res => {
       this.router.navigate(['/']);
     });
