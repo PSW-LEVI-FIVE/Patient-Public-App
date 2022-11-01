@@ -5,8 +5,10 @@ body {
     padding: 0 !important;
     background-color: #1e293b;
 }
-.textColor {
+.text {
     color: #06b6d4 !important;
+    font-family: Garamond, serif !important;
+    margin-bottom: 0px !important;
 }
 
 .mat-stroked-button {

@@ -97,3 +97,10 @@
     left:3vw;
     transform: rotate(-15deg);
 }
+.header{
+    margin-left: 24px;
+    margin-right: 24px;
+    font-weight: 700;
+    font-size: 2.25rem; /* 36px */
+    line-height: 2.5rem; /* 40px */
+  }
