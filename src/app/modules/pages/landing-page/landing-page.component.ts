@@ -9,7 +9,6 @@ export class LandingPageComponent implements OnInit {
   HospitalImage : string = "../../../../assets/HospitalImage.png";
   HospitalSign : string = "../../../../assets/hospitalSign.png";
   constructor() { }
-
   ngOnInit(): void {
   }
   

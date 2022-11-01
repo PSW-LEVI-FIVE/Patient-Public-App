@@ -1,7 +1,30 @@
-h1 {text-align: center;font-size: 50px;margin-top: 20px;}
+
 .center {
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
-}
-.smalltext {font-size: 30px;}
+    width: 75vw;
+  }
+.header{
+    font-weight: 700;
+    font-size: 2.25rem; /* 36px */
+    line-height: 2.5rem; /* 40px */
+    text-align: center;
+    padding-bottom: 48px;
+  }
+  textarea{
+    background-color: #cbd5e1;
+    width: 100%;
+  }
+  Button {
+    font-size: 30px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  Button:hover{
+    background-color: #22d3ee;
+    transition: 0.2s;
+  }
+  
