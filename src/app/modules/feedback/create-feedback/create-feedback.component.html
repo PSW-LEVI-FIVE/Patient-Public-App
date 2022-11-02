@@ -6,6 +6,8 @@
     <div style="text-align: left;">
             <p style="margin-top: 16px; margin-bottom: 12px !important;" class="text" >
                 <input class="text" type="checkbox" name="privateFlag" [(ngModel)]="ForbidPublishment"/>I want my feedback to remain private
+            <p style="margin-top: 16px; margin-bottom: 12px !important;" class="text" >
+                <input type="checkbox" name="anonymousFlag" [(ngModel)]="EnableAnonimity"/>I want my feedback to be anonymous
             <p>
         <button mat-stroked-button app:backgroundTint="#d1d5db" class="smalltext" type="submit" (click)="createFeedback()"> Submit!</button>
     </p>

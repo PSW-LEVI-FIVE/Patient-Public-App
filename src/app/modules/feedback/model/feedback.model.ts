@@ -4,5 +4,5 @@ export interface IFeedback {
     feedbackContent: string;
     allowPublishment : boolean;
     published: boolean;
-    anonymity: boolean;
+    Anonimity: boolean;
 }
