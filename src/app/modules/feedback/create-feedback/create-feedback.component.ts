@@ -14,6 +14,7 @@ export class CreateFeedbackComponent implements OnInit {
 
   public feedback : IFeedback = {} as IFeedback
   public ForbidPublishment : boolean = false;
+  public EnableAnonimity : boolean = false;
 
   ngOnInit(): void {
   }
@@ -21,8 +22,13 @@ export class CreateFeedbackComponent implements OnInit {
   public createFeedback() {
     if (!this.isValidInput()) return;
     this.feedback.id = 0;
+<<<<<<< HEAD
     this.feedback.patientId = 5;
     this.feedback.anonymity = false;
+=======
+    this.feedback.patientId = 4;
+    this.feedback.Anonimity = this.EnableAnonimity;
+>>>>>>> 7cb558b (Anonymous posting feedback added)
     this.feedback.published = false;
     this.feedback.allowPublishment = !this.ForbidPublishment;
     this.feedbackService.createFeedback(this.feedback).subscribe(res => {
