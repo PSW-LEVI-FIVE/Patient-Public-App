@@ -6,18 +6,19 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from 'src/app/app-routing.module'; 
 import { HomeComponent } from './home/home.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { LandingPageRouterNavbarComponent } from './landing-page-router-navbar/landing-page-router-navbar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     LandingPageComponent,
-    LandingPageRouterNavbarComponent,
+    NavbarComponent,
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     FeedbackModule
-  ]
+  ],
+  exports:[NavbarComponent]
 })
 export class PagesModule { }

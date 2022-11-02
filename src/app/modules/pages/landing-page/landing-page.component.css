@@ -1,19 +1,20 @@
 .LandingHero {
     position: relative;
-    height: 100vh;
+    height: calc(120vh);
     width: 35vw;
     background-color: #06b6d4;
-    clip-path: ellipse(30vw 90vh at 10% 50%);
+    clip-path: ellipse(30vw 70vh at 10% 40%);
     display: flex;
     justify-content: center;
     overflow: hidden;
     }
 
 .hospitalImage {
-    scale: 1;
+    scale: 0.85;
     width: 100%;
-    top:30vh;
+    top:27vh;
     position: absolute;
+    z-index: 20;
 }
 .hospitalSign1{
     scale: 0.2;
@@ -43,7 +44,7 @@
     scale: 0.25;
     width: 100%;
     position: absolute;
-    top:40vh;
+    top:35vh;
     left:-12vw;
     transform: rotate(-25deg);
 }
@@ -51,7 +52,7 @@
     scale: 0.25;
     width: 100%;
     position: absolute;
-    top:45vh;
+    top:40vh;
     left:10vw;
     transform: rotate(15deg);
 }
@@ -60,7 +61,7 @@
     width: 100%;
     margin: auto;
     position: absolute;
-    top:58vh;
+    top:52vh;
     left:-12vw;
     transform: rotate(0deg);
 }
@@ -69,7 +70,7 @@
     scale: 0.27;
     width: 100%;
     position: absolute;
-    top:40vh;
+    top:35vh;
     left:0vw;
     transform: rotate(60deg);
 }
@@ -77,7 +78,7 @@
     scale: 0.22;
     width: 100%;
     position: absolute;
-    top:57vh;
+    top:50vh;
     left:0vw;
     transform: rotate(-20deg);
 }
@@ -97,10 +98,90 @@
     left:3vw;
     transform: rotate(-15deg);
 }
+.hospitalSign11{
+    scale: 0.25;
+    width: 100%;
+    position: absolute;
+    top:72vh;
+    left:-15vw;
+    transform: rotate(30deg);
+}
+.hospitalSign12{
+    scale: 0.27;
+    width: 100%;
+    position: absolute;
+    top:64vh;
+    left:-5vw;
+    transform: rotate(-20deg);
+}
+.hospitalSign13{
+    scale: 0.25;
+    width: 100%;
+    position: absolute;
+    top:64vh;
+    left:5vw;
+    transform: rotate(5deg);
+}
+.hospitalSign14{
+    scale: 0.25;
+    width: 100%;
+    position: absolute;
+    top:85vh;
+    left:-5vw;
+    transform: rotate(0deg);
+}
+.hospitalSign15{
+    scale: 0.23;
+    width: 100%;
+    position: absolute;
+    top:-7vh;
+    left:-15vw;
+    transform: rotate(-30deg);
+}
+.hospitalSign16{
+    scale: 0.23;
+    width: 100%;
+    position: absolute;
+    top:-7vh;
+    left:13vw;
+    transform: rotate(20deg);
+}
+.hospitalSign17{
+    scale: 0.23;
+    width: 100%;
+    position: absolute;
+    top:-35vh;
+    left:3vw;
+    transform: rotate(-25deg);
+}
+.hospitalSign18{
+    scale: 0.23;
+    width: 100%;
+    position: absolute;
+    top:10vh;
+    left:12vw;
+    transform: rotate(-25deg);
+}
+.hospitalSign19{
+    scale: 0.27;
+    width: 100%;
+    position: absolute;
+    top:2vh;
+    left:-2vw;
+    transform: rotate(15deg);
+}
+.hospitalSign20{
+    scale: 0.25;
+    width: 100%;
+    position: absolute;
+    top:15vh;
+    left:-16vw;
+    transform: rotate(0deg);
+}
 .header{
     margin-left: 24px;
     margin-right: 24px;
     font-weight: 700;
-    font-size: 2.25rem; /* 36px */
-    line-height: 2.5rem; /* 40px */
+    font-size: 4.5rem; /* 72px */
+    line-height: 1;
   }
