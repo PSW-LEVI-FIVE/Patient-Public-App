@@ -13,7 +13,6 @@ export class FeedbackService {
   constructor(private http: HttpClient) { }
 
   createFeedback(feedback: any): Observable<any> {
-    console.log(feedback.Anonimity);
     return this.http.post<any>(this.apiHost + 'api/public/feedbacks', feedback, {headers: this.headers});
   }
   getPublishedFeedbacks(): Observable<IFeedback[]> {
