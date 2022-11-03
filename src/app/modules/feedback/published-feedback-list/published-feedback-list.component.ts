@@ -19,6 +19,10 @@ export class PublishedFeedbackListComponent implements OnInit {
   ngOnInit(): void {
     this.feedbackService.getPublishedFeedbacks().subscribe(res => {
       this.feedbacks = res;
+      this.feedbacks.forEach( (feedback) => {
+         console.log(feedback.feedbackContent);
+         console.log(feedback.patient);
+      });
       this.dataSource.data = this.feedbacks.sort((a, b) => 0.5 - Math.random());
     })
   }
