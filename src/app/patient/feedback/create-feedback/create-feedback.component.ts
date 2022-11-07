@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IFeedback} from 'src/app/modules/feedback/model/feedback.model';
-import { FeedbackService } from 'src/app/modules/feedback/service/feedback.service';
+import { IFeedback } from '../model/feedback.model';
+import { FeedbackService } from '../service/feedback.service';
 
 @Component({
   selector: 'app-create-feedback',

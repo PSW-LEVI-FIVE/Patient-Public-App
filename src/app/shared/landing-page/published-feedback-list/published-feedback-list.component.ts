@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IFeedback } from '../model/feedback.model';
-import { FeedbackService } from '../service/feedback.service';
+import { IFeedback } from '../../../patient/feedback/model/feedback.model';
+import { FeedbackService } from '../../../patient/feedback/service/feedback.service';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -10,7 +10,6 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./published-feedback-list.component.css']
 })
 export class PublishedFeedbackListComponent implements OnInit {
-
   constructor(private feedbackService: FeedbackService, private router: Router) { }
   public dataSource = new MatTableDataSource<IFeedback>();
   public displayedColumns = ['Patient', 'Feedback Content'];
