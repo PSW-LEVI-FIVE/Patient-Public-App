@@ -24,11 +24,11 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
-        <input matInput type="email" [(ngModel)]="user.Email" [formControl]="emailFormControl" placeholder="Ex. gmail@gmail.com" (change)="ValidateForm()">
-        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        <input matInput type="email" [(ngModel)]="user.Email" [formControl]="email" placeholder="Ex. gmail@gmail.com" (change)="ValidateForm()">
+        <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
             Please enter a valid email address!
         </mat-error>
-        <mat-error *ngIf="emailFormControl.hasError('required')">
+        <mat-error *ngIf="email.hasError('required')">
         Email is <strong>required</strong>
         </mat-error>
     </mat-form-field>

@@ -14,7 +14,7 @@ import {FormControl, Validators} from '@angular/forms';
 
 export class RegistrationComponent implements OnInit {
 
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  email = new FormControl('', [Validators.required, Validators.email]);
   name = new FormControl('', [Validators.required, Validators.pattern("^[A-Z][a-z]+$")]); 
   surname = new FormControl('', [Validators.required, Validators.pattern("^[A-Z][a-z]+$")]); 
   uid = new FormControl('', [Validators.required, Validators.pattern("^[0-9]{8}$")]); 
