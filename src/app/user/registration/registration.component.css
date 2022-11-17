@@ -5,8 +5,10 @@ div {
 
 mat-form-field {
     width: 50rem;
-    margin: auto;
     font-size: x-large;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 12px;
 }
 button{
     font-size: 3rem;
