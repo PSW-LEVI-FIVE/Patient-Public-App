@@ -9,4 +9,6 @@ export interface IUser {
     BirthDate: Date;
     Address:String;
     BloodType:BloodTypeEnum;
+    Username:string;
+    Password:string;
 }
