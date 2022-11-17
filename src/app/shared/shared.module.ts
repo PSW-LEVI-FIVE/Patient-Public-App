@@ -5,18 +5,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms'; 
 
 
 
 @NgModule({
   declarations: [NavbarComponent,
   PublishedFeedbackListComponent,
-  LandingPageComponent
+  LandingPageComponent,
+  LoginComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule
   ],
   exports:[NavbarComponent]
 })

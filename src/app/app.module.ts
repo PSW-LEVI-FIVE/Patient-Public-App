@@ -11,7 +11,7 @@ import { PatientModule } from './patient/patient.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
