@@ -1,3 +1,4 @@
+import { UserModule } from './user/user.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
@@ -19,6 +20,7 @@ import { PatientModule } from './patient/patient.module';
     HttpClientModule,
     MaterialModule,
     PatientModule,
+    UserModule,
     SharedModule
   ],
   providers: [],

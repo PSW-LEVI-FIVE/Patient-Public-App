@@ -1,0 +1,32 @@
+
+div {
+    margin: auto;
+}
+
+mat-form-field {
+    width: 50rem;
+    margin: auto;
+    font-size: x-large;
+}
+button{
+    font-size: 3rem;
+    line-height: 1;
+    border-radius: 32px;
+    font-weight: 600;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
+}
+::ng-deep .mat-calendar {
+    background-color: #475569;
+   }
+::ng-deep .mat-calendar-body-label{
+    color:#06b6d4;
+}
+::ng-deep .mat-calendar-body-cell-content{
+    color:#06b6d4;
+}
+::ng-deep .mat-calendar-body-selected{
+    background-color: #155e75;
+}

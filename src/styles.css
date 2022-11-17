@@ -14,16 +14,47 @@ body {
 .mat-stroked-button {
     color: #334155;
     background-color: #06b6d4;
-    width: 150px;
+    border-radius: 24px !important;;
+}
+.mat-stroked-button:hover {
+  color: #334155;
+  background-color: #67e8f9;
+  transition: 0.2s !important;
+  border-radius: 24px !important;
+}
+.mat-stroked-button:disabled {
+  color: #67e8f9;
+  background-color: #334155;
+  transition: 0.2s !important;
+  border-radius: 24px !important;
+}
+mat-option{
+  color: #06b6d4 !important;
+}
+.mat-form-field-type-mat-select .mat-form-field-label, .mat-select-value {
+  color: #06b6d4;
+}
+.mat-select-panel {
+  background-color: #475569;
+}
+.not-empty-select.mat-selected {
+  color: #0e7490 !important;
 }
 
 .mat-form-field-label {
-    /*change color of label*/
     color: #06b6d4 !important;
   }
+  .mat-input-element::placeholder{
+    color: #0e7490 ;
+ }
   
-.mat-form-field-ripple {
+ .mat-focused .mat-form-field-label {
   color: #06b6d4 !important;
+}
+::ng-deep .mat-form-field-infix{
+  color: #06b6d4 !important;
+}
+.mat-form-field-ripple {
   background-color: #06b6d4 !important;
 }
 
@@ -43,4 +74,11 @@ body {
 
 input{
     color: #06b6d4 !important;
-}
+} 
+ 
+ mat-datepicker-toggle {
+  color: #06b6d4 !important;
+ }
+ p{
+  margin-bottom: 0px !important;
+ }

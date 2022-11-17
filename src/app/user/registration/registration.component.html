@@ -1,0 +1,85 @@
+<div style="width: auto; flex-direction:column; flex: content; justify-content: center;margin-bottom: 5rem;">
+    <h1 style="text-align: center; margin-top: 5rem; font-weight: 600; font-size: 3.75rem;line-height: 1;" class="text">Registration</h1>
+    <p style="text-align: center; margin-top: 16px; font-weight: 600; font-size: 1.875rem;line-height: 2.25rem;" class="text">Please, fill every field validly!</p>
+    <div style="display: flex; flex-direction: column;margin-top: 2rem;margin-bottom: 3rem;">
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="user.Name" required [formControl]="name" placeholder="Ex. Pera"  (change)="ValidateForm()">
+        <mat-error  *ngIf="name.hasError('required')">
+            Surname is <strong>required</strong>!
+        </mat-error>
+        <mat-error  *ngIf="name.hasError('pattern') && !name.hasError('required')">
+            Surname not valid!
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Surname</mat-label>
+        <input matInput [(ngModel)]="user.Surname" required [formControl]="surname" placeholder="Ex. Peric" pattern="[a-zA-Z ]*" (change)="ValidateForm()">
+        <mat-error  *ngIf="surname.hasError('required')">
+            Surname is <strong>required</strong>!
+        </mat-error>
+        <mat-error  *ngIf="surname.hasError('pattern') && !surname.hasError('required')">
+            Surname not valid!
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="user.Email" [formControl]="email" placeholder="Ex. gmail@gmail.com" (change)="ValidateForm()">
+        <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+            Please enter a valid email address!
+        </mat-error>
+        <mat-error *ngIf="email.hasError('required')">
+        Email is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Uid</mat-label>
+        <input matInput type="string" maxlength="8" [formControl]="uid" placeholder="Ex. 12345678" [(ngModel)]="user.Uid" (change)="ValidateForm()">
+        <mat-error  *ngIf="uid.hasError('required')">
+            Uid is <strong>required</strong>!
+        </mat-error>
+        <mat-error  *ngIf="uid.hasError('pattern') && !uid.hasError('required')">
+            Uid not valid!
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Address</mat-label>
+        <input matInput [(ngModel)]="user.Address" [formControl]="address" placeholder="Ex. Street 25" (change)="ValidateForm()">
+        <mat-error  *ngIf="address.hasError('required')">
+            Address is <strong>required</strong>!
+        </mat-error>
+        <mat-error  *ngIf="address.hasError('pattern') && !address.hasError('required')">
+            Address not valid!
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Phone number</mat-label>
+        <input matInput [(ngModel)]="user.PhoneNumber" [formControl]="phone" placeholder="Ex. +381661112233" (change)="ValidateForm()">
+        <mat-error  *ngIf="phone.hasError('required')">
+            Phone number is <strong>required</strong>!
+        </mat-error>
+        <mat-error  *ngIf="phone.hasError('pattern') && !phone.hasError('required')">
+            Phone number not valid!
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Blood type</mat-label>
+        <mat-select [(value)]="user.BloodType">
+            <mat-option *ngFor="let BloodType of BloodTypes" [value]="BloodType.BloodType">
+            {{BloodType.BloodTypeString}}
+            </mat-option>
+        </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+        <mat-label>Pick your birthday</mat-label>
+        <input placeholder="MM/DD/YYYY" matInput [matDatepicker]="picker" [(ngModel)]="user.BirthDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div style="display: flex; justify-content: center;">
+    <button mat-stroked-button (click)="register()" [disabled]="registerDisabled">
+        Submit
+    </button>
+    </div>
+</div>
