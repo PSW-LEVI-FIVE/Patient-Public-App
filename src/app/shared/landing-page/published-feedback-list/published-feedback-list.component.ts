@@ -14,12 +14,10 @@ export class PublishedFeedbackListComponent implements OnInit {
   public dataSource = new MatTableDataSource<IFeedback>();
   public displayedColumns = ['Patient', 'Feedback Content'];
   public feedbacks: IFeedback[] = [];
-
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.feedbackService.getPublishedFeedbacks().subscribe(res => {
       this.feedbacks = res;
       this.dataSource.data = this.feedbacks.sort((a, b) => 0.5 - Math.random());
     })
   }
-
 }

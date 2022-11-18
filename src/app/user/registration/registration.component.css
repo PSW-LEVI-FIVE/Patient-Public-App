@@ -32,3 +32,6 @@ button{
 ::ng-deep .mat-calendar-body-selected{
     background-color: #155e75;
 }
+::ng-deep .mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate {
+    background: #06b6d4;
+}

@@ -1,4 +1,5 @@
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { IAllergen } from './../model/IAllergen';
+import { AllergenService } from './../services/allergen.service';
 import { BloodTypeEnum } from '../model/BloodTypeEnum';
 import { UserService } from './../services/user.service';
 import { Component, OnInit } from '@angular/core';
@@ -6,8 +7,6 @@ import { Router } from '@angular/router';
 import { IUser } from '../model/IUser';
 import {IBloodType} from './../model/IBloodType';
 import {FormControl, Validators} from '@angular/forms';
-import { Moment } from 'moment';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-registration',
@@ -26,12 +25,15 @@ export class RegistrationComponent implements OnInit {
   username = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9_-]+$")]);
   password = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")]);
   confirmPassword = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")]);
-  minDate: Date;
-  maxDate: Date;
+  allergens = new FormControl('');
+  currentYear:number = new Date().getFullYear();
+  minDate: Date = new Date(this.currentYear - 150, 0, 1);
+  maxDate: Date = new Date();
   
-  public registerDisabled : boolean = true;
-  public user : IUser = {} as IUser;
+  public RegisterDisabled : boolean = true;
+  public User : IUser = {} as IUser;
   public ConfirmPassword: string = "";
+  AllergensList: IAllergen[];
   public BloodTypes:IBloodType[] = [
   {BloodType:BloodTypeEnum.A_POSITIVE, BloodTypeString: "A+"},
   {BloodType:BloodTypeEnum.A_NEGATIVE,BloodTypeString: "A-"},
@@ -42,30 +44,36 @@ export class RegistrationComponent implements OnInit {
   {BloodType:BloodTypeEnum.ZERO_POSITIVE,BloodTypeString: "O+"},
   {BloodType:BloodTypeEnum.ZERO_NEGATIVE,BloodTypeString: "O-"}];
 
-  constructor(private userService: UserService, private router: Router) {
-    this.user.id = 0;
-    this.user.Name = "";
-    this.user.Surname = "";
-    this.user.Address = "";
-    this.user.BloodType = 0;
-    this.user.Email = "";
-    this.user.Uid = "";
-    this.user.PhoneNumber = "";
-    this.user.Username = "";
-    this.user.Password = "";
-    const currentYear = new Date().getFullYear();
-    this.minDate = new Date(currentYear - 150, 0, 1);
-    this.maxDate = new Date();
+  constructor(private userService: UserService,private allergenService:AllergenService, private router: Router) {
+    this.User.id = 0;
+    this.User.Name = "";
+    this.User.Surname = "";
+    this.User.Address = "";
+    this.User.BloodType = 0;
+    this.User.Email = "";
+    this.User.Uid = "";
+    this.User.PhoneNumber = "";
+    this.User.Username = "";
+    this.User.Password = "";
+    this.User.Allergens = [];
+    this.AllergensList = [];
+    this.allergenService.getAllergens().subscribe(res => {
+      this.AllergensList = res;
+    },(error) => {alert("Status: "+ error.status +", Message: " + error.message)}
+    );
   }
 
   ngOnInit(): void {
   }
+  public allergenString(allergen:any) {
+    return allergen.name;
+  }
   public register() {
-    if(this.ConfirmPassword !== this.user.Password){
+    if(this.ConfirmPassword !== this.User.Password){
       alert("Password and confirm password dont match!");
       return;
     }
-    this.userService.register(this.user).subscribe(res => {
+    this.userService.register(this.User).subscribe(res => {
       alert("You registered successfully!");
       this.router.navigate(['/']);
     },(error) => {alert("Status: "+ error.status +", Message: " + error.message)}
@@ -73,13 +81,13 @@ export class RegistrationComponent implements OnInit {
   }
   ValidateForm(){
     const emailRegex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.) +([a-zA-Z0-9]{2,4})+$/;
-    if(!this.user.Name.match("^[A-Z][a-z]+$") || !this.user.Surname.match("^[A-Z][a-z]+$")
-    || !this.user.Address.match("^[A-Z][A-Za-z0-9( )]+$") || emailRegex.test(this.user.Email)
-    || !this.user.Uid.match("^[0-9]{8}$") || !this.user.PhoneNumber.match("^[+]*[0-9-]+$")
-    || !this.user.Username.match("^[A-Za-z0-9]+$") || !this.user.Password.match("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")){
-      this.registerDisabled = true;
+    if(!this.User.Name.match("^[A-Z][a-z]+$") || !this.User.Surname.match("^[A-Z][a-z]+$")
+    || !this.User.Address.match("^[A-Z][A-Za-z0-9( )]+$") || emailRegex.test(this.User.Email)
+    || !this.User.Uid.match("^[0-9]{8}$") || !this.User.PhoneNumber.match("^[+]*[0-9-]+$")
+    || !this.User.Username.match("^[A-Za-z0-9]+$") || !this.User.Password.match("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")){
+      this.RegisterDisabled = true;
       return
     }
-    this.registerDisabled = false;
+    this.RegisterDisabled = false;
   }
 }
