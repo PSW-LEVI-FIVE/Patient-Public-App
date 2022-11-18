@@ -1,4 +1,5 @@
 import { BloodTypeEnum } from './BloodTypeEnum';
+import { IAllergen } from './IAllergen';
 export interface IUser {
     id?: number;
     Name: string;
@@ -11,4 +12,5 @@ export interface IUser {
     BloodType:BloodTypeEnum;
     Username:string;
     Password:string;
+    Allergens: IAllergen[];
 }
