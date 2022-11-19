@@ -15,16 +15,18 @@ export class LoginComponent implements OnInit {
 
   public login : ILogin = {} as ILogin
   public caughtEmail : string = "";
-  public password : string = "";
+  public caughtPassword : string = "";
 
   ngOnInit(): void {
   }
 
   public makeLogin() {
-    this.login.email = this.caughtEmail;
-    //this.login.password = this.password;
-    console.log(this.login.email);
+    this.login.Username = this.caughtEmail;
+    this.login.Password = this.caughtPassword;
+    console.log(this.login.Username + " " + this.login.Password);
     this.loginService.makeLogin(this.login).subscribe(res => {
+      console.log(res + " " + res.tokenHeader + " " + res.token);
+      localStorage.setItem('token',res);
       this.router.navigate(['/']);
     });
   }

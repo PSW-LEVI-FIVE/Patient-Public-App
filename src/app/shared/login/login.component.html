@@ -5,7 +5,7 @@
             <input type="text" style="height:30px;width:300px;font-size:20px;"   class="smalltext" [(ngModel)]="caughtEmail"/>
             <br><br>
         <p style="text-align:center !important;" class="smalltext" >Password:</p>
-            <input type="password" style="height:30px;width:300px;font-size:20px;" class="smalltext" />
+            <input type="password" style="height:30px;width:300px;font-size:20px;" class="smalltext" [(ngModel)]="caughtPassword"/>
         <p>
             <br>
             <input mat-stroked-button app:backgroundTint="#d1d5db" style="text-align:center;height:30px;width:70px;" (click)="makeLogin()" value="Submit!" type="button">

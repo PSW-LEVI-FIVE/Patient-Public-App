@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ILogin } from '../model/login.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,6 +14,12 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   makeLogin(login: any): Observable<any> {
-    return this.http.post<any>(this.apiHost + 'api/public/login/login', login, {headers: this.headers});
+    return this.http.post(this.apiHost + 'api/public/login/login', login, {headers: this.headers,responseType:'text'});
+  }
+
+  getUserProfile()
+  {
+    var TokenHeader = new HttpHeaders({'Authorization':'Bearer ' + localStorage.getItem('token')});
+    return this.http.get(this.apiHost + 'api/public/login/user',{headers:TokenHeader,responseType:'text'});
   }
 }
