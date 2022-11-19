@@ -13,4 +13,5 @@ export interface IUser {
     Username:string;
     Password:string;
     Allergens: IAllergen[];
+    doctorUid: string;
 }
