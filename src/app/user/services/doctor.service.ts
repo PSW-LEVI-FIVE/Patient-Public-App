@@ -5,13 +5,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AllergenService {
+export class DoctorService {
     apiHost: string = 'http://localhost:5000/';
     headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    constructor(private http: HttpClient) {}
-
-    getAllergens(): Observable<any> {
-        return this.http.get<any>(this.apiHost + 'api/public/allergen/all', {headers: this.headers});
+    constructor(private http: HttpClient) { }
+    getDoctors(): Observable<any> {
+        return this.http.get<any>(this.apiHost + 'api/intranet/doctors/internal-medicine/registration', {headers: this.headers});
     }
 }
