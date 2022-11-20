@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import {LandingPageComponent} from "./shared/landing-page/landing-page.component";
 import { LoginComponent } from './shared/login/login.component';
+import { AuthGuard } from './shared/login/model/auth.guard';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },

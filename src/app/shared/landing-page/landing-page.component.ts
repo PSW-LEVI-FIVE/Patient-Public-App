@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../login/service/login.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -8,8 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class LandingPageComponent implements OnInit {
   HospitalImage : string = "../../../../assets/HospitalImage.png";
   HospitalSign : string = "../../../../assets/hospitalSign.png";
-  constructor() { }
-  ngOnInit(): void {
+  constructor(private service: LoginService) { }
+  ngOnInit() {
+    this.service.getUserProfile().subscribe(
+      res=>
+      {
+        console.log(res);
+      }
+    );
   }
   
 
