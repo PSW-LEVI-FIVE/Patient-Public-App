@@ -8,8 +8,7 @@ import { AuthGuard } from './shared/login/model/auth.guard';
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path:'login', component : LoginComponent},
-  { path: 'patient', component: PatientComponent },
-  { path:'patient',component:PatientComponent,canActivate:[AuthGuard]}
+  { path: 'patient', component: PatientComponent }
 ];
 
 @NgModule({
