@@ -1,13 +1,27 @@
 .navbarLinks{
-  display: flex;
-  gap: 20px;
-  background-color:#075985;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 24px;
-  padding-right: 24px;
-  border-bottom: 4px solid #0c4a6e; 
-}
+    display: flex;
+    gap: 20px;
+    background-color:#075985;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 24px;
+    padding-right: 24px;
+    border-bottom: 4px solid #0c4a6e; 
+    flex-grow: 1;
+    }
+.authLinks{
+    display: flex;
+    gap: 20px;
+    background-color:#075985;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 24px;
+    padding-right: 24px;
+    border-bottom: 4px solid #0c4a6e; 
+    }
+.links{
+    display: flex;
+    }
 Button {
     font-size: 1.5rem; /* 24px */
     line-height: 2rem; /* 32px */
@@ -19,4 +33,4 @@ Button {
     cursor:pointer;
     overflow: hidden;
     font-weight: 800;
-}
+    }
