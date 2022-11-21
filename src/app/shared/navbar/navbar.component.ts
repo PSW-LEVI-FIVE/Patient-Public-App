@@ -18,5 +18,21 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(["/login"]);
 
   }
+  isHidden()
+  {
+    if(localStorage.getItem('token') != null)
+    {
+      return true;
+    }
+    else return false;
+  }
+  isHiddenLogout()
+  {
+    if(localStorage.getItem('token') == null)
+    {
+      return true;
+    }
+    else return false;
+  }
 
 }
