@@ -10,8 +10,7 @@ const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path:'login', component : LoginComponent},
   { path: 'patient', component: PatientComponent,canActivate:[AuthGuard] },
-  //{ path: 'patient',loadChildren:()=>import('../app/patient/patient.module').then(a=>a.PatientModule),canActivate:[AuthGuard]}
-];
+ ];
 
 @NgModule({
   imports: [
