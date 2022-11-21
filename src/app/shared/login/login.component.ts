@@ -25,7 +25,9 @@ export class LoginComponent implements OnInit {
     this.login.Password = this.caughtPassword;
     console.log(this.login.Username + " " + this.login.Password);
     this.loginService.makeLogin(this.login).subscribe(res => {
-      localStorage.setItem('token',res);
+      var role = res.split(" ")[1];
+      localStorage.setItem('token',res.split(" ")[0]);
+      localStorage.setItem('role',role);
       this.router.navigate(['/']);
     });
   }

@@ -5,12 +5,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { PatientComponent } from './patient.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { CreateFeedbackComponent } from './feedback/create-feedback/create-feedback.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from '../shared/login/model/auth.guard';
 
 
 const routes: Routes = [
   {
     path: 'patient',
     component: PatientComponent,
+    canActivate:[AuthGuard],
     children: [
       {
         path: 'feedback',
@@ -18,7 +23,7 @@ const routes: Routes = [
         children: [
           {
             path: 'create',
-            component: CreateFeedbackComponent
+            component: CreateFeedbackComponent,
           },
         ]
       },
