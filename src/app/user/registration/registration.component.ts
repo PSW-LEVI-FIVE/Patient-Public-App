@@ -87,7 +87,7 @@ export class RegistrationComponent implements OnInit {
     }
     this.userService.register(this.User).subscribe(res => {
       alert("You registered successfully!");
-      this.router.navigate(['/']);
+      this.router.navigate(['/user/register/success']);
     },(error) => {alert("Status: "+ error.status +", Message: " + error.message)}
     );
   }

@@ -1,0 +1,17 @@
+.success{
+    text-align: center;
+    margin-top: 30vh;
+    font-size: 3.75rem; /* 60px */
+    line-height: 1;
+}
+button{
+    font-size: 3rem;
+    line-height: 1;
+    border-radius: 32px;
+    font-weight: 600;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
+    margin-top: 5rem;
+}
