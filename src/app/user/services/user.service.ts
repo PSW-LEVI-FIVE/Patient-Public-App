@@ -14,4 +14,7 @@ export class UserService {
   register(user: any): Observable<any> {
     return this.http.post<any>(this.apiHost + 'api/public/auth/register/patient', user, {headers: this.headers});
   }
+  activate(code: string): Observable<any> {
+    return this.http.patch<any>(this.apiHost + 'api/public/auth/activate/' + code, {headers: this.headers});
+  }
 }

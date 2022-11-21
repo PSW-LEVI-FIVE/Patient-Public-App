@@ -7,6 +7,7 @@ import { MaterialModule } from '../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrationSuccessComponent } from './registration-success/registration-success.component';
 import { AccountActivationComponent } from './account-activation/account-activation.component';
+import { ActivationFailedComponent } from './activation-failed/activation-failed.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
         component: RegistrationSuccessComponent,
       },
       {
+        path: 'activation/failed',
+        component: ActivationFailedComponent,
+      },
+      {
         path: 'activation/:code',
         component: AccountActivationComponent,
       },
@@ -34,7 +39,8 @@ const routes: Routes = [
     UserComponent,
     RegistrationComponent,
     RegistrationSuccessComponent,
-    AccountActivationComponent
+    AccountActivationComponent,
+    ActivationFailedComponent
   ],
   imports: [
     CommonModule,
