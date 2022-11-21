@@ -9,6 +9,7 @@ import { IUser } from '../model/IUser';
 import {IBloodType} from './../model/IBloodType';
 import {FormControl, Validators} from '@angular/forms';
 import { IPatientsDoctor } from '../model/IPatientsDoctor';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-registration',
@@ -63,12 +64,12 @@ export class RegistrationComponent implements OnInit {
         this.Doctors = [];
         this.allergenService.getAllergens().subscribe(res => {
             this.Allergens = res;
-            },(error) => {alert("Status: "+ error.status +", Message: " + error.message)}
+            },(error) => {alert(error.error.Message)}
         );
         this.doctorService.getDoctors().subscribe(res => {
             this.Doctors = res;
             this.User.doctorUid = this.Doctors[0].uid;
-            },(error) => {alert("Status: "+ error.status +", Message: " + error.message)}
+            },(error) => {alert(error.error.Message)}
         );
     }
 
@@ -87,7 +88,9 @@ export class RegistrationComponent implements OnInit {
     }
     this.userService.register(this.User).subscribe(res => {
       this.router.navigate(['/user/register/success']);
-    },(error) => {alert("Status: "+ error.status +", Message: " + error.message)}
+    },(error: HttpErrorResponse) => {
+        alert(error.error.Message)
+    }
     );
   }
     ValidateForm(){
