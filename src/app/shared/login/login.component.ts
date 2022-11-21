@@ -25,10 +25,30 @@ export class LoginComponent implements OnInit {
     this.login.Password = this.caughtPassword;
     console.log(this.login.Username + " " + this.login.Password);
     this.loginService.makeLogin(this.login).subscribe(res => {
+      if(res != null)
+      {
       var role = res.split(" ")[1];
       localStorage.setItem('token',res.split(" ")[0]);
       localStorage.setItem('role',role);
-      this.router.navigate(['/']);
+      if(role != "Patient")
+      {
+        localStorage.removeItem('token')
+        localStorage.removeItem('role')
+        this.caughtEmail = ""
+        this.caughtPassword = ""
+        this.router.navigate(['/login']);
+        
+      }
+      else
+        this.router.navigate(['/']);
+      }
+      else
+      {
+        alert("Pogresni username ili password")
+        this.caughtEmail = ""
+        this.caughtPassword = ""
+        this.router.navigate(['/']);
+      }
     });
   }
 

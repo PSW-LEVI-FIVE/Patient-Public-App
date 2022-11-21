@@ -18,11 +18,10 @@ export class AuthGuard implements CanActivate{
     }
     canActivate()
     {
-        console.log(localStorage.getItem('role'))
         if(localStorage.getItem('role') == "Patient")
             return true;
         else
-            this.router.navigate(['/']);
+            this.router.navigate(['/login']);
             return false;
     }
     

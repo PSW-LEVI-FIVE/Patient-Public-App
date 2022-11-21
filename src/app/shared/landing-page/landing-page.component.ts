@@ -11,12 +11,6 @@ export class LandingPageComponent implements OnInit {
   HospitalSign : string = "../../../../assets/hospitalSign.png";
   constructor(private service: LoginService) { }
   ngOnInit() {
-    this.service.getUserProfile().subscribe(
-      res=>
-      {
-        console.log(res);
-      }
-    );
   }
   
 
