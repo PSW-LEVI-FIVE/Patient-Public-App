@@ -15,8 +15,25 @@ export class NavbarComponent implements OnInit {
   onLogout()
   {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.router.navigate(["/login"]);
 
+  }
+  isHidden()
+  {
+    if(localStorage.getItem('token') != null)
+    {
+      return true;
+    }
+    else return false;
+  }
+  isHiddenLogout()
+  {
+    if(localStorage.getItem('token') == null)
+    {
+      return true;
+    }
+    else return false;
   }
 
 }
