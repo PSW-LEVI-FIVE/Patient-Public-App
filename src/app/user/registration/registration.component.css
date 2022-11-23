@@ -20,6 +20,9 @@ button{
     padding-right: 3rem;
     padding-left: 3rem;
 }
+::ng-deep .mat-button{
+    color:#06b6d4;
+}
 ::ng-deep .mat-calendar {
     background-color: #475569;
    }

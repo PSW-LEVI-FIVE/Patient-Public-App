@@ -11,6 +11,6 @@ export class DoctorService {
 
     constructor(private http: HttpClient) { }
     getDoctors(): Observable<any> {
-        return this.http.get<any>(this.apiHost + 'api/intranet/doctors/internal-medicine/registration', {headers: this.headers});
+        return this.http.get<any>(this.apiHost + 'api/public/doctors/internal-medicine/registration', {headers: this.headers});
     }
 }
