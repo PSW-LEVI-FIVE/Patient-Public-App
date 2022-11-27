@@ -2,11 +2,11 @@
 <div class="center">    
         <mat-form-field appearance="fill">
             <mat-label>Username</mat-label>
-            <input matInput type="string" maxlength="8"placeholder="Ex. Some Username" [(ngModel)]="caughtUsername">
+            <input matInput type="string" placeholder="Ex. Some Username" [(ngModel)]="caughtUsername">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
-            <input matInput type="string" maxlength="8"placeholder="Ex. Some Password" [(ngModel)]="caughtPassword">
+            <input matInput type="string" placeholder="Ex. Some Password" [(ngModel)]="caughtPassword">
         </mat-form-field>
         <div style="display: flex; justify-content: center;">
             <button mat-stroked-button (click)="makeLogin()">
