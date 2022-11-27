@@ -27,6 +27,7 @@ export class RegistrationComponent implements OnInit {
     username = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9_-]+$")]);
     password = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")]);
     confirmPassword = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")]);
+    birthDate = new FormControl(new Date(), [Validators.required])
     allergens = new FormControl('');
     currentYear:number = new Date().getFullYear();
     minDate: Date = new Date(this.currentYear - 150, 0, 1);
@@ -82,6 +83,7 @@ export class RegistrationComponent implements OnInit {
     return doctor.name + " " + doctor.surname + " " + doctor.uid;
   }
   public register() {
+    this.ValidateForm()
     if(this.ConfirmPassword !== this.User.Password){
       alert("Password and confirm password dont match!");
       return;
@@ -98,8 +100,9 @@ export class RegistrationComponent implements OnInit {
         if(!this.User.Name.match("^[A-Z][a-z]+$") || !this.User.Surname.match("^[A-Z][a-z]+$")
         || !this.User.Address.match("^[A-Z][A-Za-z0-9( )]+$") || emailRegex.test(this.User.Email)
         || !this.User.Uid.match("^[0-9]{8}$") || !this.User.PhoneNumber.match("^[+]*[0-9-]+$")
-        || !this.User.Username.match("^[A-Za-z0-9]+$") || !this.User.Password.match("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")){
-            this.RegisterDisabled = true;
+        || !this.User.Username.match("^[A-Za-z0-9]+$") || !this.User.Password.match("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")
+        || this.minDate > this.User.BirthDate || this.User.BirthDate > this.maxDate){
+            this.RegisterDisabled = true
             return;
         }
         this.RegisterDisabled = false;
