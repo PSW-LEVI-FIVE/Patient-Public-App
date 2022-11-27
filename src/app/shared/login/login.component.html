@@ -1,16 +1,16 @@
 <h1 class="text header" style="margin-top: 60px;text-align:center;">Login</h1>  
 <div class="center">    
-        <mat-form-field appearance="fill">
-            <mat-label>Username</mat-label>
-            <input matInput type="string" placeholder="Ex. Some Username" [(ngModel)]="caughtUsername">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Password</mat-label>
-            <input matInput type="string" placeholder="Ex. Some Password" [(ngModel)]="caughtPassword">
-        </mat-form-field>
-        <div style="display: flex; justify-content: center;">
-            <button mat-stroked-button (click)="makeLogin()">
-                Login
-            </button>
-        </div>
+    <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput type="string" placeholder="Ex. Some Username" [(ngModel)]="caughtUsername">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" placeholder="Ex. Some Password" [(ngModel)]="caughtPassword">
+    </mat-form-field>
+    <div style="display: flex; justify-content: center;">
+        <button mat-stroked-button (click)="makeLogin()">
+            Login
+        </button>
+    </div>
 </div>

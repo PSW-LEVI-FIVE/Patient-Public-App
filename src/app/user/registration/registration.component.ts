@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from '../model/IUser';
 import {IBloodType} from './../model/IBloodType';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 import { IPatientsDoctor } from '../model/IPatientsDoctor';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
     address = new FormControl('', [Validators.required, Validators.pattern("^[A-Z][A-Za-z0-9( )]+$")]); 
     phone = new FormControl('', [Validators.required, Validators.pattern("^[+]*[0-9-]+$")]);
     username = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9_-]+$")]);
-    password = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")])
+    password = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")]);
     confirmPassword = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")]);
     birthDate = new FormControl(new Date(), [Validators.required])
     allergens = new FormControl('');
