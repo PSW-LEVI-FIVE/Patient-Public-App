@@ -1,44 +1,34 @@
 
 .center {
-    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     width: 75vw;
+    display: flex;
+    flex-direction: column
   }
 .header{
     font-weight: 700;
-    font-size: 3rem; /* 48px */
+    font-size: 6rem; /* 96px */
     line-height: 1;
     text-align: center;
     padding-bottom: 48px;
   }
-  textarea{
-    background-color: #cbd5e1;
-    width: 100%;
-    height: 10rem;
-    border-radius: 6px;
-  }
-  Button {
-    font-size: 30px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-  Button:hover{
-    background-color: #22d3ee;
-    transition: 0.2s;
-  }
-  input.checkbox{
-    width : 20px;
-    height :20px;
-    margin-right: 16px;
-    vertical-align: middle;
-    margin-top: 0px;
-  }
-  p.checkbox{
-    font-size: 1.125rem; /* 18px */
-    line-height: 1.75rem; /* 28px */
-    height: 100%;
-  }
-  
+  mat-form-field {
+    width: 35rem;
+    font-size: x-large;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 12px;
+}
+button{
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 600;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
+}
+::ng-deep .mat-button{
+    color:#06b6d4;
+}

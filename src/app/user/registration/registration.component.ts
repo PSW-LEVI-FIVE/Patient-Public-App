@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from '../model/IUser';
 import {IBloodType} from './../model/IBloodType';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { IPatientsDoctor } from '../model/IPatientsDoctor';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
     address = new FormControl('', [Validators.required, Validators.pattern("^[A-Z][A-Za-z0-9( )]+$")]); 
     phone = new FormControl('', [Validators.required, Validators.pattern("^[+]*[0-9-]+$")]);
     username = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9_-]+$")]);
-    password = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")]);
+    password = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")])
     confirmPassword = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")]);
     birthDate = new FormControl(new Date(), [Validators.required])
     allergens = new FormControl('');
@@ -49,7 +49,8 @@ export class RegistrationComponent implements OnInit {
     {BloodType:BloodTypeEnum.ZERO_NEGATIVE,BloodTypeString: "O-"}];
 
     constructor(private userService: UserService,private allergenService:AllergenService,
-         private doctorService:DoctorService,private router: Router) {
+                private doctorService:DoctorService,private router: Router) 
+    {
         this.User.id = 0;
         this.User.Name = "";
         this.User.Surname = "";
@@ -65,37 +66,89 @@ export class RegistrationComponent implements OnInit {
         this.Doctors = [];
         this.allergenService.getAllergens().subscribe(res => {
             this.Allergens = res;
-            },(error) => {alert(error.error.Message)}
+            },(error) => {console.log(error.Message)}
         );
         this.doctorService.getDoctors().subscribe(res => {
             this.Doctors = res;
             this.User.doctorUid = this.Doctors[0].uid;
-            },(error) => {alert(error.error.Message)}
+            },(error) => {console.log(error.Message)}
         );
     }
 
-  ngOnInit(): void {
-  }
-  public getAllergenString(allergen:any) {
-    return allergen.name;
-  }
-  public getDoctorString(doctor:any) {
-    return doctor.name + " " + doctor.surname + " " + doctor.uid;
-  }
-  public register() {
-    this.ValidateForm()
-    if(this.ConfirmPassword !== this.User.Password){
-      alert("Password and confirm password dont match!");
-      return;
+    ngOnInit(): void 
+    {
+        this.password.setErrors(null)
     }
-    this.userService.register(this.User).subscribe(res => {
-      this.router.navigate(['/user/register/success']);
-    },(error: HttpErrorResponse) => {
-        alert(error.error.Message)
+
+    GetAllergenString(allergen:any) 
+    {
+        return allergen.name;
     }
-    );
-  }
-    ValidateForm(){
+
+    GetDoctorString(doctor:any)
+    {
+        return doctor.name + " " + doctor.surname + " " + doctor.uid;
+    }
+    ValidateUniqueness()
+    {        
+        this.userService.validateEmail(this.User.Email).subscribe(res => {
+            this.email.setErrors(null)
+            this.email.updateValueAndValidity();
+            },(error) => {
+                this.email.setErrors({EmailUnique:true})
+                this.RegisterDisabled = true
+            }
+        );
+        this.userService.validateUid(this.User.Uid).subscribe(res => {
+            this.uid.setErrors(null)
+            this.uid.updateValueAndValidity();
+            },(error) => {
+                this.uid.setErrors({UidUnique:true})
+                this.RegisterDisabled = true
+            }
+        );
+        this.userService.validateUsername(this.User.Username).subscribe(res => {
+            this.username.setErrors(null)
+            this.username.updateValueAndValidity();
+            },(error) => {
+                this.username.setErrors({UsernameUnique:true})
+                this.RegisterDisabled = true
+            }
+        );
+    }
+    Register()
+    {
+        this.ValidateUniqueness()
+        if(this.email.hasError('EmailUnique') || this.uid.hasError('UidUnique') || this.username.hasError('UsernameUnique'))
+        {
+            return;
+        }
+        this.userService.register(this.User).subscribe(res => {
+        this.router.navigate(['/user/register/success']);
+        },(error: HttpErrorResponse) => {
+            console.log(error.error.Message)
+        }
+        );
+    }
+    ValidateForm()
+    {
+        if(this.ConfirmPassword !== this.User.Password)
+        {
+            if(!this.password.hasError('pattern') && !this.password.hasError('required')){
+                this.password.setErrors({PasswordMatch:true})
+                this.RegisterDisabled = true
+            }
+            if(!this.confirmPassword.hasError('pattern') && !this.confirmPassword.hasError('required')){
+                this.confirmPassword.setErrors({PasswordMatch:true})
+                this.RegisterDisabled = true
+            }
+            return;
+        }
+        this.password.setErrors(null)
+        this.password.updateValueAndValidity();
+        this.confirmPassword.setErrors(null)
+        this.confirmPassword.updateValueAndValidity();
+        
         const emailRegex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.) +([a-zA-Z0-9]{2,4})+$/;
         if(!this.User.Name.match("^[A-Z][a-z]+$") || !this.User.Surname.match("^[A-Z][a-z]+$")
         || !this.User.Address.match("^[A-Z][A-Za-z0-9( )]+$") || emailRegex.test(this.User.Email)

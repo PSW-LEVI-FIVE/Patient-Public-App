@@ -14,14 +14,14 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) { }
 
   public login : ILogin = {} as ILogin
-  public caughtEmail : string = "";
+  public caughtUsername : string = "";
   public caughtPassword : string = "";
 
   ngOnInit(): void {
   }
 
   public makeLogin() {
-    this.login.Username = this.caughtEmail;
+    this.login.Username = this.caughtUsername;
     this.login.Password = this.caughtPassword;
     console.log(this.login.Username + " " + this.login.Password);
     this.loginService.makeLogin(this.login).subscribe(res => {
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       {
         localStorage.removeItem('token')
         localStorage.removeItem('role')
-        this.caughtEmail = ""
+        this.caughtUsername = ""
         this.caughtPassword = ""
         this.router.navigate(['/login']);
         
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       else
       {
         alert("Pogresni username ili password")
-        this.caughtEmail = ""
+        this.caughtUsername = ""
         this.caughtPassword = ""
         this.router.navigate(['/']);
       }
