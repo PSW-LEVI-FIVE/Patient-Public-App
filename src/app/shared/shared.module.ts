@@ -6,7 +6,8 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import { MaterialModule } from '../material/material.module';
 
 
 
@@ -20,6 +21,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     RouterModule,
     MatTableModule,
+    MaterialModule,
+    ReactiveFormsModule,
     FormsModule
   ],
   exports:[NavbarComponent]

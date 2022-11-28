@@ -1,14 +1,16 @@
-<div class="center">
-    <h1 class="text header" style="margin-bottom: 60px;text-align:center;">Login</h1>      
-    <div style="text-align: center;color:white">
-        <p style="text-align:center;font-size:larger, !important;"  >Username:</p>
-            <input type="text" style="height:30px;width:300px;font-size:20px;"   class="smalltext" [(ngModel)]="caughtEmail"/>
-            <br><br>
-        <p style="text-align:center !important;" class="smalltext" >Password:</p>
-            <input type="password" style="height:30px;width:300px;font-size:20px;" class="smalltext" [(ngModel)]="caughtPassword"/>
-        <p>
-            <br>
-            <input mat-stroked-button app:backgroundTint="#d1d5db" style="text-align:center;height:30px;width:70px;" (click)="makeLogin()" value="Submit!" type="button">
-        </p>
+<h1 class="text header" style="margin-top: 60px;text-align:center;">Login</h1>  
+<div class="center">    
+    <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput type="string" placeholder="Ex. Some Username" [(ngModel)]="caughtUsername">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" placeholder="Ex. Some Password" [(ngModel)]="caughtPassword">
+    </mat-form-field>
+    <div style="display: flex; justify-content: center;">
+        <button mat-stroked-button (click)="makeLogin()">
+            Login
+        </button>
     </div>
 </div>
