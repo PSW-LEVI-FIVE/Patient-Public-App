@@ -11,7 +11,8 @@ export class AllergenService {
 
     constructor(private http: HttpClient) {}
 
-    getAllergens(): Observable<any> {
+    getAllergens(): Observable<any>
+    {
         return this.http.get<any>(this.apiHost + 'api/public/allergen/all', {headers: this.headers});
     }
 }

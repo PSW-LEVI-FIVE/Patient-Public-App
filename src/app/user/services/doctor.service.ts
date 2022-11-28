@@ -10,7 +10,9 @@ export class DoctorService {
     headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     constructor(private http: HttpClient) { }
-    getDoctors(): Observable<any> {
+    
+    getDoctors(): Observable<any> 
+    {
         return this.http.get<any>(this.apiHost + 'api/public/doctors/internal-medicine/registration', {headers: this.headers});
     }
 }

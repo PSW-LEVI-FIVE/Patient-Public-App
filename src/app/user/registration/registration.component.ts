@@ -49,7 +49,7 @@ export class RegistrationComponent implements OnInit {
     {BloodType:BloodTypeEnum.ZERO_NEGATIVE,BloodTypeString: "O-"}];
 
     constructor(private userService: UserService,private allergenService:AllergenService,
-                private doctorService:DoctorService,private router: Router) 
+    private doctorService:DoctorService,private router: Router) 
     {
         this.User.id = 0;
         this.User.Name = "";
@@ -66,13 +66,12 @@ export class RegistrationComponent implements OnInit {
         this.Doctors = [];
         this.allergenService.getAllergens().subscribe(res => {
             this.Allergens = res;
-            },(error) => {console.log(error.Message)}
-        );
+        },(error) => {console.log(error.Message)});
+
         this.doctorService.getDoctors().subscribe(res => {
             this.Doctors = res;
             this.User.doctorUid = this.Doctors[0].uid;
-            },(error) => {console.log(error.Message)}
-        );
+        },(error) => {console.log(error.Message)});
     }
 
     ngOnInit(): void 
