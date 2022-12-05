@@ -17,12 +17,64 @@ body {
     background-color: #06b6d4;
     border-radius: 50% !important;
 }
+.mat-stepper-vertical{
+    background-color: #1e293b;
+}
+.mat-step-text-label{
+    color: #67e8f9;
+}
+.mat-step-header .mat-step-icon-selected{
+    background-color: #67e8f9 !important;
+    color:#1e293b !important;
+    transition: 0.2s !important;
+}
+.mat-step-icon-state-edit
+{
+    background-color: #67e8f9 !important;
+    color:#1e293b !important;
+    transition: 0.2s !important;
+}
+.mat-step-icon-state-number
+{
+    color:#67e8f9 !important;
+    transition: 0.2s !important;
+}
 .mat-stroked-button:hover {
   color: #334155;
   background-color: #67e8f9;
   transition: 0.2s !important;
   border-radius: 16px !important;
 }
+
+.mat-stepper-next:hover {
+    color: #334155;
+    background-color: #67e8f9;
+    transition: 0.2s !important;
+    border-radius: 16px !important;
+
+}
+.mat-stepper-next {
+    color: #334155;
+    transition: 0.2s !important;
+    background-color: #06b6d4;
+    border-radius: 50% !important;
+    font-size: 1.25rem; /* 20px */
+}
+.mat-stepper-previous:hover {
+    color: #334155;
+    background-color: #67e8f9;
+    transition: 0.2s !important;
+    border-radius: 16px !important;
+}
+.mat-stepper-previous {
+    color: #334155;
+    transition: 0.2s !important;
+    background-color: #06b6d4;
+    border-radius: 50% !important;
+    margin-right: 16px !important;
+    font-size: 1.25rem; /* 20px */
+}
+
 .mat-stroked-button:disabled {
   color: #67e8f9;
   background-color: #334155;
