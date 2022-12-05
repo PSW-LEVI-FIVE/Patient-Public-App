@@ -5,7 +5,6 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { MaterialModule } from "./material/material.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PatientModule } from './patient/patient.module';
 import { AuthInterception } from './shared/login/model/auth.interceptor';
@@ -19,7 +18,6 @@ import { AuthInterception } from './shared/login/model/auth.interceptor';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MaterialModule,
     PatientModule,
     UserModule,
     SharedModule

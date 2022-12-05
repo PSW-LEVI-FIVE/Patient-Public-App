@@ -1,8 +1,8 @@
-import { DoctorService } from './../services/doctor.service';
+import { DoctorService } from '../service/doctor.service';
 import { IAllergen } from './../model/IAllergen';
-import { AllergenService } from './../services/allergen.service';
+import { AllergenService } from '../service/allergen.service';
 import { BloodTypeEnum } from '../model/BloodTypeEnum';
-import { UserService } from './../services/user.service';
+import { UserService } from '../service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from '../model/IUser';
@@ -49,7 +49,7 @@ export class RegistrationComponent implements OnInit {
     {BloodType:BloodTypeEnum.ZERO_NEGATIVE,BloodTypeString: "O-"}];
 
     constructor(private userService: UserService,private allergenService:AllergenService,
-    private doctorService:DoctorService,private router: Router) 
+        private doctorService:DoctorService,private router: Router) 
     {
         this.User.id = 0;
         this.User.Name = "";

@@ -2,6 +2,7 @@
     <div class="navbarLinks">
         <button mat-button class="text" [routerLink]="['']" >Landing page</button>
         <button mat-button class="text" [routerLink]="['patient/feedback/create']" [hidden]="isHiddenLogout()" >Give feedback</button>
+        <button mat-button class="text" [routerLink]="['patient/appointment/step-by-step']" [hidden]="isHiddenLogout()" >Create appointment</button>
     </div>
     <div class="authLinks">
         <button mat-button class="text" (click)="onLogout()" [hidden]="isHiddenLogout()">Logout</button>
