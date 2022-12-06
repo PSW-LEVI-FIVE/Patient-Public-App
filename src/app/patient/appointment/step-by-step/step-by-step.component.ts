@@ -46,7 +46,6 @@ export class StepByStepComponent implements OnInit {
                 this.possibleDoctors.push(doctor);
         }
         this.chosenDoctor = this.possibleDoctors[0];
-        console.log(this.possibleDoctors);
     }
 
     private pushPossibleSpecialties() {

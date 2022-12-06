@@ -12,7 +12,6 @@ export class AppointmentService {
     constructor(private http: HttpClient) { }
     GetTimeIntervals(doctorUid:string,chosen: Date): Observable<any>
     {
-        console.log(this.apiHost + 'api/public/appointments/time-intervals/step-by-step/'+doctorUid+"/"+chosen.toISOString())
         return this.http.get<any>(this.apiHost + 'api/public/appointments/time-intervals/step-by-step/'+doctorUid+"/"+chosen.toISOString(), {headers: this.headers});
     }
 }
