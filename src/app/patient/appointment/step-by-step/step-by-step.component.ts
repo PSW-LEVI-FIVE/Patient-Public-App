@@ -1,3 +1,4 @@
+import { AppointmentService } from './../service/appointment.service';
 import { IDoctorWithSPeciality, ISpecialtyType, SpecialtyEnum } from './../model/IDoctorWithSpeciality';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -16,13 +17,14 @@ export class StepByStepComponent implements OnInit {
     secondFormGroup: FormGroup = this._formBuilder.group({firstCtrl: ['']});
     minDate: Date = new Date();
     maxDate: Date = new Date();
-    choosenDate: Date = new Date();
+    chosenDate: Date = new Date();
+    dateChanged: number = 0;
 
     doctors: IDoctorWithSPeciality[] = [];
     possibleDoctors: IDoctorWithSPeciality[] = [];
-    choosenDoctor:IDoctorWithSPeciality = <IDoctorWithSPeciality>{};
+    chosenDoctor:IDoctorWithSPeciality = <IDoctorWithSPeciality>{};
 
-    choosenSpecialty:ISpecialtyType = {SpecialtyType:SpecialtyEnum.ITERNAL_MEDICINE,SpecialtyTypeString: "Iternal medicine"};
+    chosenSpecialty:ISpecialtyType = {SpecialtyType:SpecialtyEnum.ITERNAL_MEDICINE,SpecialtyTypeString: "Iternal medicine"};
     possibleSpecialtyTypes:ISpecialtyType[] = [];
     public SpecialtyTypes:ISpecialtyType[] = [
         {SpecialtyType:SpecialtyEnum.ALLERGY, SpecialtyTypeString: "Allergy"},
@@ -36,37 +38,50 @@ export class StepByStepComponent implements OnInit {
         {SpecialtyType:SpecialtyEnum.PSYCHIATRY,SpecialtyTypeString: "Psychiatry"},
         {SpecialtyType:SpecialtyEnum.ITERNAL_MEDICINE,SpecialtyTypeString: "Iternal medicine"}];
 
-    constructor(private _formBuilder: FormBuilder,private doctorService: DoctorService) {
+    constructor(private _formBuilder: FormBuilder,private doctorService: DoctorService,private appointmentService: AppointmentService) {
         this.minDate.setDate(new Date().getDate() + 1);
         this.maxDate.setDate(new Date().getDate() + 365);
-        this.choosenDate = this.minDate;
-        this.doctorService.getDoctorsForStepByStep().subscribe(res => {
+        this.chosenDate = this.minDate;
+        this.doctorService.GetDoctorsForStepByStep().subscribe(res => {
             this.doctors = res;
-            this.PushPossibleSpecialties();
-            this.choosenSpecialty = this.SpecialtyTypes[9];
-            this.PushPossibleDoctors();
+            this.pushPossibleSpecialties();
+            this.chosenSpecialty = this.SpecialtyTypes[9];
+            this.pushPossibleDoctors();
         },(error) => {console.log(error.Message)});
      }
     
-    public PushPossibleDoctors() {
+    public pushPossibleDoctors() {
         this.possibleDoctors = [];
         for (var doctor of this.doctors) {
-            if (doctor.specialtyType == this.choosenSpecialty.SpecialtyType)
+            if (doctor.specialtyType == this.chosenSpecialty.SpecialtyType)
                 this.possibleDoctors.push(doctor);
         }
-        this.choosenDoctor = this.possibleDoctors[0];
+        this.chosenDoctor = this.possibleDoctors[0];
         console.log(this.possibleDoctors);
     }
 
-    private PushPossibleSpecialties() {
+    private pushPossibleSpecialties() {
         var specialties: SpecialtyEnum[] = [];
         for (var doctor of this.doctors) {
             if (specialties.includes(doctor.specialtyType))
                 continue;
             specialties.push(doctor.specialtyType);
-            var Specialty: ISpecialtyType = this.SpecialtyTypes.find((specialty: ISpecialtyType) => specialty.SpecialtyType === doctor.specialtyType) || this.choosenSpecialty;
+            var Specialty: ISpecialtyType = this.SpecialtyTypes.find((specialty: ISpecialtyType) => specialty.SpecialtyType === doctor.specialtyType) || this.chosenSpecialty;
             this.possibleSpecialtyTypes.push(Specialty);
         }
+    }
+    getTimeIntervals() {
+        this.appointmentService.GetTimeIntervals(this.chosenDoctor.uid,this.dateToUTC()).subscribe(res => {
+            console.log(res);
+        },(error) => {console.log(error.Message)});
+    }
+    dateToUTC() {
+        return new Date(Date.UTC(this.chosenDate.getUTCFullYear(), this.chosenDate.getUTCMonth(),
+            this.chosenDate.getUTCDate()+ this.dateChanged, this.chosenDate.getUTCHours(),
+            this.chosenDate.getUTCMinutes(), this.chosenDate.getUTCSeconds()));
+    }
+    dateIsChanged(): void {
+        this.dateChanged = 1;
     }
 
     ngOnInit(): void {

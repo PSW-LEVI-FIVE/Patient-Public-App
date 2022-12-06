@@ -8,10 +8,10 @@
                     <ng-template matStepLabel>Choose appointment date</ng-template>
                     <mat-form-field appearance="fill">
                     <mat-label>Pick date</mat-label>
-                    <input placeholder="MM/DD/YYYY" matInput [min]="minDate" [max]="maxDate" [formGroup]="firstFormGroup" [matDatepicker]="picker">
+                    <input placeholder="MM/DD/YYYY" [(ngModel)]="chosenDate" (dateChange)="dateIsChanged()" [ngModelOptions]="{standalone: true}" matInput [min]="minDate" [max]="maxDate" [formGroup]="firstFormGroup" [matDatepicker]="picker">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
-                    <mat-error  *ngIf="!firstFormGroup.hasError('required') && (minDate > choosenDate || choosenDate > maxDate)">
+                    <mat-error  *ngIf="!firstFormGroup.hasError('required') && (minDate > chosenDate || chosenDate > maxDate)">
                         Date not valid!
                     </mat-error>
                     </mat-form-field>
@@ -24,7 +24,7 @@
                     <ng-template matStepLabel>Pick doctor speciality</ng-template>
                     <mat-form-field appearance="fill">
                         <mat-label>Speciality type</mat-label>
-                        <mat-select [(ngModel)]="choosenSpecialty" (selectionChange)="PushPossibleDoctors()">
+                        <mat-select [(ngModel)]="chosenSpecialty" (selectionChange)="pushPossibleDoctors()">
                             <mat-option *ngFor="let possibleSpecialty of possibleSpecialtyTypes" [value]="possibleSpecialty">
                             {{possibleSpecialty.SpecialtyTypeString}}
                             </mat-option>
@@ -40,15 +40,15 @@
                         <ng-template matStepLabel>Pick doctor</ng-template>
                         <mat-form-field appearance="fill">
                             <mat-label>Blood type</mat-label>
-                            <mat-select [(value)]="choosenDoctor">
-                                <mat-option *ngFor="let possibleDoctor of possibleDoctors" [value]="choosenDoctor">
+                            <mat-select [(value)]="chosenDoctor">
+                                <mat-option *ngFor="let possibleDoctor of possibleDoctors" [value]="chosenDoctor">
                                 {{possibleDoctor.name + " " + possibleDoctor.surname + " " + possibleDoctor.uid}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
                         <div>
                         <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
+                        <button mat-button matStepperNext (click)="getTimeIntervals()">Next</button>
                         </div>
                     </form>
                     </mat-step>
