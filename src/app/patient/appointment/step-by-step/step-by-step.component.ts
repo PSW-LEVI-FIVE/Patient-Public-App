@@ -1,5 +1,5 @@
 import { AppointmentService } from './../service/appointment.service';
-import { IDoctorWithSPeciality, ISpecialtyType, SpecialtyEnum } from './../model/IDoctorWithSpeciality';
+import { IDoctorWithSPeciality, ISpeciality } from './../model/IDoctorWithSpeciality';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DoctorService } from '../service/doctor.service';
@@ -24,19 +24,8 @@ export class StepByStepComponent implements OnInit {
     possibleDoctors: IDoctorWithSPeciality[] = [];
     chosenDoctor:IDoctorWithSPeciality = <IDoctorWithSPeciality>{};
 
-    chosenSpecialty:ISpecialtyType = {SpecialtyType:SpecialtyEnum.ITERNAL_MEDICINE,SpecialtyTypeString: "Iternal medicine"};
-    possibleSpecialtyTypes:ISpecialtyType[] = [];
-    public SpecialtyTypes:ISpecialtyType[] = [
-        {SpecialtyType:SpecialtyEnum.ALLERGY, SpecialtyTypeString: "Allergy"},
-        {SpecialtyType:SpecialtyEnum.ANEESTHESIOLOGY,SpecialtyTypeString: "Anesthesiology"},
-        {SpecialtyType:SpecialtyEnum.DERMATOLOGY,SpecialtyTypeString: "Dermatology"},
-        {SpecialtyType:SpecialtyEnum.FAMILY_MEDICINE,SpecialtyTypeString: "Family medicine"},
-        {SpecialtyType:SpecialtyEnum.NEUROLOGY,SpecialtyTypeString: "Neurology"},
-        {SpecialtyType:SpecialtyEnum.PEDIATRICS,SpecialtyTypeString: "Pediatrics"},
-        {SpecialtyType:SpecialtyEnum.UROLOGY,SpecialtyTypeString: "Urology"},
-        {SpecialtyType:SpecialtyEnum.SURGERY,SpecialtyTypeString: "Surgery"},
-        {SpecialtyType:SpecialtyEnum.PSYCHIATRY,SpecialtyTypeString: "Psychiatry"},
-        {SpecialtyType:SpecialtyEnum.ITERNAL_MEDICINE,SpecialtyTypeString: "Iternal medicine"}];
+    chosenSpeciality:ISpeciality = <ISpeciality>{};
+    possibleSpecialities:ISpeciality[] = [];
 
     constructor(private _formBuilder: FormBuilder,private doctorService: DoctorService,private appointmentService: AppointmentService) {
         this.minDate.setDate(new Date().getDate() + 1);
@@ -45,7 +34,7 @@ export class StepByStepComponent implements OnInit {
         this.doctorService.GetDoctorsForStepByStep().subscribe(res => {
             this.doctors = res;
             this.pushPossibleSpecialties();
-            this.chosenSpecialty = this.SpecialtyTypes[9];
+            this.chosenSpeciality = this.possibleSpecialities[0];
             this.pushPossibleDoctors();
         },(error) => {console.log(error.Message)});
      }
@@ -53,7 +42,7 @@ export class StepByStepComponent implements OnInit {
     public pushPossibleDoctors() {
         this.possibleDoctors = [];
         for (var doctor of this.doctors) {
-            if (doctor.specialtyType == this.chosenSpecialty.SpecialtyType)
+            if (doctor.speciality.id == this.chosenSpeciality.id)
                 this.possibleDoctors.push(doctor);
         }
         this.chosenDoctor = this.possibleDoctors[0];
@@ -61,13 +50,10 @@ export class StepByStepComponent implements OnInit {
     }
 
     private pushPossibleSpecialties() {
-        var specialties: SpecialtyEnum[] = [];
         for (var doctor of this.doctors) {
-            if (specialties.includes(doctor.specialtyType))
+            if (this.possibleSpecialities.filter(speciality =>speciality.id == doctor.speciality.id).length > 0)
                 continue;
-            specialties.push(doctor.specialtyType);
-            var Specialty: ISpecialtyType = this.SpecialtyTypes.find((specialty: ISpecialtyType) => specialty.SpecialtyType === doctor.specialtyType) || this.chosenSpecialty;
-            this.possibleSpecialtyTypes.push(Specialty);
+            this.possibleSpecialities.push(doctor.speciality);
         }
     }
     getTimeIntervals() {
