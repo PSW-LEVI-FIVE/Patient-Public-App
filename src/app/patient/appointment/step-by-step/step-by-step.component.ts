@@ -1,4 +1,5 @@
-import { IDoctorWithSPeciality, ISpecialtyType, SpecialtyEnum } from './../model/IDoctorWithSpeciality';
+import { AppointmentService } from './../service/appointment.service';
+import { IDoctorWithSPeciality, ISpeciality } from './../model/IDoctorWithSpeciality';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DoctorService } from '../service/doctor.service';
@@ -16,57 +17,56 @@ export class StepByStepComponent implements OnInit {
     secondFormGroup: FormGroup = this._formBuilder.group({firstCtrl: ['']});
     minDate: Date = new Date();
     maxDate: Date = new Date();
-    choosenDate: Date = new Date();
+    chosenDate: Date = new Date();
+    dateChanged: number = 0;
 
     doctors: IDoctorWithSPeciality[] = [];
     possibleDoctors: IDoctorWithSPeciality[] = [];
-    choosenDoctor:IDoctorWithSPeciality = <IDoctorWithSPeciality>{};
+    chosenDoctor:IDoctorWithSPeciality = <IDoctorWithSPeciality>{};
 
-    choosenSpecialty:ISpecialtyType = {SpecialtyType:SpecialtyEnum.ITERNAL_MEDICINE,SpecialtyTypeString: "Iternal medicine"};
-    possibleSpecialtyTypes:ISpecialtyType[] = [];
-    public SpecialtyTypes:ISpecialtyType[] = [
-        {SpecialtyType:SpecialtyEnum.ALLERGY, SpecialtyTypeString: "Allergy"},
-        {SpecialtyType:SpecialtyEnum.ANEESTHESIOLOGY,SpecialtyTypeString: "Anesthesiology"},
-        {SpecialtyType:SpecialtyEnum.DERMATOLOGY,SpecialtyTypeString: "Dermatology"},
-        {SpecialtyType:SpecialtyEnum.FAMILY_MEDICINE,SpecialtyTypeString: "Family medicine"},
-        {SpecialtyType:SpecialtyEnum.NEUROLOGY,SpecialtyTypeString: "Neurology"},
-        {SpecialtyType:SpecialtyEnum.PEDIATRICS,SpecialtyTypeString: "Pediatrics"},
-        {SpecialtyType:SpecialtyEnum.UROLOGY,SpecialtyTypeString: "Urology"},
-        {SpecialtyType:SpecialtyEnum.SURGERY,SpecialtyTypeString: "Surgery"},
-        {SpecialtyType:SpecialtyEnum.PSYCHIATRY,SpecialtyTypeString: "Psychiatry"},
-        {SpecialtyType:SpecialtyEnum.ITERNAL_MEDICINE,SpecialtyTypeString: "Iternal medicine"}];
+    chosenSpeciality:ISpeciality = <ISpeciality>{};
+    possibleSpecialities:ISpeciality[] = [];
 
-    constructor(private _formBuilder: FormBuilder,private doctorService: DoctorService) {
+    constructor(private _formBuilder: FormBuilder,private doctorService: DoctorService,private appointmentService: AppointmentService) {
         this.minDate.setDate(new Date().getDate() + 1);
         this.maxDate.setDate(new Date().getDate() + 365);
-        this.choosenDate = this.minDate;
-        this.doctorService.getDoctorsForStepByStep().subscribe(res => {
+        this.chosenDate = this.minDate;
+        this.doctorService.GetDoctorsForStepByStep().subscribe(res => {
             this.doctors = res;
-            this.PushPossibleSpecialties();
-            this.choosenSpecialty = this.SpecialtyTypes[9];
-            this.PushPossibleDoctors();
+            this.pushPossibleSpecialties();
+            this.chosenSpeciality = this.possibleSpecialities[0];
+            this.pushPossibleDoctors();
         },(error) => {console.log(error.Message)});
      }
     
-    public PushPossibleDoctors() {
+    public pushPossibleDoctors() {
         this.possibleDoctors = [];
         for (var doctor of this.doctors) {
-            if (doctor.specialtyType == this.choosenSpecialty.SpecialtyType)
+            if (doctor.speciality.id == this.chosenSpeciality.id)
                 this.possibleDoctors.push(doctor);
         }
-        this.choosenDoctor = this.possibleDoctors[0];
-        console.log(this.possibleDoctors);
+        this.chosenDoctor = this.possibleDoctors[0];
     }
 
-    private PushPossibleSpecialties() {
-        var specialties: SpecialtyEnum[] = [];
+    private pushPossibleSpecialties() {
         for (var doctor of this.doctors) {
-            if (specialties.includes(doctor.specialtyType))
+            if (this.possibleSpecialities.filter(speciality =>speciality.id == doctor.speciality.id).length > 0)
                 continue;
-            specialties.push(doctor.specialtyType);
-            var Specialty: ISpecialtyType = this.SpecialtyTypes.find((specialty: ISpecialtyType) => specialty.SpecialtyType === doctor.specialtyType) || this.choosenSpecialty;
-            this.possibleSpecialtyTypes.push(Specialty);
+            this.possibleSpecialities.push(doctor.speciality);
         }
+    }
+    getTimeIntervals() {
+        this.appointmentService.GetTimeIntervals(this.chosenDoctor.uid,this.dateToUTC()).subscribe(res => {
+            console.log(res);
+        },(error) => {console.log(error.Message)});
+    }
+    dateToUTC() {
+        var dateToSet = new Date();
+        dateToSet.setDate(this.chosenDate.getDate());
+        return new Date(dateToSet.toUTCString().substring(0,25));
+    }
+    dateIsChanged(): void {
+        this.dateChanged = 1;
     }
 
     ngOnInit(): void {
