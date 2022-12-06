@@ -62,9 +62,9 @@ export class StepByStepComponent implements OnInit {
         },(error) => {console.log(error.Message)});
     }
     dateToUTC() {
-        return new Date(Date.UTC(this.chosenDate.getUTCFullYear(), this.chosenDate.getUTCMonth(),
-            this.chosenDate.getUTCDate()+ this.dateChanged, this.chosenDate.getUTCHours(),
-            this.chosenDate.getUTCMinutes(), this.chosenDate.getUTCSeconds()));
+        var dateToSet = new Date();
+        dateToSet.setDate(this.chosenDate.getDate());
+        return new Date(dateToSet.toUTCString().substring(0,25));
     }
     dateIsChanged(): void {
         this.dateChanged = 1;
