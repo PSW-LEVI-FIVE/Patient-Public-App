@@ -3,6 +3,21 @@
     display: flex;
     justify-content: center;
 }
+.intervalsEmptyText{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+.errorText{
+    width: 40rem;
+    margin-left: 3rem;
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.75rem; /* 28px */
+}
+
+a {
+    color: #00d9ff;
+}
 .header{
     font-weight: 700;
     font-size: 5rem; /* 96px */
@@ -50,6 +65,14 @@ mat-form-field {
     color: #334155;
     transition: 0.2s !important;
     background-color: #06b6d4;
+    border-radius: 50% !important;
+    margin-right: 16px !important;
+    font-size: 1.25rem; /* 20px */
+}
+.mat-button:disabled {
+    color: #466070;
+    transition: 0.2s !important;
+    background-color: #334155;
     border-radius: 50% !important;
     margin-right: 16px !important;
     font-size: 1.25rem; /* 20px */

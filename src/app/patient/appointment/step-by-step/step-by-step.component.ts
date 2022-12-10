@@ -1,3 +1,5 @@
+import { ICreateAppointmentForPatient } from './../model/ICreateAppointment';
+import { ITimeInterval } from './../model/ITimeInterval';
 import { AppointmentService } from './../service/appointment.service';
 import { IDoctorWithSPeciality, ISpeciality } from './../model/IDoctorWithSpeciality';
 import { Component, OnInit } from '@angular/core';
@@ -17,15 +19,20 @@ export class StepByStepComponent implements OnInit {
     secondFormGroup: FormGroup = this._formBuilder.group({firstCtrl: ['']});
     minDate: Date = new Date();
     maxDate: Date = new Date();
-    chosenDate: Date = new Date();
     dateChanged: number = 0;
+    cantScheduleByTimeInterval: boolean = false;
+    cantScheduleByRoom: boolean = false;
 
     doctors: IDoctorWithSPeciality[] = [];
-    possibleDoctors: IDoctorWithSPeciality[] = [];
-    chosenDoctor:IDoctorWithSPeciality = <IDoctorWithSPeciality>{};
 
-    chosenSpeciality:ISpeciality = <ISpeciality>{};
+    possibleDoctors: IDoctorWithSPeciality[] = [];
     possibleSpecialities:ISpeciality[] = [];
+    possibleIntervals: ITimeInterval[] =[];
+
+    chosenDoctor:IDoctorWithSPeciality = <IDoctorWithSPeciality>{};
+    chosenSpeciality:ISpeciality = <ISpeciality>{};
+    chosenDate: Date = new Date();
+    chosenTimeInterval:ITimeInterval = <ITimeInterval>{};
 
     constructor(private _formBuilder: FormBuilder,private doctorService: DoctorService,private appointmentService: AppointmentService) {
         this.minDate.setDate(new Date().getDate() + 1);
@@ -46,6 +53,7 @@ export class StepByStepComponent implements OnInit {
                 this.possibleDoctors.push(doctor);
         }
         this.chosenDoctor = this.possibleDoctors[0];
+        this.getTimeIntervals();
     }
 
     private pushPossibleSpecialties() {
@@ -56,8 +64,16 @@ export class StepByStepComponent implements OnInit {
         }
     }
     getTimeIntervals() {
-        this.appointmentService.GetTimeIntervals(this.chosenDoctor.uid,this.dateToUTC()).subscribe(res => {
-            console.log(res);
+        this.appointmentService.GetTimeIntervalsStepByStep(this.chosenDoctor.uid,this.dateToUTC()).subscribe(res => {
+            this.possibleIntervals = res;
+            this.cantScheduleByRoom = false;
+            if(this.possibleIntervals.length == 0)
+            {
+                this.cantScheduleByTimeInterval = true;
+                return;
+            }
+            this.cantScheduleByTimeInterval = false;
+            this.chosenTimeInterval = this.possibleIntervals[0];
         },(error) => {console.log(error.Message)});
     }
     dateToUTC() {
@@ -66,7 +82,27 @@ export class StepByStepComponent implements OnInit {
         return new Date(dateToSet.toUTCString().substring(0,25));
     }
     dateIsChanged(): void {
+        this.getTimeIntervals();
         this.dateChanged = 1;
+    }
+    resetSchedulingValidationByRoom(){
+        this.cantScheduleByRoom = false;
+    }
+    getTimeString(date:Date): string {
+        return date.toString().substring(11,16);
+    }
+    scheduleAppointment(){
+        var appointment = <ICreateAppointmentForPatient>{};
+        appointment.chosenTimeInterval = this.chosenTimeInterval;
+        appointment.doctorUid = this.chosenDoctor.uid;
+        console.log(JSON.stringify(appointment))
+        this.appointmentService.CreateAppointment(appointment).subscribe(res =>{
+            console.log(res);
+            console.log("scheduled!")
+        },(error) => {
+            this.cantScheduleByRoom = true;
+            console.log(error.Message)
+        });
     }
 
     ngOnInit(): void {
