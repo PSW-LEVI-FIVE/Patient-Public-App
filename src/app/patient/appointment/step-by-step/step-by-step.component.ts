@@ -96,7 +96,6 @@ export class StepByStepComponent implements OnInit {
         appointment.chosenTimeInterval = this.chosenTimeInterval;
         appointment.doctorUid = this.chosenDoctor.uid;
         this.appointmentService.CreateAppointment(appointment).subscribe(res =>{
-            console.log(res);
         },(error) => {
             this.cantScheduleByRoom = true;
             console.log(error.Message)
