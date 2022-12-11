@@ -59,13 +59,13 @@ mat-form-field {
     color: #334155;
     background-color: #67e8f9;
     transition: 0.2s !important;
-    border-radius: 16px !important;
+    transform: scale(1.05);
 }
 .mat-button {
     color: #334155;
     transition: 0.2s !important;
     background-color: #06b6d4;
-    border-radius: 50% !important;
+    border-radius: 64px !important;
     margin-right: 16px !important;
     font-size: 1.25rem; /* 20px */
 }
@@ -73,7 +73,8 @@ mat-form-field {
     color: #466070;
     transition: 0.2s !important;
     background-color: #334155;
-    border-radius: 50% !important;
+    border-radius: 64px !important;
     margin-right: 16px !important;
     font-size: 1.25rem; /* 20px */
+    transform: scale(1.0);
 }

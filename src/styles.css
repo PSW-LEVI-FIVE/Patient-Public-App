@@ -39,13 +39,14 @@ body {
     background-color: #67e8f9;
     transition: 0.2s !important;
     border-radius: 16px !important;
+    transform: scale(1.05);
 
 }
 .mat-stepper-next {
     color: #334155;
     transition: 0.2s !important;
     background-color: #06b6d4;
-    border-radius: 50% !important;
+    border-radius: 64px !important;
     font-size: 1.25rem;
 }
 .mat-stepper-previous:hover {
@@ -53,12 +54,13 @@ body {
     background-color: #67e8f9;
     transition: 0.2s !important;
     border-radius: 16px !important;
+    transform: scale(1.05);
 }
 .mat-stepper-previous {
     color: #334155;
     transition: 0.2s !important;
     background-color: #06b6d4;
-    border-radius: 50% !important;
+    border-radius: 64px !important;
     margin-right: 16px !important;
     font-size: 1.25rem;
 }
@@ -67,20 +69,20 @@ body {
     color: #334155;
     background-color: #67e8f9;
     transition: 0.2s !important;
-    border-radius: 16px !important;
+    transform: scale(1.05);
   }
   
 .mat-stroked-button:disabled {
   color: #466070;
   background-color: #334155;
   transition: 0.2s !important;
-  border-radius: 50% !important;
+  transform: scale(1.0);
 }
 .mat-stroked-button {
     color: #334155;
     transition: 0.2s !important;
     background-color: #06b6d4;
-    border-radius: 50% !important;
+    border-radius: 64px !important;
 }
 
 
