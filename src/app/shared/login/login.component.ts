@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Role } from './model/authenticated.model';
 import { ILogin } from './model/login.model';
 import { LoginService } from './service/login.service';
+import { catchError, EMPTY } from 'rxjs';
 
 
 @Component({
@@ -14,40 +16,38 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) { }
 
   public login : ILogin = {} as ILogin
-  public caughtUsername : string = "";
-  public caughtPassword : string = "";
+  public caughtEmail: string = "";
+  public caughtPassword: string = "";
 
   ngOnInit(): void {
+    if (localStorage.getItem('token')) {
+      this.loginService.getUserProfile().subscribe(res => {
+        if (res == null || !res) return
+        if (res.role == Role.DOCTOR) {
+          this.router.navigate(["/doctor/appointments"])
+        } else if (res.role == Role.MANAGER) {
+          this.router.navigate(["/manager"])
+        }
+      });
+    }
   }
 
-  public makeLogin()
-    {
-        this.login.Username = this.caughtUsername;
-        this.login.Password = this.caughtPassword;
-        this.loginService.makeLogin(this.login).subscribe(res => {
-        if(res != null)
-        {
-            var role = res.split(" ")[1];
-            localStorage.setItem('token',res.split(" ")[0]);
-            localStorage.setItem('role',role);
-            if(role != "Patient")
-            {
-                localStorage.removeItem('token')
-                localStorage.removeItem('role')
-                this.caughtUsername = ""
-                this.caughtPassword = ""
-                this.router.navigate(['/login']);
-            }
-            else
-                this.router.navigate(['/']);
-        }
-        else
-        {
-            alert("Pogresni username ili password")
-            this.caughtUsername = ""
-            this.caughtPassword = ""
-            this.router.navigate(['/']);
-        }
-        });
-    }
+  public logIn() {
+    this.login.Username = this.caughtEmail;
+    this.login.Password = this.caughtPassword;
+    this.loginService.login(this.login)
+      .pipe(catchError(res => {
+        return EMPTY
+      }))
+      .subscribe(res => {
+        let role = this.enumToRoleString(res.role)
+        localStorage.setItem('token', res.accessToken);
+        localStorage.setItem('role', role);
+        this.router.navigate(["/"])
+      });
+  }
+  public enumToRoleString(role: Role) {
+    if (role == Role.PATIENT) return "Patient";
+    return "";
+  }
 }

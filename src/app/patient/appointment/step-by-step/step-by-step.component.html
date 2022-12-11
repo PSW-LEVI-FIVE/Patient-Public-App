@@ -1,26 +1,26 @@
-<div class="stepByStepContainer">
+<div class="stepByStepContainer" style="margin-bottom: 5rem;">
     <div>
         <h1 class="text header">Appointment registration</h1>
         <div style="display: flex;justify-content: center;">
             <mat-vertical-stepper [linear]="false" style="width: 40rem;" #stepper (animationDuration)="600">
                 <mat-step [stepControl]="firstFormGroup">
-                <form [formGroup]="firstFormGroup">
-                    <ng-template matStepLabel>Choose appointment date</ng-template>
-                    <mat-form-field appearance="fill">
-                    <mat-label>Pick date</mat-label>
-                    <input placeholder="MM/DD/YYYY" [(ngModel)]="chosenDate" (dateChange)="dateIsChanged()" [ngModelOptions]="{standalone: true}" matInput [min]="minDate" [max]="maxDate" [formGroup]="firstFormGroup" [matDatepicker]="picker">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                    <mat-error  *ngIf="!firstFormGroup.hasError('required') && (minDate > chosenDate || chosenDate > maxDate)">
-                        Date not valid!
-                    </mat-error>
-                    </mat-form-field>
-                    <div>
-                    <button mat-button matStepperNext>Next</button>
-                    </div>
-                </form>
+                    <form [formGroup]="firstFormGroup">
+                        <ng-template matStepLabel>Choose appointment date</ng-template>
+                            <mat-form-field appearance="fill">
+                            <mat-label>Pick date</mat-label>
+                            <input placeholder="MM/DD/YYYY" [(ngModel)]="chosenDate" (dateChange)="dateIsChanged()" [ngModelOptions]="{standalone: true}" matInput [min]="minDate" [max]="maxDate" [formGroup]="firstFormGroup" [matDatepicker]="picker">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error  *ngIf="!firstFormGroup.hasError('required') && (minDate > chosenDate || chosenDate > maxDate)">
+                                Date not valid!
+                            </mat-error>
+                        </mat-form-field>
+                        <div>
+                            <button mat-button matStepperNext>Next</button>
+                        </div>
+                    </form>
                 </mat-step>
-                <mat-step #specialty>
+                <mat-step>
                     <ng-template matStepLabel>Pick doctor speciality</ng-template>
                     <mat-form-field appearance="fill">
                         <mat-label>Speciality type</mat-label>
@@ -31,35 +31,62 @@
                         </mat-select>
                     </mat-form-field>
                     <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
                     </div>
                 </mat-step>
                 <mat-step>
-                    <form>
                         <ng-template matStepLabel>Pick doctor</ng-template>
                         <mat-form-field appearance="fill">
                             <mat-label>Doctor</mat-label>
-                            <mat-select [(value)]="chosenDoctor">
-                                <mat-option *ngFor="let possibleDoctor of possibleDoctors" [value]="chosenDoctor">
+                            <mat-select (selectionChange)="getTimeIntervals()" [(value)]="chosenDoctor" >
+                                <mat-option *ngFor="let possibleDoctor of possibleDoctors" [value]="possibleDoctor">
                                 {{possibleDoctor.name + " " + possibleDoctor.surname + " " + possibleDoctor.uid}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
                         <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext (click)="getTimeIntervals()">Next</button>
+                            <button mat-button matStepperPrevious>Back</button>
+                            <button mat-button matStepperNext>Next</button>
                         </div>
-                    </form>
-                    </mat-step>
+                </mat-step>
                 <mat-step>
-                <ng-template matStepLabel>Done</ng-template>
-                <div>
+                <form>
+                    <ng-template matStepLabel>Pick appointment time</ng-template>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Appointment time</mat-label>
+                        <mat-select (selectionChange)="resetSchedulingValidationByRoom()" [(value)]="chosenTimeInterval">
+                            <mat-option *ngFor="let possibleInterval of possibleIntervals" [value]="chosenTimeInterval">
+                            {{getTimeString(possibleInterval.start) + " : " + getTimeString(possibleInterval.end)}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div>
                     <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button (click)="stepper.reset()">Reset</button>
+                    <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+                </mat-step>
+                <mat-step>
+                <ng-template matStepLabel>Schedule!</ng-template>
+                <div style="margin-top: 1rem;">
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="scheduleAppointment()" [disabled]="cantScheduleByTimeInterval || cantScheduleByRoom">Schedule</button>
                 </div>
                 </mat-step>
             </mat-vertical-stepper>
+        </div>
+        <div *ngIf="cantScheduleByTimeInterval" class="intervalsEmptyText">
+            <div class="text errorText">
+                <strong>Opps! Seems like we couldnt find any free times :( !</strong><br/>
+                You can try changing chosen parameters or try scheduling with recommendation <a href="url">here!</a>
+            </div>
+        </div>
+        <div *ngIf="cantScheduleByRoom" class="intervalsEmptyText">
+            <div class="text errorText">
+                <strong>Opps! Seems like there are no free rooms in this interval :( !</strong><br/>
+                You can try changing chosen parameters or try scheduling with recommendation <a href="url">here!</a>
+            </div>
         </div>
     </div>
 </div>
