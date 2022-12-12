@@ -16,4 +16,8 @@ export class MyappService {
   getAllAppointments(): Observable<IAppointment[]> {
     return this.http.get<IAppointment[]>(this.apiHost + 'api/public/appointments/myAppointments', {headers: this.headers});
   }
+
+  cancelAppointment(id : number): Observable<IAppointment[]> {
+    return this.http.post<IAppointment[]>(this.apiHost + 'api/public/appointments/cancel',id, {headers: this.headers});
+  }
 }
