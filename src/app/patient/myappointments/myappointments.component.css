@@ -1,0 +1,212 @@
+.stepByStepContainer{
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+}
+.intervalsEmptyText{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+.errorText{
+    width: 40rem;
+    margin-left: 3rem;
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.75rem; /* 28px */
+}
+
+a {
+    color: #00d9ff;
+}
+.header{
+    font-weight: 700;
+    font-size: 5rem; /* 96px */
+    line-height: 1;
+    text-align: center;
+    padding-bottom: 48px;
+}
+
+mat-form-field {
+    width: 37rem;
+    font-size: medium;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+::ng-deep .mat-calendar {
+    background-color: #475569;
+}
+
+::ng-deep #mat-calendar-button-0 {
+    color: #06b6d4;
+}
+::ng-deep mat-calendar-body-label{
+    color:#06b6d4;
+}
+::ng-deep .mat-calendar-body-cell-content{
+    color:#06b6d4;
+}
+::ng-deep .mat-calendar-body-selected{
+    background-color: #155e75;
+}
+::ng-deep .mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate {
+    background: #06b6d4;
+}
+
+.mat-button:hover {
+    color: #334155;
+    background-color: #67e8f9;
+    transition: 0.2s !important;
+    transform: scale(1.05);
+}
+.mat-button {
+    color: #334155;
+    transition: 0.2s !important;
+    background-color: #06b6d4;
+    border-radius: 64px !important;
+    margin-right: 16px !important;
+    font-size: 1.25rem; /* 20px */
+}
+.mat-button:disabled {
+    color: #466070;
+    transition: 0.2s !important;
+    background-color: #334155;
+    border-radius: 64px !important;
+    margin-right: 16px !important;
+    font-size: 1.25rem; /* 20px */
+    transform: scale(1.0);
+}
+
+.tableContainer {
+    margin-top: 32px;
+    border-radius: 4px;
+    border: #06b6d4 2px solid;
+    background-color: #164e63;
+    vertical-align: middle;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.mat-cell {
+  padding: 0px 0px 0px 0px !important;
+  text-align: center;
+}
+.mat-header-cell{
+  padding: 0px 0px 0px 0px !important;
+  text-align: center;
+}
+
+.tableHeader{
+  font-weight: 700;
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
+}
+
+.header{
+  padding-left: 24px;
+  font-weight: 700;
+  font-size: 2.25rem; /* 36px */
+  line-height: 2.5rem; /* 40px */
+  text-align: center;
+}
+
+.FeedbackViewPage{
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 48px;
+}
+.underLine{
+  border-bottom: 1px #06b6d4;
+}
+
+.table {
+  background-color: #164e63; 
+  width: 100%;
+  border-spacing:16px 0px;
+}
+
+.confirmButton {
+  font-size: 30px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.confirmButton:hover{
+  background-color: #22d3ee;
+  transition: 0.2s;
+}
+
+.clickable:hover {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 65px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0e7490;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #f1f5f9;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #0d9488;
+  }
+  input:disabled + .slider {
+    background-color: #525252;
+    cursor: default;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 32px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
