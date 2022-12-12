@@ -10,7 +10,9 @@ import { AuthGuard } from '../shared/login/model/auth.guard';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { StepByStepComponent } from './appointment/step-by-step/step-by-step.component';
 import { RecommendationScheduleComponent } from './appointment/recommendation-schedule/recommendation-schedule.component';
-
+import { MyappointmentsComponent } from './myappointments/myappointments.component';
+import { MatTableModule } from '@angular/material/table';
+import { MaterialModule } from '../material/material.module';
 
 const routes: Routes = [
   {
@@ -42,6 +44,10 @@ const routes: Routes = [
           },
         ],      
       },
+      {
+        path: 'myAppointments',
+        component: MyappointmentsComponent,
+      },
     ]
 
   }
@@ -50,12 +56,15 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    PatientComponent
+    PatientComponent,
+    MyappointmentsComponent,
   ],
   imports: [
     CommonModule,
     FeedbackModule,
+    MaterialModule,
     AppointmentModule,
+    MatTableModule,
     RouterModule.forChild(routes)
   ]
 })
