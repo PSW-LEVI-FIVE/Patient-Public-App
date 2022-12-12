@@ -12,6 +12,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [],
@@ -28,7 +29,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatDatepickerModule,
     MatNativeDateModule,
     BrowserAnimationsModule,
-    MatStepperModule
+    MatStepperModule,
+    MatRadioModule
   ],
   exports: [
     CommonModule,
@@ -43,7 +45,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatDatepickerModule,
     MatNativeDateModule,
     BrowserAnimationsModule,
-    MatStepperModule
+    MatStepperModule,
+    MatRadioModule
   ]
 })
 export class MaterialModule {}

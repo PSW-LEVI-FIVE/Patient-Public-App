@@ -12,7 +12,6 @@ import { DoctorService } from '../service/doctor.service';
   styleUrls: ['./step-by-step.component.css']
 })
 export class StepByStepComponent implements OnInit {
-
     firstFormGroup: FormGroup = this._formBuilder.group(
         {appointmentDate: new FormControl(new Date(), [Validators.required])}
         );

@@ -5,11 +5,13 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material/material.module';
 import { StepByStepComponent } from './step-by-step/step-by-step.component';
+import { RecommendationScheduleComponent } from './recommendation-schedule/recommendation-schedule.component';
 
 @NgModule({
   declarations: [
     StepByStepComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    RecommendationScheduleComponent
   ],
   imports: [
     CommonModule,
