@@ -6,5 +6,5 @@ export interface IAppointment {
     roomId : number;
     startAt: string;
     endAt: string;
-    state: string;
+    state: number;
 }

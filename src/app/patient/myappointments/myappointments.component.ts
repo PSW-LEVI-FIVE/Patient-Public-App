@@ -10,19 +10,24 @@ import { MyappService } from './service/myapp.service';
   styleUrls: ['./myappointments.component.css']
 })
 export class MyappointmentsComponent implements OnInit {
+  
+
 
   constructor(private myAppointmentService: MyappService, private router: Router) { }
   public dataSource = new MatTableDataSource<IAppointment>();
   public displayedColumns = ['Doctor', 'Room', 'Start', 'End', 'State'];
   public appointments: IAppointment[] = [];
+
+  public appointmentState : any = {
+    "0" : "Canceled",
+    "1" : "Finished",
+    "2" : "Pending"
+  };
+
   ngOnInit(): void { 
+    
     this.myAppointmentService.getAllAppointments().subscribe(res => {
       this.appointments = res;
-      this.appointments.forEach(element => {
-        if(element.state == '2')element.state = "Pending";
-        else if(element.state == '1')element.state = "Finished";
-        else element.state = "Canceled";
-      });
       this.dataSource.data = this.appointments.sort((a, b) => 0.5 - Math.random());
     })
   }

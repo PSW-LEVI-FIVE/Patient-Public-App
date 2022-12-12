@@ -12,6 +12,7 @@ import { StepByStepComponent } from './appointment/step-by-step/step-by-step.com
 import { RecommendationScheduleComponent } from './appointment/recommendation-schedule/recommendation-schedule.component';
 import { MyappointmentsComponent } from './myappointments/myappointments.component';
 import { MatTableModule } from '@angular/material/table';
+import { MaterialModule } from '../material/material.module';
 
 const routes: Routes = [
   {
@@ -61,6 +62,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FeedbackModule,
+    MaterialModule,
     AppointmentModule,
     MatTableModule,
     RouterModule.forChild(routes)
