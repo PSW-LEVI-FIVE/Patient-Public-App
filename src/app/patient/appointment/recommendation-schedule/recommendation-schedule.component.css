@@ -1,0 +1,88 @@
+.stepByStepContainer{
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+}
+.intervalsEmptyText{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+.errorText{
+    width: 40rem;
+    margin-left: 3rem;
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.75rem; /* 28px */
+}
+
+a {
+    color: #00d9ff;
+}
+.header{
+    font-weight: 700;
+    font-size: 5rem; /* 96px */
+    line-height: 1;
+    text-align: center;
+    padding-bottom: 48px;
+}
+
+mat-form-field {
+    width: 37rem;
+    font-size: medium;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+.example-form-field {
+    width: 15rem !important;
+}
+::ng-deep mat-date-range-input{
+    width: 15rem !important;
+}
+
+::ng-deep .mat-calendar {
+    background-color: #475569;
+}
+
+::ng-deep #mat-calendar-button-0 {
+    color: #06b6d4;
+}
+::ng-deep mat-calendar-body-label{
+    color:#06b6d4;
+}
+::ng-deep .mat-calendar-body-cell-content{
+    color:#06b6d4;
+}
+::ng-deep .mat-calendar-body-selected{
+    background-color: #155e75;
+}
+::ng-deep .mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate {
+    background: #06b6d4;
+}
+::ng-deep .mat-form-field-infix{
+    flex-direction: column !important;
+}
+button {
+    width: 20rem;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+.example-radio-button {
+    margin: 5px;
+    color: #06b6d4;
+}
+::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    opacity: 0 !important;
+    background-color: #00d9ff !important;  
+}
+    
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: #00d9ff !important;
+}
+
+::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #00d9ff !important;
+}

@@ -1,20 +1,20 @@
 <div class="stepByStepContainer" style="margin-bottom: 5rem;">
     <div>
-        <h1 class="text header">Appointment registration</h1>
+        <h1 class="text header">Appointment scheduling</h1>
         <div style="display: flex;justify-content: center;">
             <mat-vertical-stepper [linear]="false" style="width: 40rem;" #stepper (animationDuration)="600">
                 <mat-step [stepControl]="firstFormGroup">
                     <form [formGroup]="firstFormGroup">
                         <ng-template matStepLabel>Choose appointment date</ng-template>
                             <mat-form-field appearance="fill">
-                            <mat-label>Pick date</mat-label>
-                            <input placeholder="MM/DD/YYYY" [(ngModel)]="chosenDate" (dateChange)="dateIsChanged()" [ngModelOptions]="{standalone: true}" matInput [min]="minDate" [max]="maxDate" [formGroup]="firstFormGroup" [matDatepicker]="picker">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                            <mat-error  *ngIf="!firstFormGroup.hasError('required') && (minDate > chosenDate || chosenDate > maxDate)">
-                                Date not valid!
-                            </mat-error>
-                        </mat-form-field>
+                                <mat-label>Pick date</mat-label>
+                                <input placeholder="MM/DD/YYYY" [(ngModel)]="chosenDate" (dateChange)="dateIsChanged()" [ngModelOptions]="{standalone: true}" matInput [min]="minDate" [max]="maxDate" [formGroup]="firstFormGroup" [matDatepicker]="picker">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <mat-error  *ngIf="!firstFormGroup.hasError('required') && (minDate > chosenDate || chosenDate > maxDate)">
+                                    Date not valid!
+                                </mat-error>
+                            </mat-form-field>
                         <div>
                             <button mat-button matStepperNext>Next</button>
                         </div>
@@ -79,13 +79,13 @@
         <div *ngIf="cantScheduleByTimeInterval" class="intervalsEmptyText">
             <div class="text errorText">
                 <strong>Opps! Seems like we couldnt find any free times :( !</strong><br/>
-                You can try changing chosen parameters or try scheduling with recommendation <a href="url">here!</a>
+                You can try changing chosen parameters or try scheduling with recommendation <a href="http://localhost:4200/patient/appointment/recommendation-scheduling">here!</a>
             </div>
         </div>
         <div *ngIf="cantScheduleByRoom" class="intervalsEmptyText">
             <div class="text errorText">
                 <strong>Opps! Seems like there are no free rooms in this interval :( !</strong><br/>
-                You can try changing chosen parameters or try scheduling with recommendation <a href="url">here!</a>
+                You can try changing chosen parameters or try scheduling with recommendation <a href="http://localhost:4200/patient/appointment/recommendation-scheduling">here!</a>
             </div>
         </div>
     </div>

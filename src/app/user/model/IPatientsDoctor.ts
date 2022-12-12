@@ -1,5 +1,5 @@
 export interface IPatientsDoctor{
-    Name: string;
-    Surname:string;
+    name: string;
+    surname:string;
     uid:string;
   }
