@@ -18,6 +18,9 @@
                     </mat-form-field>
                 </div>
                 <button id="login" mat-stroked-button (click)="logIn()">Sign In</button>
+                <div style="position: relative; width: 15rem;">
+                <p *ngIf="!validForm" id="error" class="text" style="color: rgb(185, 22, 22) !important; position: absolute;">{{errorMessage}}</p>
+                </div>
             </div>
         </div>
         <div class="right-side">

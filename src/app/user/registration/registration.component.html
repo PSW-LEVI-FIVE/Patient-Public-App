@@ -4,7 +4,7 @@
     <div style="display: flex; flex-direction: column;margin-top: 5rem;margin-bottom: 3rem;">
         <mat-form-field appearance="fill">
             <mat-label>Name</mat-label>
-            <input matInput [(ngModel)]="User.Name" required [formControl]="name" placeholder="Ex. Pera"  (change)="ValidateForm()">
+            <input matInput [(ngModel)]="user.name" required [formControl]="name" placeholder="Ex. Pera"  (change)="ValidateForm()">
             <mat-error  *ngIf="name.hasError('required')">
                 Name is <strong>required</strong>!
             </mat-error>
@@ -14,7 +14,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Surname</mat-label>
-            <input matInput [(ngModel)]="User.Surname" required [formControl]="surname" placeholder="Ex. Peric" pattern="[a-zA-Z ]*" (change)="ValidateForm()">
+            <input matInput [(ngModel)]="user.surname" required [formControl]="surname" placeholder="Ex. Peric" pattern="[a-zA-Z ]*" (change)="ValidateForm()">
             <mat-error  *ngIf="surname.hasError('required')">
                 Surname is <strong>required</strong>!
             </mat-error>
@@ -24,7 +24,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
-            <input matInput type="email" [(ngModel)]="User.Email" [formControl]="email" placeholder="Ex. gmail@gmail.com" (change)="ValidateForm()">
+            <input matInput type="email" [(ngModel)]="user.email" [formControl]="email" placeholder="Ex. gmail@gmail.com" (change)="ValidateForm()">
             <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
                 Please enter a valid email address!
             </mat-error>
@@ -37,7 +37,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Uid</mat-label>
-            <input matInput type="string" maxlength="8" [formControl]="uid" placeholder="Ex. 12345678" [(ngModel)]="User.Uid" (change)="ValidateForm()">
+            <input matInput type="string" maxlength="8" [formControl]="uid" placeholder="Ex. 12345678" [(ngModel)]="user.uid" (change)="ValidateForm()">
             <mat-error  *ngIf="uid.hasError('required')">
                 Uid is <strong>required</strong>!
             </mat-error>
@@ -48,19 +48,51 @@
                 Uid not unique!
             </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Address</mat-label>
-            <input matInput [(ngModel)]="User.Address" [formControl]="address" placeholder="Ex. Street 25" (change)="ValidateForm()">
-            <mat-error  *ngIf="address.hasError('required')">
-                Address is <strong>required</strong>!
-            </mat-error>
-            <mat-error  *ngIf="address.hasError('pattern') && !address.hasError('required')">
-                Address not valid!
-            </mat-error>
-        </mat-form-field>
+        <div style="margin-bottom: 1rem;">
+            <mat-form-field style="width: 14rem;" appearance="fill">
+                <mat-label>Street</mat-label>
+                <input matInput [(ngModel)]="user.address.street" [formControl]="street" placeholder="Ex. Street" (change)="ValidateForm()">
+                <mat-error  *ngIf="street.hasError('required')">
+                    Street is <strong>required</strong>!
+                </mat-error>
+                <mat-error  *ngIf="street.hasError('pattern') && !street.hasError('required')">
+                    Street not valid!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 13rem;margin-left: 1rem;" appearance="fill">
+                <mat-label>Street number</mat-label>
+                <input matInput [(ngModel)]="user.address.streetNumber" [formControl]="streetNumber" placeholder="Ex. 25a" (change)="ValidateForm()">
+                <mat-error  *ngIf="streetNumber.hasError('required')">
+                    Street number is <strong>required</strong>!
+                </mat-error>
+                <mat-error  *ngIf="streetNumber.hasError('pattern') && !streetNumber.hasError('required')">
+                    Street number not valid!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 10rem;margin-left: 1rem; margin-right: 1rem;" appearance="fill">
+                <mat-label>City</mat-label>
+                <input matInput [(ngModel)]="user.address.city" [formControl]="city" placeholder="Ex. 25a" (change)="ValidateForm()">
+                <mat-error  *ngIf="city.hasError('required')">
+                    City is <strong>required</strong>!
+                </mat-error>
+                <mat-error  *ngIf="city.hasError('pattern') && !city.hasError('required')">
+                    City not valid!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 10rem;" appearance="fill">
+                <mat-label>Country</mat-label>
+                <input matInput [(ngModel)]="user.address.country" [formControl]="country" placeholder="Ex. 25a" (change)="ValidateForm()">
+                <mat-error  *ngIf="country.hasError('required')">
+                    Country is <strong>required</strong>!
+                </mat-error>
+                <mat-error  *ngIf="country.hasError('pattern') && !country.hasError('required')">
+                    Country not valid!
+                </mat-error>
+            </mat-form-field>
+        </div>
         <mat-form-field appearance="fill">
             <mat-label>Phone number</mat-label>
-            <input matInput [(ngModel)]="User.PhoneNumber" [formControl]="phone" placeholder="Ex. +381661112233" (change)="ValidateForm()">
+            <input matInput [(ngModel)]="user.phoneNumber" [formControl]="phone" placeholder="Ex. +381661112233" (change)="ValidateForm()">
             <mat-error  *ngIf="phone.hasError('required')">
                 Phone number is <strong>required</strong>!
             </mat-error>
@@ -70,7 +102,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Blood type</mat-label>
-            <mat-select [(value)]="User.BloodType">
+            <mat-select [(value)]="user.bloodType">
                 <mat-option *ngFor="let BloodType of BloodTypes" [value]="BloodType.BloodType">
                 {{BloodType.BloodTypeString}}
                 </mat-option>
@@ -78,16 +110,16 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
         <mat-label>Pick your birthday</mat-label>
-        <input placeholder="MM/DD/YYYY" matInput [min]="minDate" [max]="maxDate" (change)="ValidateForm()" [formControl]="birthDate" [matDatepicker]="picker" [(ngModel)]="User.BirthDate">
+        <input placeholder="MM/DD/YYYY" matInput [min]="minDate" [max]="maxDate" (change)="ValidateForm()" [formControl]="birthDate" [matDatepicker]="picker" [(ngModel)]="user.birthDate">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <mat-error  *ngIf="!birthDate.hasError('required') && (minDate > User.BirthDate || User.BirthDate > maxDate)">
+        <mat-error  *ngIf="!birthDate.hasError('required') && (minDate > user.birthDate || user.birthDate > maxDate)">
             Date not valid!
         </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Username</mat-label>
-            <input matInput [(ngModel)]="User.Username" [formControl]="username" placeholder="Ex. pRoXm" (change)="ValidateForm()">
+            <input matInput [(ngModel)]="user.username" [formControl]="username" placeholder="Ex. pRoXm" (change)="ValidateForm()">
             <mat-error  *ngIf="username.hasError('required')">
                 Username is <strong>required</strong>!
             </mat-error>
@@ -100,7 +132,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Allergens</mat-label>
-            <mat-select [formControl]="allergens" [(ngModel)]="User.Allergens" multiple>
+            <mat-select [formControl]="allergens" [(ngModel)]="user.allergens" multiple>
               <mat-select-trigger>
                 {{GetAllergenString(allergens.value?.[0] || '')}}
                 <span *ngIf="(allergens.value?.length || 0) > 1" class="example-additional-selection">
@@ -112,7 +144,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Your doctor</mat-label>
-            <mat-select [(value)]="User.doctorUid">
+            <mat-select [(value)]="user.doctorUid">
                 <mat-option *ngFor="let doctor of Doctors" [value]="doctor.uid">
                 {{GetDoctorString(doctor)}}
                 </mat-option>
@@ -120,7 +152,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
-            <input matInput [(ngModel)]="User.Password" [formControl]="password" type="password" (focusout)="ValidateForm()" placeholder="Ex. SuperCoolPassword" (change)="ValidateForm()">
+            <input matInput [(ngModel)]="user.password" [formControl]="password" type="password" (focusout)="ValidateForm()" placeholder="Ex. SuperCoolPassword" (change)="ValidateForm()">
             <mat-error  *ngIf="password.hasError('required')">
                 Password is <strong>required</strong>!
             </mat-error>

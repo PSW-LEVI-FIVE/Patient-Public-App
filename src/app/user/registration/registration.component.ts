@@ -1,3 +1,4 @@
+import { IAddress } from './../model/IAddress';
 import { DoctorService } from '../service/doctor.service';
 import { IAllergen } from './../model/IAllergen';
 import { AllergenService } from '../service/allergen.service';
@@ -22,7 +23,10 @@ export class RegistrationComponent implements OnInit {
     name = new FormControl('', [Validators.required, Validators.pattern("^[A-Z][a-z]+$")]); 
     surname = new FormControl('', [Validators.required, Validators.pattern("^[A-Z][a-z]+$")]); 
     uid = new FormControl('', [Validators.required, Validators.pattern("^[0-9]{8}$")]); 
-    address = new FormControl('', [Validators.required, Validators.pattern("^[A-Z][A-Za-z0-9( )]+$")]); 
+    street = new FormControl('', [Validators.required, Validators.pattern("^[A-Z][A-Za-z0-9( )]+$")]);
+    streetNumber = new FormControl('', [Validators.required, Validators.pattern("^[1-9]+[a-b]{0,1}$")]);
+    country = new FormControl('', [Validators.required, Validators.pattern("^[A-Z][a-z]+$")]);
+    city = new FormControl('', [Validators.required, Validators.pattern("^[A-Z][A-Za-z( )]+$")]);
     phone = new FormControl('', [Validators.required, Validators.pattern("^[+]*[0-9-]+$")]);
     username = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9_-]+$")]);
     password = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")]);
@@ -34,7 +38,7 @@ export class RegistrationComponent implements OnInit {
     maxDate: Date = new Date();
 
     public RegisterDisabled : boolean = true;
-    public User : IUser = {} as IUser;
+    public user : IUser = {} as IUser;
     public ConfirmPassword: string = "";
     Allergens: IAllergen[];
     Doctors: IPatientsDoctor[];
@@ -51,17 +55,21 @@ export class RegistrationComponent implements OnInit {
     constructor(private userService: UserService,private allergenService:AllergenService,
         private doctorService:DoctorService,private router: Router) 
     {
-        this.User.id = 0;
-        this.User.Name = "";
-        this.User.Surname = "";
-        this.User.Address = "";
-        this.User.BloodType = 0;
-        this.User.Email = "";
-        this.User.Uid = "";
-        this.User.PhoneNumber = "";
-        this.User.Username = "";
-        this.User.Password = "";
-        this.User.Allergens = [];
+        this.user.id = 0;
+        this.user.name = "";
+        this.user.surname = "";
+        this.user.address = <IAddress>{};
+        this.user.address.city = "";
+        this.user.address.country = "";
+        this.user.address.street = "";
+        this.user.address.streetNumber = "";
+        this.user.bloodType = 0;
+        this.user.email = "";
+        this.user.uid = "";
+        this.user.phoneNumber = "";
+        this.user.username = "";
+        this.user.password = "";
+        this.user.allergens = [];
         this.Allergens = [];
         this.Doctors = [];
         this.allergenService.getAllergens().subscribe(res => {
@@ -70,7 +78,7 @@ export class RegistrationComponent implements OnInit {
 
         this.doctorService.getDoctors().subscribe(res => {
             this.Doctors = res;
-            this.User.doctorUid = this.Doctors[0].uid;
+            this.user.doctorUid = this.Doctors[0].uid;
         },(error) => {console.log(error.Message)});
     }
 
@@ -90,7 +98,7 @@ export class RegistrationComponent implements OnInit {
     }
     ValidateUniqueness()
     {        
-        this.userService.validateEmail(this.User.Email).subscribe(res => {
+        this.userService.validateEmail(this.user.email).subscribe(res => {
             this.email.setErrors(null)
             this.email.updateValueAndValidity();
             },(error) => {
@@ -98,7 +106,7 @@ export class RegistrationComponent implements OnInit {
                 this.RegisterDisabled = true
             }
         );
-        this.userService.validateUid(this.User.Uid).subscribe(res => {
+        this.userService.validateUid(this.user.uid).subscribe(res => {
             this.uid.setErrors(null)
             this.uid.updateValueAndValidity();
             },(error) => {
@@ -106,7 +114,7 @@ export class RegistrationComponent implements OnInit {
                 this.RegisterDisabled = true
             }
         );
-        this.userService.validateUsername(this.User.Username).subscribe(res => {
+        this.userService.validateUsername(this.user.username).subscribe(res => {
             this.username.setErrors(null)
             this.username.updateValueAndValidity();
             },(error) => {
@@ -122,7 +130,7 @@ export class RegistrationComponent implements OnInit {
         {
             return;
         }
-        this.userService.register(this.User).subscribe(res => {
+        this.userService.register(this.user).subscribe(res => {
         this.router.navigate(['/user/register/success']);
         },(error: HttpErrorResponse) => {
             console.log(error.error.Message)
@@ -131,7 +139,8 @@ export class RegistrationComponent implements OnInit {
     }
     ValidateForm()
     {
-        if(this.ConfirmPassword !== this.User.Password)
+        console.log(this.user)
+        if(this.ConfirmPassword !== this.user.password)
         {
             if(!this.password.hasError('pattern') && !this.password.hasError('required')){
                 this.password.setErrors({PasswordMatch:true})
@@ -149,11 +158,14 @@ export class RegistrationComponent implements OnInit {
         this.confirmPassword.updateValueAndValidity();
         
         const emailRegex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.) +([a-zA-Z0-9]{2,4})+$/;
-        if(!this.User.Name.match("^[A-Z][a-z]+$") || !this.User.Surname.match("^[A-Z][a-z]+$")
-        || !this.User.Address.match("^[A-Z][A-Za-z0-9( )]+$") || emailRegex.test(this.User.Email)
-        || !this.User.Uid.match("^[0-9]{8}$") || !this.User.PhoneNumber.match("^[+]*[0-9-]+$")
-        || !this.User.Username.match("^[A-Za-z0-9]+$") || !this.User.Password.match("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")
-        || this.minDate > this.User.BirthDate || this.User.BirthDate > this.maxDate){
+        if(!this.user.name.match("^[A-Z][a-z]+$") || !this.user.surname.match("^[A-Z][a-z]+$")
+        || !this.user.address.street.match("^[A-Z][A-Za-z0-9( )]+$") || emailRegex.test(this.user.email)
+        || !this.user.address.streetNumber.match("^[1-9]+[a-b]{0,1}$")
+        || !this.user.address.city.match("^[A-Z][A-Za-z( )]+$")
+        || !this.user.address.country.match("^[A-Z][a-z]+$")
+        || !this.user.uid.match("^[0-9]{8}$") || !this.user.phoneNumber.match("^[+]*[0-9-]+$")
+        || !this.user.username.match("^[A-Za-z0-9]+$") || !this.user.password.match("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")
+        || this.minDate > this.user.birthDate || this.user.birthDate > this.maxDate){
             this.RegisterDisabled = true
             return;
         }
