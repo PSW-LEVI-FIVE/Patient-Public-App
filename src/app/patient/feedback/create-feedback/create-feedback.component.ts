@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { IFeedback, IFeedbackStatus } from '../model/feedback.model';
 import { FeedbackService } from '../service/feedback.service';
 
@@ -10,7 +11,8 @@ import { FeedbackService } from '../service/feedback.service';
 })
 export class CreateFeedbackComponent implements OnInit {
 
-  constructor(private feedbackService: FeedbackService, private router: Router) { 
+  constructor(private feedbackService: FeedbackService, private router: Router,
+    private readonly toastService: ToastrService) { 
     this.feedback.id = 0;
     this.feedback.patientId = 0;
     this.feedback.feedbackContent = "";
@@ -28,6 +30,7 @@ export class CreateFeedbackComponent implements OnInit {
 
   public createFeedback() {
     this.feedbackService.createFeedback(this.feedback).subscribe(res => {
+        this.toastService.success("Your feedback recorded!")
       this.router.navigate(['/']);
     });
   }

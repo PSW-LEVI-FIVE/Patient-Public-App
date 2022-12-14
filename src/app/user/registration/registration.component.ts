@@ -11,6 +11,7 @@ import {IBloodType} from './../model/IBloodType';
 import {FormControl, Validators} from '@angular/forms';
 import { IPatientsDoctor } from '../model/IPatientsDoctor';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registration',
@@ -53,7 +54,8 @@ export class RegistrationComponent implements OnInit {
     {BloodType:BloodTypeEnum.ZERO_NEGATIVE,BloodTypeString: "O-"}];
 
     constructor(private userService: UserService,private allergenService:AllergenService,
-        private doctorService:DoctorService,private router: Router) 
+        private doctorService:DoctorService,private router: Router,
+        private readonly toastService: ToastrService) 
     {
         this.user.id = 0;
         this.user.name = "";
@@ -102,6 +104,7 @@ export class RegistrationComponent implements OnInit {
             this.email.setErrors(null)
             this.email.updateValueAndValidity();
             },(error) => {
+                this.toastService.error("Email is already taken!")
                 this.email.setErrors({EmailUnique:true})
                 this.RegisterDisabled = true
             }
@@ -110,6 +113,7 @@ export class RegistrationComponent implements OnInit {
             this.uid.setErrors(null)
             this.uid.updateValueAndValidity();
             },(error) => {
+                this.toastService.error("Uid is already taken!")
                 this.uid.setErrors({UidUnique:true})
                 this.RegisterDisabled = true
             }
@@ -118,6 +122,7 @@ export class RegistrationComponent implements OnInit {
             this.username.setErrors(null)
             this.username.updateValueAndValidity();
             },(error) => {
+                this.toastService.error("Username is already taken!")
                 this.username.setErrors({UsernameUnique:true})
                 this.RegisterDisabled = true
             }
@@ -131,9 +136,10 @@ export class RegistrationComponent implements OnInit {
             return;
         }
         this.userService.register(this.user).subscribe(res => {
-        this.router.navigate(['/user/register/success']);
+        this.router.navigate(['/']);
+        this.toastService.success("You have successfuly registered! Check email for activation.");
         },(error: HttpErrorResponse) => {
-            console.log(error.error.Message)
+            this.toastService.error(error.error.Message)
         }
         );
     }

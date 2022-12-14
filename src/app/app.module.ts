@@ -8,6 +8,7 @@ import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PatientModule } from './patient/patient.module';
 import { AuthInterception } from './shared/login/model/auth.interceptor';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AuthInterception } from './shared/login/model/auth.interceptor';
     HttpClientModule,
     PatientModule,
     UserModule,
-    SharedModule
+    SharedModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     {
