@@ -27,9 +27,15 @@ export class MyappointmentsComponent implements OnInit {
   public cancelAppointment(id : number) : void
   {
     this.myAppointmentService.cancelAppointment(id).subscribe(res => {
+    
+      
+      
       this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
       this.router.navigate(['patient/myAppointments']));
-    });;
+    },error => {
+      alert("You can't cancel appointment 24h before start");
+  });
+    
   }
 
   ngOnInit(): void { 
