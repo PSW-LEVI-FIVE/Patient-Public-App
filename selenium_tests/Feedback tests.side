@@ -91,6 +91,13 @@
       "targets": [],
       "value": ""
     }, {
+      "id": "9f1a8470-455b-4de3-9c33-b3e4b1ae3a44",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "id=submitFeedback",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "9a3f574b-e8c8-4ba6-b46f-6c1a20c2bf44",
       "comment": "",
       "command": "clickAt",
@@ -176,6 +183,13 @@
       "comment": "",
       "command": "click",
       "target": "id=anonymousFlag",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "26515df2-09cf-4c3c-a67b-c2b53a9f0530",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "id=submitFeedback",
       "targets": [],
       "value": ""
     }, {
@@ -267,6 +281,13 @@
       "targets": [],
       "value": ""
     }, {
+      "id": "501a58ac-c1c5-46fb-8537-ccfd19d3e7db",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "id=submitFeedback",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "1fa07640-9e9f-462f-a7c6-3ad10530635f",
       "comment": "",
       "command": "clickAt",
@@ -348,9 +369,164 @@
       "targets": [],
       "value": "Public not anonymous feedback"
     }, {
+      "id": "33c61ab4-4433-483d-9304-59ab8f57faae",
+      "comment": "",
+      "command": "verifyEditable",
+      "target": "id=submitFeedback",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "bc967754-2db0-4ff1-bba4-151cf1241054",
       "comment": "",
       "command": "clickAt",
+      "target": "id=submitFeedback",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "72c0ce49-00d9-457a-8d3c-b423e6fb58b6",
+    "name": "Failed Login",
+    "commands": [{
+      "id": "8b1b5cdc-8742-44dd-ade0-fc7ff3c83ae5",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:4200/login",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b00dc7f7-d9c8-4658-bce4-42656f0fe5a5",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1300x800",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ca058a8b-b212-43b5-b58f-4bc114de4d1c",
+      "comment": "",
+      "command": "click",
+      "target": "id=username",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6e73873f-d6f9-4c83-92ae-89dfdd63334d",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [],
+      "value": "pRoXm3691"
+    }, {
+      "id": "27ab13b4-8b15-4355-92a0-96779aca8b52",
+      "comment": "",
+      "command": "click",
+      "target": "id=password",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b3290656-286d-4a9a-9d00-98d2eae15361",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [],
+      "value": "asdasd"
+    }, {
+      "id": "31fda6ac-1589-40fb-a56a-564bac6578a5",
+      "comment": "",
+      "command": "click",
+      "target": "id=login",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7b199ff7-c1a9-4f83-adfc-ea10a7dfb3b8",
+      "comment": "",
+      "command": "storeText",
+      "target": "id=error",
+      "targets": [],
+      "value": "error"
+    }, {
+      "id": "a8281a75-d9b1-4a06-b6f7-2e87953c69d4",
+      "comment": "",
+      "command": "assert",
+      "target": "error",
+      "targets": [],
+      "value": "Username or password not valid!"
+    }]
+  }, {
+    "id": "d48fee27-876a-4f81-a625-ae7a75bc4477",
+    "name": "Failed feedback post",
+    "commands": [{
+      "id": "33daf3fa-9140-43eb-af29-35108635a945",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:4200/login",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f897b464-3546-4340-ab24-a2783c4b75e4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1300x800",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c2cfb617-e6b5-4c27-a9c9-b55b82b5152f",
+      "comment": "",
+      "command": "click",
+      "target": "id=username",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "958f2da7-c096-4637-bc10-4671844f493b",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [],
+      "value": "pRoXm369"
+    }, {
+      "id": "6838c8b0-f3c2-4a74-b7fa-81c54792d922",
+      "comment": "",
+      "command": "click",
+      "target": "id=password",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cc2ba4af-123c-4ab8-81a3-d16be599adea",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [],
+      "value": "asdasd"
+    }, {
+      "id": "9a4c0647-2801-4974-818a-22837ce23193",
+      "comment": "",
+      "command": "click",
+      "target": "id=login",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "eb19dd20-8c35-4b9f-8581-c0ec0f0b2d14",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:4200/patient/feedback/create",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8d8b0417-93c6-4241-8e66-dbd88f2e8612",
+      "comment": "",
+      "command": "click",
+      "target": "id=feedbackContent",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b8f95877-2c89-4647-96e7-3e604c2b755d",
+      "comment": "",
+      "command": "type",
+      "target": "id=feedbackContent",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "efe78928-63a1-4dd4-ad6a-cfee91cec78f",
+      "comment": "",
+      "command": "verifyNotEditable",
       "target": "id=submitFeedback",
       "targets": [],
       "value": ""

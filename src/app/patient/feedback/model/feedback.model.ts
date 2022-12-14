@@ -3,7 +3,10 @@ export interface IFeedback {
     patient?:string;
     patientId: number;
     feedbackContent: string;
+    feedbackStatus: IFeedbackStatus;
+}
+export interface IFeedbackStatus {
     allowPublishment : boolean;
     published: boolean;
-    Anonimity: boolean;
+    anonimity: boolean;
 }

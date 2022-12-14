@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
   public login : ILogin = {} as ILogin
   public caughtEmail: string = "";
   public caughtPassword: string = "";
+  public errorMessage:string = "";
+  public validForm = true;
 
   ngOnInit(): void {
     if (localStorage.getItem('token')) {
@@ -37,6 +39,8 @@ export class LoginComponent implements OnInit {
     this.login.Password = this.caughtPassword;
     this.loginService.login(this.login)
       .pipe(catchError(res => {
+        this.errorMessage = "Username or password not valid!"
+        this.validForm = false;
         return EMPTY
       }))
       .subscribe(res => {

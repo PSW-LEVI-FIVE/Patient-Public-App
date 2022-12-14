@@ -14,7 +14,7 @@
     width: 60%;
     display: flex;
     margin: auto;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 2px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 4px 24px 4px, rgba(0, 0, 0, 0.36) 0px 0px 0px 0px !important;
   }
   h1{
     padding-bottom: 16px;
@@ -37,7 +37,6 @@
     align-items: center;
     justify-content: center;
   }
-  
   
   .form-inner {
     display: flex;

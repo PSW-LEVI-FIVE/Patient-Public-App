@@ -1,17 +1,18 @@
+import { IAddress } from './IAddress';
 import { BloodTypeEnum } from './BloodTypeEnum';
 import { IAllergen } from './IAllergen';
 export interface IUser {
     id?: number;
-    Name: string;
-    Surname: string;
-    Email : string;
-    Uid: string;
-    PhoneNumber:string;
-    BirthDate: Date;
-    Address:String;
-    BloodType:BloodTypeEnum;
-    Username:string;
-    Password:string;
-    Allergens: IAllergen[];
+    name: string;
+    surname: string;
+    email : string;
+    uid: string;
+    phoneNumber:string;
+    birthDate: Date;
+    address:IAddress;
+    bloodType:BloodTypeEnum;
+    username:string;
+    password:string;
+    allergens: IAllergen[];
     doctorUid: string;
 }
