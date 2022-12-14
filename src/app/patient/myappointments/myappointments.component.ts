@@ -15,14 +15,28 @@ export class MyappointmentsComponent implements OnInit {
 
   constructor(private myAppointmentService: MyappService, private router: Router) { }
   public dataSource = new MatTableDataSource<IAppointment>();
-  public displayedColumns = ['Doctor', 'Room', 'Start', 'End', 'State'];
+  public displayedColumns = ['Doctor', 'Room', 'Start', 'End', 'State', 'Action'];
   public appointments: IAppointment[] = [];
-
+  
   public appointmentState : any = {
     "0" : "Canceled",
     "1" : "Finished",
     "2" : "Pending"
   };
+
+  public cancelAppointment(id : number) : void
+  {
+    this.myAppointmentService.cancelAppointment(id).subscribe(res => {
+    
+      
+      
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+      this.router.navigate(['patient/myAppointments']));
+    },error => {
+      alert("You can't cancel appointment 24h before start");
+  });
+    
+  }
 
   ngOnInit(): void { 
     

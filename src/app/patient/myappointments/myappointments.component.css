@@ -25,6 +25,9 @@ a {
     text-align: center;
     padding-bottom: 48px;
 }
+.inner_button {
+  margin: 2px;
+}
 
 mat-form-field {
     width: 37rem;
@@ -66,7 +69,6 @@ mat-form-field {
     transition: 0.2s !important;
     background-color: #06b6d4;
     border-radius: 64px !important;
-    margin-right: 16px !important;
     font-size: 1.25rem; /* 20px */
 }
 .mat-button:disabled {
@@ -75,8 +77,11 @@ mat-form-field {
     background-color: #334155;
     border-radius: 64px !important;
     margin-right: 16px !important;
-    font-size: 1.25rem; /* 20px */
     transform: scale(1.0);
+}
+
+.table_text{
+  font-size: 20px;
 }
 
 .tableContainer {
