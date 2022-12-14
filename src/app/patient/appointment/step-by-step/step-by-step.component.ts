@@ -5,6 +5,8 @@ import { IDoctorWithSPeciality, ISpeciality } from './../model/IDoctorWithSpecia
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DoctorService } from '../service/doctor.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-step-by-step',
@@ -33,7 +35,9 @@ export class StepByStepComponent implements OnInit {
     chosenDate: Date = new Date();
     chosenTimeInterval:ITimeInterval = <ITimeInterval>{};
 
-    constructor(private _formBuilder: FormBuilder,private doctorService: DoctorService,private appointmentService: AppointmentService) {
+    constructor(private _formBuilder: FormBuilder,private doctorService: DoctorService,
+        private appointmentService: AppointmentService,private router: Router,
+        private readonly toastService: ToastrService) {
         this.minDate.setDate(new Date().getDate() + 1);
         this.maxDate.setDate(new Date().getDate() + 365);
         this.chosenDate = this.minDate;
@@ -68,6 +72,7 @@ export class StepByStepComponent implements OnInit {
             this.cantScheduleByRoom = false;
             if(this.possibleIntervals.length == 0)
             {
+                this.toastService.error("Oops there are no free times!")
                 this.cantScheduleByTimeInterval = true;
                 return;
             }
@@ -95,9 +100,11 @@ export class StepByStepComponent implements OnInit {
         appointment.chosenTimeInterval = this.chosenTimeInterval;
         appointment.doctorUid = this.chosenDoctor.uid;
         this.appointmentService.CreateAppointment(appointment).subscribe(res =>{
+            this.toastService.success("Your appointment successfuly scheduled!")
+            this.router.navigate(["/"])
         },(error) => {
+            this.toastService.error("Oops there are no free rooms!")
             this.cantScheduleByRoom = true;
-            console.log(error.Message)
         });
     }
 

@@ -6,6 +6,8 @@ import { IDoctorWithSPeciality, ISpeciality } from '../model/IDoctorWithSpeciali
 import { ITimeInterval } from '../model/ITimeInterval';
 import { AppointmentService } from '../service/appointment.service';
 import { DoctorService } from '../service/doctor.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recommendation-schedule',
@@ -38,7 +40,9 @@ export class RecommendationScheduleComponent implements OnInit {
     chosenDoctor:IDoctorWithSPeciality = <IDoctorWithSPeciality>{};
     chosenSpeciality:ISpeciality = <ISpeciality>{};
     chosenTimeInterval:ITimeIntervalWithDoctor = <ITimeIntervalWithDoctor>{};
-    constructor(private _formBuilder: FormBuilder,private doctorService: DoctorService,private appointmentService: AppointmentService) {
+    constructor(private _formBuilder: FormBuilder, private doctorService: DoctorService,
+        private appointmentService: AppointmentService, private router: Router,
+        private readonly toastService: ToastrService) {
         this.minDate.setDate(new Date().getDate() + 1);
         this.tommorow.setDate(new Date().getDate() + 1);
         this.maxDate.setDate(new Date().getDate() + 365);
@@ -87,9 +91,12 @@ export class RecommendationScheduleComponent implements OnInit {
                         this.possibleIntervals = res;
                         if(this.possibleIntervals.length == 0)
                         {
+                            this.toastService.error("Oops we couldnt find any free times for you even with recommendations, try changing inputs.")
                             this.cantScheduleByTimeInterval = true;
+                            return;
                         }
                         this.chosenTimeInterval = this.possibleIntervals[0];
+                        this.toastService.info("Seems like we couldnt find any free times for your inputs! Here are some recommendations with priority.")
                         return;
                     },(error) => {console.log(error.Message)});
                 }
@@ -99,9 +106,12 @@ export class RecommendationScheduleComponent implements OnInit {
                         this.possibleIntervals = res;
                         if(this.possibleIntervals.length == 0)
                         {
+                            this.toastService.error("Oops we couldnt find any free times for you even with recommendations, try changing inputs.")
                             this.cantScheduleByTimeInterval = true;
+                            return;
                         }
                         this.chosenTimeInterval = this.possibleIntervals[0];
+                        this.toastService.info("Seems like we couldnt find any free times for your inputs! Here are some recommendations with priority.")
                         return;
                     },(error) => {console.log(error.Message)});
                 }
@@ -142,9 +152,11 @@ export class RecommendationScheduleComponent implements OnInit {
         appointment.chosenTimeInterval.end = this.chosenTimeInterval.end;
         appointment.doctorUid = this.chosenTimeInterval.doctorDto.uid;
         this.appointmentService.CreateAppointment(appointment).subscribe(res =>{
+            this.toastService.success("Your appointment successfuly scheduled!")
+            this.router.navigate(["/"])
         },(error) => {
+            this.toastService.error("Oops there are no free rooms!")
             this.cantScheduleByRoom = true;
-            console.log(error.Message)
         });
     }
     ngOnInit(): void {

@@ -4,6 +4,7 @@ import { Role } from './model/authenticated.model';
 import { ILogin } from './model/login.model';
 import { LoginService } from './service/login.service';
 import { catchError, EMPTY } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -13,7 +14,8 @@ import { catchError, EMPTY } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router,
+    private readonly toastService: ToastrService) { }
 
   public login : ILogin = {} as ILogin
   public caughtEmail: string = "";
@@ -39,6 +41,7 @@ export class LoginComponent implements OnInit {
     this.login.Password = this.caughtPassword;
     this.loginService.login(this.login)
       .pipe(catchError(res => {
+        this.toastService.error("Username or password not valid!")
         this.errorMessage = "Username or password not valid!"
         this.validForm = false;
         return EMPTY
@@ -47,6 +50,7 @@ export class LoginComponent implements OnInit {
         let role = this.enumToRoleString(res.role)
         localStorage.setItem('token', res.accessToken);
         localStorage.setItem('role', role);
+        this.toastService.success("Successfully logged in!")
         this.router.navigate(["/"])
       });
   }
