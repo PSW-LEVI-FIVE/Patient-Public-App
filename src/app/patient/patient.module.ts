@@ -13,6 +13,7 @@ import { RecommendationScheduleComponent } from './appointment/recommendation-sc
 import { MyappointmentsComponent } from './myappointments/myappointments.component';
 import { MatTableModule } from '@angular/material/table';
 import { MaterialModule } from '../material/material.module';
+import { BrowserModule } from '@angular/platform-browser';
 
 const routes: Routes = [
   {
@@ -61,6 +62,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    BrowserModule,
     FeedbackModule,
     MaterialModule,
     AppointmentModule,
