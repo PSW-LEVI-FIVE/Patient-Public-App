@@ -28,10 +28,10 @@ export class RegistrationComponent implements OnInit {
     streetNumber = new FormControl('', [Validators.required, Validators.pattern("^[1-9]+[a-b]{0,1}$")]);
     country = new FormControl('', [Validators.required, Validators.pattern("^[A-Z][a-z]+$")]);
     city = new FormControl('', [Validators.required, Validators.pattern("^[A-Z][A-Za-z( )]+$")]);
-    phone = new FormControl('', [Validators.required, Validators.pattern("^[+]*[0-9-]+$")]);
+    phone = new FormControl('', [Validators.required, Validators.pattern("^\\+?[1-9][0-9]{7,14}$")]);
     username = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9_-]+$")]);
-    password = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")]);
-    confirmPassword = new FormControl('', [Validators.required, Validators.pattern("^[A-Za-z0-9]{5}[A-Za-z0-9]+$")]);
+    password = new FormControl('', [Validators.required, Validators.pattern("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$")]);
+    confirmPassword = new FormControl('', [Validators.required, Validators.pattern("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$")]);
     birthDate = new FormControl(new Date(), [Validators.required])
     allergens = new FormControl('');
     currentYear:number = new Date().getFullYear();

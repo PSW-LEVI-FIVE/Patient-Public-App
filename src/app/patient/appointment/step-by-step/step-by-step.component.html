@@ -56,7 +56,7 @@
                     <mat-form-field appearance="fill">
                         <mat-label>Appointment time</mat-label>
                         <mat-select (selectionChange)="resetSchedulingValidationByRoom()" [(value)]="chosenTimeInterval">
-                            <mat-option *ngFor="let possibleInterval of possibleIntervals" [value]="chosenTimeInterval">
+                            <mat-option *ngFor="let possibleInterval of possibleIntervals" [value]="possibleInterval">
                             {{getTimeString(possibleInterval.start) + " : " + getTimeString(possibleInterval.end)}}
                             </mat-option>
                         </mat-select>

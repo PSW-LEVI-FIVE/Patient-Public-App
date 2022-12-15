@@ -99,6 +99,7 @@ export class StepByStepComponent implements OnInit {
         var appointment = <ICreateAppointmentForPatient>{};
         appointment.chosenTimeInterval = this.chosenTimeInterval;
         appointment.doctorUid = this.chosenDoctor.uid;
+        console.log(appointment.chosenTimeInterval)
         this.appointmentService.CreateAppointment(appointment).subscribe(res =>{
             this.toastService.success("Your appointment successfuly scheduled!")
             this.router.navigate(["/"])
