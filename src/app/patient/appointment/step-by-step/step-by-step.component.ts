@@ -69,7 +69,7 @@ export class StepByStepComponent implements OnInit {
             this.possibleSpecialities.push(doctor.speciality);
         }
     }
-    async getTimeIntervals() {
+    public getTimeIntervals() {
         this.isLoading = true;
         this.appointmentService.GetTimeIntervalsStepByStep(this.chosenDoctor.uid, this.dateToUTC()).subscribe(res => {
             this.possibleIntervals = res;
@@ -112,25 +112,7 @@ export class StepByStepComponent implements OnInit {
         });
     }
 
-    public loading(): void {
-        const scrollPos = window.scrollY;
-        var spinner = document.querySelector('div.spinner') as HTMLElement;
-        if(spinner == null)return;
-        var initialScrollPos = 84;
-        spinner.style.top = (Math.max(initialScrollPos - scrollPos,0)).toString() + "px";
-    }
-
     ngOnInit(): void {
-        var spinner = document.querySelector('div.spinner') as HTMLElement;
-        var mainSppinning = document.querySelector('div.mainSppinning') as HTMLElement;
-        var initialScrollPos = 84;
-        window.addEventListener('scroll', function() {
-            const scrollPos = window.scrollY;
-            if(spinner != null && mainSppinning != null){
-                const style = window.getComputedStyle(mainSppinning);
-                spinner.style.top = (Math.max(initialScrollPos - scrollPos,0)).toString() + "px";
-            }
-        });
     }
 
 }
