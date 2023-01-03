@@ -2,11 +2,12 @@ import { ICreateAppointmentForPatient } from './../model/ICreateAppointment';
 import { ITimeInterval } from './../model/ITimeInterval';
 import { AppointmentService } from './../service/appointment.service';
 import { IDoctorWithSPeciality, ISpeciality } from './../model/IDoctorWithSpeciality';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DoctorService } from '../service/doctor.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-step-by-step',
@@ -34,6 +35,8 @@ export class StepByStepComponent implements OnInit {
     chosenSpeciality:ISpeciality = <ISpeciality>{};
     chosenDate: Date = new Date();
     chosenTimeInterval:ITimeInterval = <ITimeInterval>{};
+
+    public isLoading: boolean = false;
 
     constructor(private _formBuilder: FormBuilder,private doctorService: DoctorService,
         private appointmentService: AppointmentService,private router: Router,
@@ -66,26 +69,27 @@ export class StepByStepComponent implements OnInit {
             this.possibleSpecialities.push(doctor.speciality);
         }
     }
-    getTimeIntervals() {
-        this.appointmentService.GetTimeIntervalsStepByStep(this.chosenDoctor.uid,this.dateToUTC()).subscribe(res => {
+    async getTimeIntervals() {
+        this.isLoading = true;
+        this.appointmentService.GetTimeIntervalsStepByStep(this.chosenDoctor.uid, this.dateToUTC()).subscribe(res => {
             this.possibleIntervals = res;
             this.cantScheduleByRoom = false;
-            if(this.possibleIntervals.length == 0)
-            {
-                this.toastService.error("Oops there are no free times!")
+            this.isLoading = false;
+            if (this.possibleIntervals.length == 0) {
+                this.toastService.error("Oops there are no free times!");
                 this.cantScheduleByTimeInterval = true;
                 return;
             }
             this.cantScheduleByTimeInterval = false;
             this.chosenTimeInterval = this.possibleIntervals[0];
-        },(error) => {console.log(error.Message)});
+        }, (error) => { console.log(error.Message); });
     }
     dateToUTC() {
         var dateToSet = new Date();
         dateToSet.setDate(this.chosenDate.getDate());
         return new Date(dateToSet.toUTCString().substring(0,25));
     }
-    dateIsChanged(): void {
+    async dateIsChanged() {
         this.getTimeIntervals();
         this.dateChanged = 1;
     }
@@ -104,11 +108,29 @@ export class StepByStepComponent implements OnInit {
             this.router.navigate(["/"])
         },(error) => {
             this.toastService.error("Oops there are no free rooms!")
-            this.cantScheduleByRoom = true;
+        this.cantScheduleByRoom = true;
         });
     }
 
+    public loading(): void {
+        const scrollPos = window.scrollY;
+        var spinner = document.querySelector('div.spinner') as HTMLElement;
+        if(spinner == null)return;
+        var initialScrollPos = 84;
+        spinner.style.top = (Math.max(initialScrollPos - scrollPos,0)).toString() + "px";
+    }
+
     ngOnInit(): void {
+        var spinner = document.querySelector('div.spinner') as HTMLElement;
+        var mainSppinning = document.querySelector('div.mainSppinning') as HTMLElement;
+        var initialScrollPos = 84;
+        window.addEventListener('scroll', function() {
+            const scrollPos = window.scrollY;
+            if(spinner != null && mainSppinning != null){
+                const style = window.getComputedStyle(mainSppinning);
+                spinner.style.top = (Math.max(initialScrollPos - scrollPos,0)).toString() + "px";
+            }
+        });
     }
 
 }
