@@ -36,7 +36,7 @@ export class StepByStepComponent implements OnInit {
     chosenDate: Date = new Date();
     chosenTimeInterval:ITimeInterval = <ITimeInterval>{};
 
-    public isLoading: boolean = false;
+    isLoading: boolean = false;
 
     constructor(private _formBuilder: FormBuilder,private doctorService: DoctorService,
         private appointmentService: AppointmentService,private router: Router,
@@ -103,10 +103,13 @@ export class StepByStepComponent implements OnInit {
         var appointment = <ICreateAppointmentForPatient>{};
         appointment.chosenTimeInterval = this.chosenTimeInterval;
         appointment.doctorUid = this.chosenDoctor.uid;
+        this.isLoading = true;
         this.appointmentService.CreateAppointment(appointment).subscribe(res =>{
+            this.isLoading = false;
             this.toastService.success("Your appointment successfuly scheduled!")
             this.router.navigate(["/"])
         },(error) => {
+            this.isLoading = false;
             this.toastService.error("Oops there are no free rooms!")
         this.cantScheduleByRoom = true;
         });
