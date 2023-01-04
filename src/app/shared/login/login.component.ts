@@ -5,6 +5,7 @@ import { ILogin } from './model/login.model';
 import { LoginService } from './service/login.service';
 import { catchError, EMPTY } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { DataService } from './service/data.service';
 
 
 @Component({
@@ -14,8 +15,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private router: Router,
-    private readonly toastService: ToastrService) { }
+  constructor(private readonly loginService: LoginService,
+              private readonly router: Router,
+              private readonly toastService: ToastrService,
+              private readonly dataService: DataService,) { }
 
   public login : ILogin = {} as ILogin
   public caughtEmail: string = "";
@@ -51,9 +54,19 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', res.accessToken);
         localStorage.setItem('role', role);
         this.toastService.success("Successfully logged in!")
+        this.updateData();
         this.router.navigate(["/"])
       });
   }
+
+  updateData() {
+    this.loginService.getUserProfile().subscribe(res => {
+        this.dataService.updateData(res);
+    },(error) => {
+        this.dataService.updateData({ name: "", surname: '', role: Role.PATIENT, username: ''})
+    })
+}
+
   public enumToRoleString(role: Role) {
     if (role == Role.PATIENT) return "Patient";
     return "";

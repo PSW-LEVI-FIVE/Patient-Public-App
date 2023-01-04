@@ -1,13 +1,11 @@
-<div class="links">
-    <div class="navbarLinks">
-        <button mat-button class="text" [routerLink]="['']" >Landing page</button>
-        <button mat-button class="text" [routerLink]="['patient/feedback/create']" [hidden]="isHiddenLogout()" >Give feedback</button>
-        <button mat-button class="text" [routerLink]="['patient/appointment/step-by-step']" [hidden]="isHiddenLogout()" >Create appointment</button>
-        <button mat-button class="text" [routerLink]="['patient/myAppointments']" [hidden]="isHiddenLogout()" >My appointment</button>
+<mat-toolbar class="nav">
+    <div class="logged-user">
+      <span class="name-surname">
+        <span>{{profile.name}}</span>
+        <span>{{profile.surname}}</span>
+      </span>
+      <div class="image-holder">
+        {{profile.name[0]}}
+      </div>
     </div>
-    <div class="authLinks">
-        <button mat-button class="text" (click)="onLogout()" [hidden]="isHiddenLogout()">Logout</button>
-        <button mat-button class="text" [routerLink]="['login']" [hidden]="isHidden()">Login</button>
-        <button mat-button class="text" [routerLink]="['user/register']" [hidden]="isHidden()">Register</button>
-    </div>
-</div>
+  </mat-toolbar>
