@@ -156,10 +156,13 @@ export class RecommendationScheduleComponent implements OnInit {
         appointment.chosenTimeInterval.start = this.chosenTimeInterval.start;
         appointment.chosenTimeInterval.end = this.chosenTimeInterval.end;
         appointment.doctorUid = this.chosenTimeInterval.doctorDto.uid;
+        this.isLoading = true;
         this.appointmentService.CreateAppointment(appointment).subscribe(res =>{
             this.toastService.success("Your appointment successfuly scheduled!")
+            this.isLoading = false;
             this.router.navigate(["/"])
         },(error) => {
+            this.isLoading = false;
             this.toastService.error("Oops there are no free rooms!")
             this.cantScheduleByRoom = true;
         });
