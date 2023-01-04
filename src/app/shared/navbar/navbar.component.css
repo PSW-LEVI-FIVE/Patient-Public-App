@@ -21,6 +21,9 @@
     }
 .links{
     display: flex;
+    position: fixed;
+    width: 100%;
+    z-index: 200;
     }
 Button {
     font-size: 1.5rem; /* 24px */

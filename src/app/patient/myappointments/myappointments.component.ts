@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { IAppointment } from './model/myappointments.model';
@@ -24,6 +24,7 @@ export class MyappointmentsComponent implements OnInit {
     "1" : "Finished",
     "2" : "Pending"
   };
+  public isLoading: boolean = false;
 
   public cancelAppointment(id : number) : void
   {
@@ -33,17 +34,16 @@ export class MyappointmentsComponent implements OnInit {
       return EMPTY
     }))
     .subscribe(res => {
-      
       this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
       this.router.navigate(['patient/myAppointments']));
-    });
-    
+    }); 
   }
 
-  ngOnInit(): void { 
-    
+  ngOnInit(): void {
+    this.isLoading = true;
     this.myAppointmentService.getAllAppointments().subscribe(res => {
       this.appointmentsList = res;
+      this.isLoading = false;
       this.dataSource.data = this.appointmentsList;
     })
   }

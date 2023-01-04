@@ -28,6 +28,7 @@ export class RecommendationScheduleComponent implements OnInit {
     dateChanged: number = 0;
     cantScheduleByTimeInterval: boolean = false;
     cantScheduleByRoom: boolean = false;
+    isLoading: boolean = false;
 
     doctors: IDoctorWithSPeciality[] = [];
 
@@ -76,6 +77,7 @@ export class RecommendationScheduleComponent implements OnInit {
     }
     getTimeIntervals() {
         if(this.choosenDateEnd == undefined)return;
+        this.isLoading = true;
         this.appointmentService.GetTimeIntervalsRecommendation(this.chosenDoctor.uid,this.dateToUTC(this.choosenDateStart),this.dateToUTC(this.choosenDateEnd)).subscribe(res => {
             this.possibleIntervals = res;
             this.cantScheduleByRoom = false;
@@ -91,6 +93,7 @@ export class RecommendationScheduleComponent implements OnInit {
                         this.possibleIntervals = res;
                         if(this.possibleIntervals.length == 0)
                         {
+                            this.isLoading = false;
                             this.toastService.error("Oops we couldnt find any free times for you even with recommendations, try changing inputs.")
                             this.cantScheduleByTimeInterval = true;
                             return;
@@ -106,6 +109,7 @@ export class RecommendationScheduleComponent implements OnInit {
                         this.possibleIntervals = res;
                         if(this.possibleIntervals.length == 0)
                         {
+                            this.isLoading = false;
                             this.toastService.error("Oops we couldnt find any free times for you even with recommendations, try changing inputs.")
                             this.cantScheduleByTimeInterval = true;
                             return;
@@ -116,6 +120,7 @@ export class RecommendationScheduleComponent implements OnInit {
                     },(error) => {console.log(error.Message)});
                 }
             }
+            this.isLoading = false;
             this.cantScheduleByTimeInterval = false;
             this.chosenTimeInterval = this.possibleIntervals[0];
         },(error) => {console.log(error.Message)});
@@ -151,10 +156,13 @@ export class RecommendationScheduleComponent implements OnInit {
         appointment.chosenTimeInterval.start = this.chosenTimeInterval.start;
         appointment.chosenTimeInterval.end = this.chosenTimeInterval.end;
         appointment.doctorUid = this.chosenTimeInterval.doctorDto.uid;
+        this.isLoading = true;
         this.appointmentService.CreateAppointment(appointment).subscribe(res =>{
             this.toastService.success("Your appointment successfuly scheduled!")
+            this.isLoading = false;
             this.router.navigate(["/"])
         },(error) => {
+            this.isLoading = false;
             this.toastService.error("Oops there are no free rooms!")
             this.cantScheduleByRoom = true;
         });

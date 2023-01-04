@@ -13,6 +13,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
@@ -30,7 +31,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatNativeDateModule,
     BrowserAnimationsModule,
     MatStepperModule,
-    MatRadioModule
+    MatRadioModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     CommonModule,
@@ -46,7 +48,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatNativeDateModule,
     BrowserAnimationsModule,
     MatStepperModule,
-    MatRadioModule
+    MatRadioModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule {}

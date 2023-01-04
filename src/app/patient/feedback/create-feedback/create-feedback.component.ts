@@ -24,14 +24,17 @@ export class CreateFeedbackComponent implements OnInit {
 
   public feedback:IFeedback = <IFeedback>{};
   public errorMessage:string = "";
+  isLoading: boolean = false;
 
   ngOnInit(): void {
   }
 
   public createFeedback() {
+    this.isLoading = true;
     this.feedbackService.createFeedback(this.feedback).subscribe(res => {
         this.toastService.success("Your feedback recorded!")
-      this.router.navigate(['/']);
+        this.isLoading = false;
+        this.router.navigate(['/']);
     });
   }
 }

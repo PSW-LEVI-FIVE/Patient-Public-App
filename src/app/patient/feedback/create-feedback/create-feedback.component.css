@@ -1,44 +1,75 @@
 
 .center {
-    margin-top: 50px;
+    padding-top: 5rem;
     margin-left: auto;
     margin-right: auto;
     width: 75vw;
-  }
-.header{
+}
+.header {
     font-weight: 700;
     font-size: 3rem; /* 48px */
     line-height: 1;
     text-align: center;
     padding-bottom: 48px;
-  }
-  textarea{
+}
+textarea {
     background-color: #cbd5e1;
     width: 100%;
     height: 10rem;
     border-radius: 6px;
-  }
-  Button {
+}
+Button {
     font-size: 30px;
     padding-top: 4px;
     padding-bottom: 4px;
     padding-left: 16px;
     padding-right: 16px;
-  }
-  Button:hover{
+}
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {   
+    stroke: #00eaff !important;
+}
+.spinner{
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    position:fixed;
+    z-index: 150;
+    background-color: rgba(0, 0, 0, 0.50);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    left:0;
+}
+.mainSpinning{
+    z-index: 160;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+    padding-top: 16px;
+    transform: translate(-45%, -50%);
+    background-color: rgba(5, 209, 255, 0.7);
+    border-radius: 64px;
+    box-shadow: rgba(5, 209, 255, 0.7) 0px 4px 24px 4px, rgba(5, 209, 255, 0.7) 0px 0px 0px 0px !important;
+}
+Button:hover{
     background-color: #22d3ee;
     transition: 0.2s;
-  }
-  input.checkbox{
+}
+input.checkbox{
     width : 20px;
     height :20px;
     margin-right: 16px;
     vertical-align: middle;
     margin-top: 0px;
-  }
-  p.checkbox{
+}
+p.checkbox{
     font-size: 1.125rem; /* 18px */
     line-height: 1.75rem; /* 28px */
     height: 100%;
-  }
+}
   

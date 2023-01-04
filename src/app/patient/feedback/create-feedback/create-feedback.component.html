@@ -1,14 +1,17 @@
-<div class="center">
-    <h1 class="text header" style="margin-bottom: 60px;">Leave your feedback! Thank you!</h1>
-    <textarea name="message" id="feedbackContent" style="resize: none;" rows="8" [(ngModel)]="feedback.feedbackContent" class="smalltext" rows = "5" cols = "60" name = "description">
-    </textarea>
-        
-    <div style="text-align: left;">
-            <p style="margin-top: 16px; margin-bottom: 12px !important;" class="text checkbox" >
-                <input type="checkbox" id="privateFlag" class="text checkbox" name="privateFlag" [(ngModel)]="feedback.feedbackStatus.allowPublishment"/>I want my feedback to remain private
-            <p style="margin-top: 16px; margin-bottom: 12px !important;" class="text checkbox" >
-                <input type="checkbox" id="anonymousFlag" class="text checkbox" name="anonymousFlag" [(ngModel)]="feedback.feedbackStatus.anonimity"/>I want my feedback to be anonymous
-            <p>
-        <button id="submitFeedback" [disabled]="feedback.feedbackContent == ''" mat-stroked-button app:backgroundTint="#d1d5db" class="smalltext" (click)="createFeedback()"> Submit!</button>
-    </p>
+<div style="display: flex;flex-direction: column;position: relative;">
+    <div class="spinner" *ngIf="isLoading"><div class="mainSpinning"><mat-spinner></mat-spinner></div></div>
+    <div class="center">
+        <h1 class="text header" style="margin-bottom: 60px;">Leave your feedback! Thank you!</h1>
+        <textarea name="message" id="feedbackContent" style="resize: none;" rows="8" [(ngModel)]="feedback.feedbackContent" class="smalltext" rows = "5" cols = "60" name = "description">
+        </textarea>
+            
+        <div style="text-align: left;">
+                <p style="margin-top: 16px; margin-bottom: 12px !important;" class="text checkbox" >
+                    <input type="checkbox" id="privateFlag" class="text checkbox" name="privateFlag" [(ngModel)]="feedback.feedbackStatus.allowPublishment"/>I want my feedback to remain private
+                <p style="margin-top: 16px; margin-bottom: 12px !important;" class="text checkbox" >
+                    <input type="checkbox" id="anonymousFlag" class="text checkbox" name="anonymousFlag" [(ngModel)]="feedback.feedbackStatus.anonimity"/>I want my feedback to be anonymous
+                <p>
+            <button id="submitFeedback" [disabled]="feedback.feedbackContent == ''" mat-stroked-button app:backgroundTint="#d1d5db" class="smalltext" (click)="createFeedback()"> Submit!</button>
+        </p>
+    </div>
 </div>
