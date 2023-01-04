@@ -1,39 +1,73 @@
-.navbarLinks{
-    display: flex;
-    gap: 20px;
-    background-color:#075985;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    padding-left: 24px;
-    padding-right: 24px;
-    border-bottom: 4px solid #0c4a6e; 
-    flex-grow: 1;
-    }
-.authLinks{
-    display: flex;
-    gap: 20px;
-    background-color:#075985;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    padding-left: 24px;
-    padding-right: 24px;
-    border-bottom: 4px solid #0c4a6e; 
-    }
-.links{
-    display: flex;
-    position: fixed;
+.nav {
+    z-index: 220;
+    position: sticky;
+    top: 0;
     width: 100%;
-    z-index: 200;
-    }
-Button {
-    font-size: 1.5rem; /* 24px */
-    line-height: 2rem; /* 32px */
-    padding-top: 12px;
-    padding-bottom: 12px;
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    font-weight: 500;
-    }
+    background-color: #1290b3;
+    color: #334155;
+    display: flex;
+    padding: 0 16px;
+    align-items: center;
+    height: 70px;
+    border-color: #334155;
+    justify-content: flex-end;
+  }
+  
+  .burger {
+    font-size: 50px;
+    cursor: pointer;
+  }
+  
+  .nav a {
+    position: relative;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #67e8f9;
+    text-align: center;
+    min-width: 70px;
+    box-sizing: border-box;
+    margin: 10px;
+    padding: 5px;
+    cursor: pointer;
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+  }
+  
+  .nav a:hover {
+    background-color: #67e8f9;
+  }
+  
+  
+.selected::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    border-bottom: 3px solid #67e8f9;
+    border-radius: 3px;
+  }
+  
+  .logged-user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+.name-surname {
+    display: flex;
+    gap: 5px;
+}
+  
+.image-holder {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #67e8f9;
+    background: #334155;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

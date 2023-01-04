@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import { MaterialModule } from '../material/material.module';
+import { SideMenuComponent } from './side-menu/side-menu.component';
 
 
 
@@ -15,7 +16,8 @@ import { MaterialModule } from '../material/material.module';
   declarations: [NavbarComponent,
   PublishedFeedbackListComponent,
   LandingPageComponent,
-  LoginComponent
+  LoginComponent,
+  SideMenuComponent
   ],
   imports: [
     CommonModule,
@@ -23,8 +25,8 @@ import { MaterialModule } from '../material/material.module';
     MatTableModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
-  exports:[NavbarComponent]
+  exports:[NavbarComponent,SideMenuComponent]
 })
 export class SharedModule { }

@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [],
@@ -32,7 +33,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     BrowserAnimationsModule,
     MatStepperModule,
     MatRadioModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatToolbarModule
   ],
   exports: [
     CommonModule,
@@ -49,7 +51,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     BrowserAnimationsModule,
     MatStepperModule,
     MatRadioModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatToolbarModule
   ]
 })
 export class MaterialModule {}

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Authenticated, Role } from '../login/model/authenticated.model';
+import { DataService } from '../login/service/data.service';
+import { LoginService } from '../login/service/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,33 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor(private router : Router) { }
-
-  ngOnInit(): void {
-  }
-  onLogout()
-  {
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-    this.router.navigate(["/login"]);
-
-  }
-  isHidden()
-  {
-    if(localStorage.getItem('token') != null)
-    {
-      return true;
+    profile: Authenticated = { name: "", surname: '', role: Role.PATIENT, username: '' }
+    burgerState: boolean = true
+    constructor(private readonly loginService: LoginService,private dataService: DataService) { 
+        this.dataService.profile$.subscribe(profile => {
+            console.log(profile)
+            this.profile = profile;
+          });
     }
-    else return false;
-  }
-  isHiddenLogout()
-  {
-    if(localStorage.getItem('token') == null)
-    {
-      return true;
-    }
-    else return false;
-  }
 
+    ngOnInit(): void {
+        this.loginService.getUserProfile().subscribe(res => {
+            this.profile = res
+        })
+    }
 }
