@@ -1,24 +1,22 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { IAppointment } from './model/myappointments.model';
-import { MyappService } from './service/myapp.service';
-import { catchError, EMPTY } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { IExam } from './model/exam.model';
+import { catchError, EMPTY } from 'rxjs';
+import { IExam } from '../myappointments/model/exam.model';
+import { IAppointment } from '../myappointments/model/myappointments.model';
+import { MyappService } from '../myappointments/service/myapp.service';
 
 @Component({
-  selector: 'app-myappointments',
-  templateUrl: './myappointments.component.html',
-  styleUrls: ['./myappointments.component.css']
+  selector: 'app-finished-appointments',
+  templateUrl: './finished-appointments.component.html',
+  styleUrls: ['./finished-appointments.component.css']
 })
-export class MyappointmentsComponent implements OnInit {
-  
-
+export class FinishedAppointmentsComponent implements OnInit {
 
   constructor(private myAppointmentService: MyappService, private router: Router, private readonly toastService: ToastrService) { }
   public dataSource = new MatTableDataSource<IAppointment>();
-  public displayedColumns = ['Doctor', 'Room', 'Start', 'End', 'State', 'Action'];
+  public displayedColumns = ['Doctor', 'Room', 'Start', 'End', 'State','Pdf'];
   public appointmentsList: IAppointment[] = [];
   public exam! : IExam;
   public appointmentState : any = {
@@ -28,26 +26,30 @@ export class MyappointmentsComponent implements OnInit {
   };
   public isLoading: boolean = false;
 
-  public cancelAppointment(id : number) : void
+  public showPdf(appointmentId : number) : void
   {
-    this.myAppointmentService.cancelAppointment(id)
+    console.log(appointmentId)
+    this.myAppointmentService.showPdf(appointmentId)
     .pipe(catchError(res => {
-      this.toastService.error("You can't cancel appointment 24h before start");
+      this.toastService.error("You can't show pdf");
       return EMPTY
     }))
     .subscribe(res => {
+      this.exam = res;
       this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
       this.router.navigate(['patient/myAppointments']));
+      window.open(this.exam.url, '_blank');
     }); 
   }
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.myAppointmentService.getAllAppointments().subscribe(res => {
+    this.myAppointmentService.getAllFinishedAppointments().subscribe(res => {
       this.appointmentsList = res;
       this.isLoading = false;
       this.dataSource.data = this.appointmentsList;
     })
   }
+
 
 }

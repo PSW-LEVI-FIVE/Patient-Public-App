@@ -14,6 +14,7 @@ import { MyappointmentsComponent } from './myappointments/myappointments.compone
 import { MatTableModule } from '@angular/material/table';
 import { MaterialModule } from '../material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { FinishedAppointmentsComponent } from './finished-appointments/finished-appointments.component';
 
 const routes: Routes = [
   {
@@ -49,6 +50,10 @@ const routes: Routes = [
         path: 'myAppointments',
         component: MyappointmentsComponent,
       },
+      {
+        path: 'finished',
+        component: FinishedAppointmentsComponent,
+      },
     ]
 
   }
@@ -59,6 +64,7 @@ const routes: Routes = [
   declarations: [
     PatientComponent,
     MyappointmentsComponent,
+    FinishedAppointmentsComponent,
   ],
   imports: [
     CommonModule,

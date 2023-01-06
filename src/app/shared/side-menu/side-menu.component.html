@@ -27,6 +27,12 @@
                 <div class="tooltip">My appointments</div>
             </div>
         </a>
+        <a [routerLink]="['patient/finished']" [hidden]="isHiddenLogout()">
+            <div class="item">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="healing icon"></mat-icon>
+                <div class="tooltip">Finished Appointments</div>
+            </div>
+        </a>
     </div>
     <div class="bottom-menu">
         <a [routerLink]="['user/register']" [hidden]="isHidden()">
