@@ -5,7 +5,6 @@ import { IAppointment } from './model/myappointments.model';
 import { MyappService } from './service/myapp.service';
 import { catchError, EMPTY } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { IExam } from './model/exam.model';
 
 @Component({
   selector: 'app-myappointments',
@@ -20,7 +19,6 @@ export class MyappointmentsComponent implements OnInit {
   public dataSource = new MatTableDataSource<IAppointment>();
   public displayedColumns = ['Doctor', 'Room', 'Start', 'End', 'State', 'Action'];
   public appointmentsList: IAppointment[] = [];
-  public exam! : IExam;
   public appointmentState : any = {
     "0" : "Canceled",
     "1" : "Finished",
