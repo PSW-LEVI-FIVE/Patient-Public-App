@@ -10,7 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./published-feedback-list.component.css']
 })
 export class PublishedFeedbackListComponent implements OnInit {
-  constructor(private feedbackService: FeedbackService, private router: Router) { }
+  constructor(private feedbackService: FeedbackService) { }
   public dataSource = new MatTableDataSource<IFeedback>();
   public displayedColumns = ['Patient', 'Feedback Content'];
   public feedbacks: IFeedback[] = [];
