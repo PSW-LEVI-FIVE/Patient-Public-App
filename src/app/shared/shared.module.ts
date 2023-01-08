@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { AdvertisementsComponent } from './landing-page/advertisements/advertisements.component';
+import { SlideComponent } from './landing-page/advertisements/slide/slide.component';
 
 
 
@@ -19,7 +20,8 @@ import { AdvertisementsComponent } from './landing-page/advertisements/advertise
   LandingPageComponent,
   LoginComponent,
   SideMenuComponent,
-  AdvertisementsComponent
+  AdvertisementsComponent,
+  SlideComponent
   ],
   imports: [
     CommonModule,

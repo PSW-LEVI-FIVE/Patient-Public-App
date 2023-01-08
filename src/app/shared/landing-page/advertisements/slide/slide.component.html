@@ -1,0 +1,11 @@
+<div>
+    <div class="slide" [@slide]="animationState" (@slide.done)="resetClick($event)" id="index" (click)="adClicked()">
+        <div style="width: 100%;height: 100%;" class="image">
+            <img [src]="imageUrl"/>
+        </div>
+        <div class="shadow">
+            <h2 class="text title">{{title}}</h2>
+            <span class="text adtext" [@enterAnimation] *ngIf="clicked">{{text}}</span>
+        </div>
+    </div>
+</div>
