@@ -33,7 +33,7 @@ export class SlideComponent implements OnInit {
                 this.animationState = 'center';
             else if(this.currentSlide > this.index)
                 this.animationState = 'left';
-                else if(this.currentSlide < this.index)
+            else
                 this.animationState = 'right';
           });
      }

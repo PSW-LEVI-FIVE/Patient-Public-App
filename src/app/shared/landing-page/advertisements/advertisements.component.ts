@@ -26,7 +26,6 @@ export class AdvertisementsComponent implements OnInit {
           this.advertisements.forEach((advertisement)=>{
             advertisement.pictureUrl = this.storageUrl + advertisement.pictureUrl;
           })
-          console.log(this.advertisements)
           interval(10000).subscribe(x => {
             this.onNextClick();
         });
