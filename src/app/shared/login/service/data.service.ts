@@ -11,7 +11,6 @@ export class DataService {
   profile$ = this.dataSubject.asObservable();
 
   updateData(profile: Authenticated) {
-    console.log(profile)
     this.dataSubject.next(profile);
   }
 }
