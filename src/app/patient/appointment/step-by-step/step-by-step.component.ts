@@ -51,6 +51,10 @@ export class StepByStepComponent implements OnInit {
             this.chosenSpeciality = this.possibleSpecialities[0];
             this.pushPossibleDoctors();
         },(error) => {console.log(error.Message)});
+        this.appointmentService.CreateInitialAppointment().subscribe(res => {
+            this.appointmentId = res;
+            this.sendEvent(0);
+        })
      }
     
     public pushPossibleDoctors() {
@@ -101,12 +105,12 @@ export class StepByStepComponent implements OnInit {
         return date.toString().substring(11,16);
     }
     scheduleAppointment(){
-        this.sendEvent(5)
+        this.sendEvent(5);
         var appointment = <ICreateAppointmentForPatient>{};
         appointment.chosenTimeInterval = this.chosenTimeInterval;
         appointment.doctorUid = this.chosenDoctor.uid;
         this.isLoading = true;
-        /*this.appointmentService.CreateAppointment(appointment).subscribe(res =>{
+        this.appointmentService.CreateAppointment(appointment).subscribe(res =>{
             this.isLoading = false;
             this.toastService.success("Your appointment successfuly scheduled!")
             this.router.navigate(["/"])
@@ -114,14 +118,14 @@ export class StepByStepComponent implements OnInit {
             this.isLoading = false;
             this.toastService.error("Oops there are no free rooms!")
         this.cantScheduleByRoom = true;
-        });*/
+        });
     }
 
     sendEvent(type: number) {
         const dto: SchedulingAppointmentEventDTO = {
           eventType: type,
           time: new Date(),
-          patientId: 1
+          aggregateId: this.appointmentId
         }
         
         this.appointmentService.SendEvent(dto).subscribe(res => {
@@ -134,10 +138,8 @@ export class StepByStepComponent implements OnInit {
       }
 
     ngOnInit(): void {
-        this.sendEvent(0);
-        this.appointmentService.CreateInitialAppointment().subscribe(res => {
-            console.log(res);
-        })
+        
+        
     }
 
 }

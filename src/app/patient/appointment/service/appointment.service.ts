@@ -57,7 +57,6 @@ export class AppointmentService {
         return this.http.put<any>(this.apiHost + '/appointments/scheduled' + appointmentId.toString() ,{ headers: this.headers });
     }
 
-
     SendEvent(event :SchedulingAppointmentEventDTO) 
     {
         return this.http.post<any>(this.apiHost + '/appointments/event',event);
