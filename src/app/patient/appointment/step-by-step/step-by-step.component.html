@@ -18,7 +18,7 @@
                                     </mat-error>
                                 </mat-form-field>
                             <div>
-                                <button mat-button matStepperNext>Next</button>
+                                <button mat-button matStepperNext (click)="sendEvent(1)" >Next</button>
                             </div>
                         </form>
                     </mat-step>
@@ -34,7 +34,7 @@
                         </mat-form-field>
                         <div>
                             <button mat-button matStepperPrevious>Back</button>
-                            <button mat-button matStepperNext>Next</button>
+                            <button mat-button matStepperNext (click)="sendEvent(2)">Next</button>
                         </div>
                     </mat-step>
                     <mat-step>
@@ -49,10 +49,10 @@
                             </mat-form-field>
                             <div>
                                 <button mat-button matStepperPrevious>Back</button>
-                                <button mat-button matStepperNext>Next</button>
+                                <button mat-button matStepperNext (click)="sendEvent(3)">Next</button>
                             </div>
                     </mat-step>
-                    <mat-step>
+                    <mat-step >
                     <form>
                         <ng-template matStepLabel>Pick appointment time</ng-template>
                         <mat-form-field appearance="fill">
@@ -65,7 +65,7 @@
                         </mat-form-field>
                         <div>
                         <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
+                        <button mat-button matStepperNext (click)="sendEvent(4)">Next</button>
                         </div>
                     </form>
                     </mat-step>
