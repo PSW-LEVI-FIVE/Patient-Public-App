@@ -37,7 +37,7 @@ export class FinishedAppointmentsComponent implements OnInit {
     .subscribe(res => {
       this.exam = res;
       this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-      this.router.navigate(['patient/myAppointments']));
+      this.router.navigate(['patient/finished']));
       window.open(this.exam.url, '_blank');
     }); 
   }
