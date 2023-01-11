@@ -8,6 +8,7 @@ import { DoctorService } from '../service/doctor.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { MatStepper } from '@angular/material/stepper';
+import { SchedulingAppointmentEventDTO } from '../dtos/SchedulingAppointmentEventDTO';
 
 @Component({
   selector: 'app-step-by-step',
@@ -24,7 +25,7 @@ export class StepByStepComponent implements OnInit {
     dateChanged: number = 0;
     cantScheduleByTimeInterval: boolean = false;
     cantScheduleByRoom: boolean = false;
-
+    appointmentId: number = -1;
     doctors: IDoctorWithSPeciality[] = [];
 
     possibleDoctors: IDoctorWithSPeciality[] = [];
@@ -100,11 +101,12 @@ export class StepByStepComponent implements OnInit {
         return date.toString().substring(11,16);
     }
     scheduleAppointment(){
+        this.sendEvent(5)
         var appointment = <ICreateAppointmentForPatient>{};
         appointment.chosenTimeInterval = this.chosenTimeInterval;
         appointment.doctorUid = this.chosenDoctor.uid;
         this.isLoading = true;
-        this.appointmentService.CreateAppointment(appointment).subscribe(res =>{
+        /*this.appointmentService.CreateAppointment(appointment).subscribe(res =>{
             this.isLoading = false;
             this.toastService.success("Your appointment successfuly scheduled!")
             this.router.navigate(["/"])
@@ -112,10 +114,30 @@ export class StepByStepComponent implements OnInit {
             this.isLoading = false;
             this.toastService.error("Oops there are no free rooms!")
         this.cantScheduleByRoom = true;
-        });
+        });*/
     }
 
+    sendEvent(type: number) {
+        const dto: SchedulingAppointmentEventDTO = {
+          eventType: type,
+          time: new Date(),
+          patientId: 1
+        }
+        
+        this.appointmentService.SendEvent(dto).subscribe(res => {
+        })
+        if(type == 1) this.appointmentService.PickedDate(this.chosenDate,this.appointmentId);
+        if(type == 3) this.appointmentService.PickedDoctor(this.chosenDoctor.uid,this.appointmentId);
+        if(type == 4) this.appointmentService.PickedTime(this.chosenTimeInterval,this.appointmentId);
+        if(type == 5) this.appointmentService.FinishAppointment(this.appointmentId);
+
+      }
+
     ngOnInit(): void {
+        this.sendEvent(0);
+        this.appointmentService.CreateInitialAppointment().subscribe(res => {
+            console.log(res);
+        })
     }
 
 }
