@@ -9,25 +9,25 @@
                 <div class="tooltip">Home</div>
             </div>
         </a>
-        <a [routerLink]="['patient/feedback/create']" [hidden]="isHiddenLogout()">
+        <a [routerLink]="['/patient/feedback/create']" [hidden]="isHiddenLogout()">
             <div class="item">
                 <mat-icon aria-hidden="false" aria-label="Feedback icon" fontIcon="feedback"></mat-icon>
                 <div class="tooltip">Give feedback</div>
             </div>
         </a>
-        <a [routerLink]="['patient/appointment/step-by-step']" [hidden]="isHiddenLogout()">
-            <div class="item">  
+        <a [routerLink]="['/patient/appointment/step-by-step']" [hidden]="isHiddenLogout()">
+            <div class="item">
                 <mat-icon aria-hidden="false" aria-label="Schedule icon" fontIcon="schedule"></mat-icon>
                 <div class="tooltip">Schedule appointment</div>
             </div>
         </a>
-        <a [routerLink]="['patient/myAppointments']" [hidden]="isHiddenLogout()">
+        <a [routerLink]="['/patient/myAppointments']" [hidden]="isHiddenLogout()">
             <div class="item">
                 <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="healing icon"></mat-icon>
                 <div class="tooltip">My appointments</div>
             </div>
         </a>
-        <a [routerLink]="['patient/finished']" [hidden]="isHiddenLogout()">
+        <a [routerLink]="['/patient/finished']" [hidden]="isHiddenLogout()">
             <div class="item">
                 <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="done"></mat-icon>
                 <div class="tooltip">Finished Appointments</div>
@@ -36,7 +36,7 @@
     </div>
     <div class="bottom-menu">
         <a [routerLink]="['user/register']" [hidden]="isHidden()">
-            <div class="item">  
+            <div class="item">
                 <mat-icon aria-hidden="false" aria-label="Register icon" fontIcon="register"></mat-icon>
                 <div class="tooltip">Register</div>
             </div>

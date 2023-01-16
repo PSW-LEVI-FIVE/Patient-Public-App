@@ -1,0 +1,49 @@
+#why-us {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px;
+    width: calc(100% - 40px);
+    min-height: 500px;
+    gap: 80px;
+    padding-top: 150px;
+}
+
+#why-us h1 {
+    width: 60%;
+    margin: auto;
+    font-size: 100px;
+    color: #23182c;
+}
+
+.why-us-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    width: 60%;
+    margin: auto;
+    min-height: 700px;
+}
+
+.why-us-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+    font-size: 50px;
+    width: 400px;
+    padding: 10px;
+
+}
+
+.why-us-card h2 {
+    font-size: 30px;
+}
+
+.why-us-card small {
+    color: gray;
+    font-size: 22px;
+    max-width: 300px;
+    line-height: 1.5;
+}

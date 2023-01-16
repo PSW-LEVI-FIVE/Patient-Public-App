@@ -1,4 +1,183 @@
-.LandingHero {
+.landing-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    background: white;
+}
+
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 9vh;
+    min-height: 11vh;
+    position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+    background: #008ecc;
+    z-index: 10;
+}
+
+.nav .logo-wrapper {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    margin-left: 200px;
+}
+
+.nav .logo-wrapper img {
+    height: 100%;
+    width: 100%;
+}
+
+
+.nav-moved {
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    background: #1b75b5;
+}
+
+
+#introduction {
+    position: relative;
+    display: flex;
+    height: 91vh;
+    min-height: 91vh;
+    width: 100%;
+    background: #008ecc;
+    overflow-y: hidden;
+    z-index: 1;
+    background-image: url('../../../assets/landing-doctor.jpg');
+    background-size: cover;
+}
+
+
+.app-wrapper {
+    display: flex;
+    margin-right: 100px;
+    align-items: center;
+    justify-content: center;
+}
+.nav-button {
+    width: 150px;
+    height: 50px;
+    background: #0A6887;
+    background: -webkit-linear-gradient(top left, #0A6887, #3B25CA);
+    background: -moz-linear-gradient(top left, #0A6887, #3B25CA);
+    background: linear-gradient(to bottom right, #0A6887, #3B25CA);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+#introduction > * {
+    flex: 1;
+}
+
+#introduction .text-wrapper {
+    margin-top: 200px;
+    flex: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: white;
+    gap: 20px;
+
+}
+
+
+#introduction .text-wrapper h1 {
+    font-size: 70px;
+    margin-left: 400px;
+}
+
+#introduction .text-wrapper small {
+    max-width: 500px;
+    margin-left: 400px;
+    font-size: 25px;
+    line-height: 1.5;
+
+}
+
+#introduction .text-wrapper button {
+    width: 250px;
+    height: 50px;
+    margin-left: 400px;
+    background: #0A6887;
+    background: -webkit-linear-gradient(top left, #0A6887, #3B25CA);
+    background: -moz-linear-gradient(top left, #0A6887, #3B25CA);
+    background: linear-gradient(to bottom right, #0A6887, #3B25CA);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    font-size: 20px;
+    cursor: pointer;
+}
+#introduction .img-wrapper img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+
+@media only screen and (max-width: 2048px) {
+    #introduction .text-wrapper h1 {
+        font-size: 60px;
+        margin-left: 150px!important;
+    }
+    #introduction .text-wrapper small {
+        margin-left: 150px!important;
+    }
+    #introduction .text-wrapper button {
+        margin-left: 150px!important;
+    }
+
+    .nav .logo-wrapper {
+        margin-left: 150px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    #introduction.img-wrapper {
+        display: none;
+    }
+    #introduction.text-wrapper {
+        width: 100%;
+        flex: 1;
+    }
+
+    #introduction .text-wrapper h1 {
+        font-size: 40px;
+        min-width: 80%;
+        margin-left: 40px!important;
+    }
+    #introduction .text-wrapper small {
+        font-size: 20px;
+        max-width: 600px;
+        margin-left: 40px!important;
+    }
+    #introduction .text-wrapper button {
+        margin-left: 40px!important;
+    }
+
+    .nav .logo-wrapper {
+        margin-left: 40px;
+    }
+
+}
+
+
+
+/* .LandingHero {
     position: relative;
     height: calc(120vh);
     width: 35vw;
@@ -182,6 +361,6 @@
     margin-left: 24px;
     margin-right: 24px;
     font-weight: 700;
-    font-size: 4.5rem; /* 72px */
+    font-size: 4.5rem;
     line-height: 1;
-  }
+  } */

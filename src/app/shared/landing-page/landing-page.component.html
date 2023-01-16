@@ -1,31 +1,59 @@
-<div style="display: flex;">
-    <div class="LandingHero">
-        <img src="{{HospitalImage}}" alt="Hospital" class="hospitalImage">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign1">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign2">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign3">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign4">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign5">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign6">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign7">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign8">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign9">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign10">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign11">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign12">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign13">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign14">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign15">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign16">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign17">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign18">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign19">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign20">
-    </div>
-    <div style="text-align: center; flex-grow: 1;margin-top: 48px;">
-        <h1 class="text header">Hospital name</h1>
-        <app-advertisements></app-advertisements>
-        <app-published-feedback-list></app-published-feedback-list>
-    </div>
-</div>
+<div class="landing-page-wrapper">
+    <!-- [ngClass]="navMoved ?'nav-moved':''" -->
+    <nav class='nav'>
+        <div class="logo-wrapper">
+            <img src="../../../assets/logo.png" alt="">
+        </div>
 
+        <div class="app-wrapper">
+            <button class="nav-button">Sign In</button>
+            <!-- <button class="nav-button">Go to App -></button> -->
+        </div>
+    </nav>
+    <section id="introduction">
+        <div class="text-wrapper">
+            <h1>Your smile is our mission!</h1>
+            <small>
+                With our app, you can easily access your medical information, schedule appointments, and communicate
+                with your healthcare providers from the comfort of your own home.
+            </small>
+            <button>Register Now!</button>
+        </div>
+        <div class="image-wrapper">
+        </div>
+    </section>
+    <section id="why-us">
+        <h1>Why us?</h1>
+        <div class="why-us-wrapper">
+            <div class="why-us-card">
+                <h2>Secure and easy access to your medical records</h2>
+                <small>
+                    Instead of keeping medical records in paper form,
+                    we offer digital medical records.
+                </small>
+            </div>
+            <div class="why-us-card">
+                <h2>The ability to schedule and manage appointments</h2>
+                <small>
+                    Our system contains fully automated process of schedulling appointments,
+                    including consiliums and examinations.
+                </small>
+            </div>
+            <div class="why-us-card">
+                <h2>Time optimization</h2>
+                <small>
+                    You can easily create, cancel and track your current or previous
+                    appointments. See your history using our modern material calendar.
+                </small>
+            </div>
+            <div class="why-us-card">
+                <h2>Transparency</h2>
+                <small>
+                    We don't mind if you leave us a feedback.
+                    Every customer has possibility to leave a good or bad feedback.
+                    Tell us what do you think!
+                </small>
+            </div>
+        </div>
+    </section>
+</div>

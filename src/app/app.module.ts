@@ -26,9 +26,9 @@ import { ToastrModule } from 'ngx-toastr';
   ],
   providers: [
     {
-      provide : HTTP_INTERCEPTORS,
+      provide: HTTP_INTERCEPTORS,
       useClass: AuthInterception,
-      multi:true
+      multi: true
     }
   ],
   bootstrap: [AppComponent]
