@@ -21,11 +21,11 @@
 }
 
 .nav .logo-wrapper {
-    height: 60px;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
+    width: 100px;
     margin-left: 200px;
 }
 
@@ -37,7 +37,8 @@
 
 .nav-moved {
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    background: #1b75b5;
+    /* background: #1b75b5; */
+    background: rgba(27, 117, 181, 0.9);
 }
 
 

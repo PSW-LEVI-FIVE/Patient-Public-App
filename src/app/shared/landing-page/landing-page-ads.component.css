@@ -1,0 +1,11 @@
+#ads {
+    width: 100%;
+    min-height: 1000px;
+}
+
+#ads h1 {
+    font-size: 80px;
+    margin: auto;
+    text-align: center;
+    line-height: 2.0;
+}

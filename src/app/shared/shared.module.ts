@@ -11,6 +11,7 @@ import { MaterialModule } from '../material/material.module';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { AdvertisementsComponent } from './landing-page/advertisements/advertisements.component';
 import { SlideComponent } from './landing-page/advertisements/slide/slide.component';
+import { CardCarouselComponent } from './landing-page/card-carousel/card-carousel.component';
 
 
 
@@ -21,7 +22,8 @@ import { SlideComponent } from './landing-page/advertisements/slide/slide.compon
   LoginComponent,
   SideMenuComponent,
   AdvertisementsComponent,
-  SlideComponent
+  SlideComponent,
+  CardCarouselComponent
   ],
   imports: [
     CommonModule,

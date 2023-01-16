@@ -1,8 +1,8 @@
 <div class="landing-page-wrapper">
-    <!-- [ngClass]="navMoved ?'nav-moved':''" -->
-    <nav class='nav'>
+    <!--  -->
+    <nav class='nav' [ngClass]="navMoved ?'nav-moved':''">
         <div class="logo-wrapper">
-            <img src="../../../assets/logo.png" alt="">
+            <img src="../../../assets/logo2.png" alt="">
         </div>
 
         <div class="app-wrapper">
@@ -25,35 +25,80 @@
     <section id="why-us">
         <h1>Why us?</h1>
         <div class="why-us-wrapper">
-            <div class="why-us-card">
-                <h2>Secure and easy access to your medical records</h2>
-                <small>
-                    Instead of keeping medical records in paper form,
-                    we offer digital medical records.
-                </small>
+            <div class="why-us-card-outer">
+                <div class="why-us-card">
+                    <h2>Secure and easy access to your medical records</h2>
+                    <small>
+                        Instead of keeping medical records in paper form,
+                        we offer digital medical records.
+                    </small>
+                </div>
             </div>
-            <div class="why-us-card">
-                <h2>The ability to schedule and manage appointments</h2>
-                <small>
-                    Our system contains fully automated process of schedulling appointments,
-                    including consiliums and examinations.
-                </small>
+            <div class="why-us-card-outer">
+                <div class="why-us-card">
+                    <h2>The ability to schedule and manage appointments</h2>
+                    <small>
+                        Our system contains fully automated process of schedulling appointments,
+                        including consiliums and examinations.
+                    </small>
+                </div>
             </div>
-            <div class="why-us-card">
-                <h2>Time optimization</h2>
-                <small>
-                    You can easily create, cancel and track your current or previous
-                    appointments. See your history using our modern material calendar.
-                </small>
+            <div class="why-us-card-outer">
+                <div class="why-us-card">
+                    <h2>Time optimization</h2>
+                    <small>
+                        You can easily create, cancel and track your current or previous
+                        appointments. See your history using our modern material calendar.
+                    </small>
+                </div>
             </div>
-            <div class="why-us-card">
-                <h2>Transparency</h2>
-                <small>
-                    We don't mind if you leave us a feedback.
-                    Every customer has possibility to leave a good or bad feedback.
-                    Tell us what do you think!
-                </small>
+            <div class="why-us-card-outer">
+                <div class="why-us-card">
+                    <h2>Transparency</h2>
+                    <small>
+                        We don't mind if you leave us a feedback.
+                        Every customer has possibility to leave a good or bad feedback.
+                        Tell us what do you think!
+                    </small>
+                </div>
             </div>
         </div>
+
     </section>
+    <section id="feedback">
+        <h1>What our customers think?</h1>
+        <div class="container" #container>
+            <div class="arrow arrow-left" *ngIf="totalPages > 1" (click)="currentPage != 1 && changePage(-1)"
+                [ngClass]="{'disabled':currentPage === 1}"></div>
+            <div class="cards">
+                <div class="overflow"
+                    [ngStyle]="{'width': overflowWidth, 'transform':'translateX(' + pagePosition + ')'}">
+                    <div class="card" *ngFor="let feedback of feedbacks">
+                        <div class="feedback-card">
+                            <div class="card-text">
+                                <q>
+                                    {{feedback.feedbackContent}}
+                                </q>
+                            </div>
+                            <div class="personal-info">
+                                <div class="avatar-wrapper">
+                                    <img src="../../../assets/Doctor.jpg" alt="">
+                                </div>
+                                <div class="info-wrapper">
+                                    {{feedback.patient}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="arrow arrow-right" *ngIf="totalPages > 1" (click)="currentPage != totalPages && changePage(+1)"
+                [ngClass]="{'disabled':currentPage === totalPages}"></div>
+        </div>
+    </section>
+    <section id="ads">
+        <h1>News and Ads</h1>
+        <app-advertisements></app-advertisements>
+    </section>
+
 </div>
