@@ -1,31 +1,128 @@
-<div style="display: flex;">
-    <div class="LandingHero">
-        <img src="{{HospitalImage}}" alt="Hospital" class="hospitalImage">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign1">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign2">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign3">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign4">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign5">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign6">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign7">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign8">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign9">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign10">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign11">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign12">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign13">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign14">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign15">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign16">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign17">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign18">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign19">
-        <img src="{{HospitalSign}}" alt="Hospital Sign" class="hospitalSign20">
-    </div>
-    <div style="text-align: center; flex-grow: 1;margin-top: 48px;">
-        <h1 class="text header">Hospital name</h1>
-        <app-advertisements></app-advertisements>
-        <app-published-feedback-list></app-published-feedback-list>
-    </div>
-</div>
+<div class="landing-page-wrapper">
+    <nav class='nav' [ngClass]="navMoved ?'nav-moved':''">
+        <div class="logo-hor">
+            <div class="logo-wrapper">
+                <img src="../../../assets/logo2.png" alt="">
+            </div>
+            <p>
+                Levi Five Hospital
+            </p>
+        </div>
 
+        <div class="app-wrapper">
+            <button (click)="goTo('/login')" class="nav-button">Sign In</button>
+            <!-- <button class="nav-button">Go to App -></button> -->
+        </div>
+    </nav>
+    <section id="introduction">
+        <div class="text-wrapper">
+            <h1>Your smile is our mission!</h1>
+            <small>
+                With our app, you can easily access your medical information, schedule appointments, and communicate
+                with your healthcare providers from the comfort of your own home.
+            </small>
+            <button (click)="goTo('/user/register')">Register Now!</button>
+        </div>
+        <div class="image-wrapper">
+        </div>
+    </section>
+    <section id="why-us">
+        <h1>Why us?</h1>
+        <div class="why-us-wrapper">
+            <div class="why-us-card-outer">
+                <div class="why-us-card">
+                    <h2>Secure and easy access to your medical records</h2>
+                    <small>
+                        Instead of keeping medical records in paper form,
+                        we offer digital medical records.
+                    </small>
+                </div>
+            </div>
+            <div class="why-us-card-outer">
+                <div class="why-us-card">
+                    <h2>The ability to schedule and manage appointments</h2>
+                    <small>
+                        Our system contains fully automated process of schedulling appointments,
+                        including consiliums and examinations.
+                    </small>
+                </div>
+            </div>
+            <div class="why-us-card-outer">
+                <div class="why-us-card">
+                    <h2>Time optimization</h2>
+                    <small>
+                        You can easily create, cancel and track your current or previous
+                        appointments. See your history using our modern material calendar.
+                    </small>
+                </div>
+            </div>
+            <div class="why-us-card-outer">
+                <div class="why-us-card">
+                    <h2>Transparency</h2>
+                    <small>
+                        We don't mind if you leave us a feedback.
+                        Every customer has possibility to leave a good or bad feedback.
+                        Tell us what do you think!
+                    </small>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section id="feedback">
+        <h1>What our customers think?</h1>
+        <div class="container" #container>
+            <div class="arrow arrow-left" *ngIf="totalPages > 1" (click)="currentPage != 1 && changePage(-1)"
+                [ngClass]="{'disabled':currentPage === 1}"></div>
+            <div class="cards">
+                <div class="overflow"
+                    [ngStyle]="{'minWidth': overflowWidth, 'maxWidth':overflowWidth, 'transform':'translateX(' + pagePosition + ')'}">
+                    <div class="card" *ngFor="let feedback of feedbacks" [ngStyle]="{'flex-basis': cardWidth + '%'}">
+                        <div class="feedback-card">
+                            <div class="card-text">
+                                <q>
+                                    {{feedback.feedbackContent}}
+                                </q>
+                            </div>
+                            <div class="personal-info">
+                                <div class="avatar-wrapper">
+                                    <img src="../../../assets/Doctor.jpg" alt="">
+                                </div>
+                                <div class="info-wrapper">
+                                    {{feedback.patient}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="arrow arrow-right" *ngIf="totalPages > 1" (click)="currentPage != totalPages && changePage(+1)"
+                [ngClass]="{'disabled':currentPage === totalPages}"></div>
+        </div>
+    </section>
+    <section id="ads">
+        <h1>News and Ads</h1>
+        <app-advertisements></app-advertisements>
+    </section>
+    <footer class="footer">
+        <div class="left">
+            <div class="logo-hor">
+                <div class="logo-wrapper">
+                    <img src="../../../assets/logo2.png" alt="">
+                </div>
+                <p>
+                    Levi Five Hospital
+                </p>
+            </div>
+            <p>
+                Levi Five Hospital is one of the best hospital automatization services providers.
+            </p>
+        </div>
+        <hr>
+        <div class="down">
+            <span>2023 Levi Five Inc. All rights reserved</span>
+            <span>Made with 💓 and angular!</span>
+        </div>
+
+    </footer>
+</div>

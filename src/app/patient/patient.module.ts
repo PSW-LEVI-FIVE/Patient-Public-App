@@ -15,22 +15,17 @@ import { MatTableModule } from '@angular/material/table';
 import { MaterialModule } from '../material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { FinishedAppointmentsComponent } from './finished-appointments/finished-appointments.component';
+import { SharedModule } from "../shared/shared.module";
 
 const routes: Routes = [
   {
     path: 'patient',
     component: PatientComponent,
-    canActivate:[AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
-        path: 'feedback',
-        component: FeedbackComponent,
-        children: [
-          {
-            path: 'create',
-            component: CreateFeedbackComponent,
-          },
-        ],      
+        path: 'feedback/create',
+        component: CreateFeedbackComponent,
       },
       {
         path: 'appointment',
@@ -44,7 +39,7 @@ const routes: Routes = [
             path: 'recommendation-scheduling',
             component: RecommendationScheduleComponent,
           },
-        ],      
+        ],
       },
       {
         path: 'myAppointments',
@@ -73,7 +68,8 @@ const routes: Routes = [
     MaterialModule,
     AppointmentModule,
     MatTableModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule
   ]
 })
 export class PatientModule { }
