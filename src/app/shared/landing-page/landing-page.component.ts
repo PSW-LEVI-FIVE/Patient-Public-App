@@ -46,17 +46,12 @@ export class LandingPageComponent implements OnInit {
       this.navMoved = true
     else
       this.navMoved = false
-    console.log(this.navMoved)
-
   }
 
   initializeSlider() {
     this.totalPages = Math.ceil(this.totalCards / this.cardsPerPage);
-    console.log(this.totalPages)
     this.overflowWidth = `${this.totalPages * 100}%`;
-    console.log(this.totalPages, this.totalPages)
     this.cardWidth = `${100 / (this.totalPages * 3)}`;
-    console.log(this.cardWidth)
   }
 
   changePage(incrementor: number) {
@@ -69,7 +64,6 @@ export class LandingPageComponent implements OnInit {
 
     const movement = Math.ceil(100 / this.totalPages)
     this.pagePosition = `-${movement * (this.currentPage - 1)}%`;
-    console.log(this.pagePosition)
   }
 
   goTo(route: string) {

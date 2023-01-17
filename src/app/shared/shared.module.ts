@@ -6,24 +6,23 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { AdvertisementsComponent } from './landing-page/advertisements/advertisements.component';
 import { SlideComponent } from './landing-page/advertisements/slide/slide.component';
-import { CardCarouselComponent } from './landing-page/card-carousel/card-carousel.component';
 
 
 
 @NgModule({
-  declarations: [NavbarComponent,
-  PublishedFeedbackListComponent,
-  LandingPageComponent,
-  LoginComponent,
-  SideMenuComponent,
-  AdvertisementsComponent,
-  SlideComponent,
-  CardCarouselComponent
+  declarations: [
+    NavbarComponent,
+    PublishedFeedbackListComponent,
+    LandingPageComponent,
+    LoginComponent,
+    SideMenuComponent,
+    AdvertisementsComponent,
+    SlideComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +32,6 @@ import { CardCarouselComponent } from './landing-page/card-carousel/card-carouse
     ReactiveFormsModule,
     FormsModule,
   ],
-  exports:[NavbarComponent,SideMenuComponent]
+  exports: [NavbarComponent, SideMenuComponent]
 })
 export class SharedModule { }
