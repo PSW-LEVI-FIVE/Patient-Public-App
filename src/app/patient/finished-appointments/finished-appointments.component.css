@@ -1,10 +1,6 @@
 .myAppointmentContainer{
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-    display: flex;
-    justify-content: center;
-    flex-grow: 1;
-    overflow: auto;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
 }
 .errorText{
     width: 40rem;
@@ -43,13 +39,11 @@
     border-radius: 64px;
     box-shadow: rgba(5, 209, 255, 0.7) 0px 4px 24px 4px, rgba(5, 209, 255, 0.7) 0px 0px 0px 0px !important;
 }
-
 .header{
     font-weight: 700;
-    font-size: 5rem; /* 96px */
+    font-size: 3rem; /* 96px */
     line-height: 1;
     text-align: center;
-    padding-bottom: 48px;
 }
 .inner_button {
   margin: 2px;
@@ -69,25 +63,19 @@ mat-form-field {
 }
 
 .mat-button:hover {
-    color: #334155;
-    background-color: #67e8f9;
     transition: 0.2s !important;
     transform: scale(1.05);
 }
 .mat-button {
-    color: #334155;
+    background: #0A6887;
+    background: -webkit-linear-gradient(top left, #0A6887, #3B25CA);
+    background: -moz-linear-gradient(top left, #0A6887, #3B25CA);
+    background: linear-gradient(to bottom right, #0A6887, #3B25CA);
+    color: white;
+    border-radius: 12px !important;
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     transition: 0.2s !important;
-    background-color: #06b6d4;
-    border-radius: 64px !important;
-    font-size: 1.25rem; /* 20px */
-}
-.mat-button:disabled {
-    color: #466070;
-    transition: 0.2s !important;
-    background-color: #334155;
-    border-radius: 64px !important;
-    margin-right: 16px !important;
-    transform: scale(1.0);
 }
 
 .table_text{
@@ -96,14 +84,14 @@ mat-form-field {
 
 .tableContainer {
     margin-top: 32px;
-    border-radius: 4px;
-    border: #06b6d4 2px solid;
-    background-color: #164e63;
+    background-color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,102,121,1) 35%, rgb(0, 115, 255) 100%);
     vertical-align: middle;
     padding-top: 24px;
     padding-bottom: 24px;
-    padding-left: 16px;
-    padding-right: 16px;
+    width: calc(100% - 64px);
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 2px 24px 8px, rgba(0, 0, 0, 0.36) 0px 0px 0px 0px;
 }
 
 .mat-cell {
@@ -125,7 +113,7 @@ mat-form-field {
 }
 
 .table {
-  background-color: #164e63; 
-  width: 100%;
-  border-spacing:16px 0px;
+    background-color: rgba(35,38,41,0); 
+    width: 100%;
+    border-spacing:16px 0px;
 }

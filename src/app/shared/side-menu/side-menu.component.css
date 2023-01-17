@@ -5,7 +5,7 @@
     height: 100vh;
     width: 70px;
     background-color: #141b27;
-    color: #06b6d4;
+    color: #cff3ff;
     position: fixed;
     top: 0px;
     left: 0px;
@@ -58,7 +58,7 @@ a {
     left: 100%;
     top: 20%;
     background: #252525;
-    color: #00d9ff;
+    color: #cff3ff;
     z-index: 230;
     font-size: 12px;
     padding: 5px;

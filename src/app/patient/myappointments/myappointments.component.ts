@@ -43,7 +43,13 @@ export class MyappointmentsComponent implements OnInit {
     this.isLoading = true;
     this.myAppointmentService.getAllAppointments().subscribe(res => {
       this.appointmentsList = res;
+      var appoList: IAppointment[] = [];
+      res.forEach(function (appointment) {
+        if(appointment.doctor != null) appoList.push(appointment);
+      });
+      this.appointmentsList = appoList;
       this.isLoading = false;
+      console.log(this.appointmentsList)
       this.dataSource.data = this.appointmentsList;
     })
   }
