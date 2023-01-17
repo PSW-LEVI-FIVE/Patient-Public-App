@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IFeedback } from 'src/app/patient/feedback/model/feedback.model';
 import { FeedbackService } from 'src/app/patient/feedback/service/feedback.service';
 import { LoginService } from '../login/service/login.service';
@@ -9,7 +10,8 @@ import { LoginService } from '../login/service/login.service';
   styleUrls: ['./landing-page.component.css',
     './landing-page-why-us.component.css',
     './landing-page-feedback.component.css',
-    './landing-page-ads.component.css'
+    './landing-page-ads.component.css',
+    './landing-page-footer.component.css'
   ]
 })
 export class LandingPageComponent implements OnInit {
@@ -27,7 +29,8 @@ export class LandingPageComponent implements OnInit {
 
   constructor(
     private service: LoginService,
-    private readonly feedbackService: FeedbackService
+    private readonly feedbackService: FeedbackService,
+    private readonly router: Router
   ) { }
 
   ngOnInit() {
@@ -50,9 +53,10 @@ export class LandingPageComponent implements OnInit {
   initializeSlider() {
     this.totalPages = Math.ceil(this.totalCards / this.cardsPerPage);
     console.log(this.totalPages)
-    this.overflowWidth = `calc(${this.totalPages * 100}%`;
-    this.cardWidth = `calc((${100 / this.totalPages}% - ${this.cardsPerPage *
-      10}px) / ${this.cardsPerPage})`;
+    this.overflowWidth = `${this.totalPages * 100}%`;
+    console.log(this.totalPages, this.totalPages)
+    this.cardWidth = `${100 / (this.totalPages * 3)}`;
+    console.log(this.cardWidth)
   }
 
   changePage(incrementor: number) {
@@ -66,6 +70,10 @@ export class LandingPageComponent implements OnInit {
     const movement = Math.ceil(100 / this.totalPages)
     this.pagePosition = `-${movement * (this.currentPage - 1)}%`;
     console.log(this.pagePosition)
+  }
+
+  goTo(route: string) {
+    this.router.navigate([route])
   }
 
 }

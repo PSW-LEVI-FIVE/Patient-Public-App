@@ -1,12 +1,17 @@
 <div class="landing-page-wrapper">
     <!--  -->
     <nav class='nav' [ngClass]="navMoved ?'nav-moved':''">
-        <div class="logo-wrapper">
-            <img src="../../../assets/logo2.png" alt="">
+        <div class="logo-hor">
+            <div class="logo-wrapper">
+                <img src="../../../assets/logo2.png" alt="">
+            </div>
+            <p>
+                Levi Five Hospital
+            </p>
         </div>
 
         <div class="app-wrapper">
-            <button class="nav-button">Sign In</button>
+            <button (click)="goTo('/login')" class="nav-button">Sign In</button>
             <!-- <button class="nav-button">Go to App -></button> -->
         </div>
     </nav>
@@ -17,7 +22,7 @@
                 With our app, you can easily access your medical information, schedule appointments, and communicate
                 with your healthcare providers from the comfort of your own home.
             </small>
-            <button>Register Now!</button>
+            <button (click)="goTo('/user/register')">Register Now!</button>
         </div>
         <div class="image-wrapper">
         </div>
@@ -72,8 +77,8 @@
                 [ngClass]="{'disabled':currentPage === 1}"></div>
             <div class="cards">
                 <div class="overflow"
-                    [ngStyle]="{'width': overflowWidth, 'transform':'translateX(' + pagePosition + ')'}">
-                    <div class="card" *ngFor="let feedback of feedbacks">
+                    [ngStyle]="{'minWidth': overflowWidth, 'maxWidth':overflowWidth, 'transform':'translateX(' + pagePosition + ')'}">
+                    <div class="card" *ngFor="let feedback of feedbacks" [ngStyle]="{'flex-basis': cardWidth + '%'}">
                         <div class="feedback-card">
                             <div class="card-text">
                                 <q>
@@ -100,5 +105,25 @@
         <h1>News and Ads</h1>
         <app-advertisements></app-advertisements>
     </section>
+    <footer class="footer">
+        <div class="left">
+            <div class="logo-hor">
+                <div class="logo-wrapper">
+                    <img src="../../../assets/logo2.png" alt="">
+                </div>
+                <p>
+                    Levi Five Hospital
+                </p>
+            </div>
+            <p>
+                Levi Five Hospital is one of the best hospital automatization services providers.
+            </p>
+        </div>
+        <hr>
+        <div class="down">
+            <span>2023 Levi Five Inc. All rights reserved</span>
+            <span>Made with 💓 and angular!</span>
+        </div>
 
+    </footer>
 </div>
