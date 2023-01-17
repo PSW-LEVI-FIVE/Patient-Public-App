@@ -4,20 +4,27 @@ div {
 }
 
 mat-form-field {
-    width: 50rem;
-    font-size: x-large;
+    width: 50%;
+    font-size: medium;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 12px;
 }
 button{
-    font-size: 3rem;
+    font-size: 2rem;
     line-height: 1;
     font-weight: 600;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    padding-right: 3rem;
-    padding-left: 3rem;
+    width: 300px;
+}
+.input-wrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 50rem;
+    margin-right: auto;
+    margin-left: auto;
 }
 ::ng-deep .mat-button{
     color:#06b6d4;

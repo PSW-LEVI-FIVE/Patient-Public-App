@@ -3,73 +3,81 @@ body {
     border: none !important;
     margin: 0px !important;
     padding: 0 !important;
-    background-color: #1e293b;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,102,121,1) 35%, rgb(0, 115, 255) 100%);
 }
 .text {
-    color: #06b6d4 !important;
+    color: hsl(213, 100%, 85%) !important;
+    font-family: Garamond, serif !important;
+    margin-bottom: 0px !important;
+    user-select: none;
+}
+.text-black {
     font-family: Garamond, serif !important;
     margin-bottom: 0px !important;
     user-select: none;
 }
 
 .mat-stepper-vertical{
-    background-color: #1e293b;
+    background-color: rgba(30, 41, 59,0);
 }
 .mat-step-text-label{
-    color: #67e8f9;
+    color: hsl(213, 100%, 85%);
 }
 .mat-step-header .mat-step-icon-selected{
-    background-color: #67e8f9 !important;
+    background-color: hsl(213, 100%, 85%) !important;
     color:#1e293b !important;
     transition: 0.2s !important;
 }
 .mat-step-icon-state-edit
 {
-    background-color: #67e8f9 !important;
+    background-color: hsl(213, 100%, 85%) !important;
     color:#1e293b !important;
     transition: 0.2s !important;
 }
 .mat-step-icon-state-number
 {
-    color:#67e8f9 !important;
+    color:hsl(213, 100%, 85%) !important;
     transition: 0.2s !important;
 }
 
 .mat-stepper-next:hover {
-    color: #334155;
-    background-color: #67e8f9;
     transition: 0.2s !important;
-    border-radius: 16px !important;
     transform: scale(1.05);
 
 }
 .mat-stepper-next {
-    color: #334155;
     transition: 0.2s !important;
-    background-color: #06b6d4;
-    border-radius: 64px !important;
+    background: #0A6887;
+    background: -webkit-linear-gradient(top left, #0A6887, #3B25CA);
+    background: -moz-linear-gradient(top left, #0A6887, #3B25CA);
+    background: linear-gradient(to bottom right, #0A6887, #3B25CA);
+    color: white !important;
+    border-radius: 12px !important;
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: 0.2s !important;
     font-size: 1.25rem;
 }
 .mat-stepper-previous:hover {
-    color: #334155;
-    background-color: #67e8f9;
     transition: 0.2s !important;
-    border-radius: 16px !important;
     transform: scale(1.05);
 }
 .mat-stepper-previous {
-    color: #334155;
     transition: 0.2s !important;
-    background-color: #06b6d4;
-    border-radius: 64px !important;
-    margin-right: 16px !important;
+    background: #0A6887;
+    background: -webkit-linear-gradient(top left, #0A6887, #3B25CA);
+    background: -moz-linear-gradient(top left, #0A6887, #3B25CA);
+    background: linear-gradient(to bottom right, #0A6887, #3B25CA);
+    color: white !important;
+    border-radius: 12px !important;
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: 0.2s !important;
     font-size: 1.25rem;
 }
 
 .mat-stroked-button:hover {
-    color: #334155;
-    background-color: #67e8f9;
-    transition: 0.2s !important;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     transform: scale(1.05);
   }
   
@@ -80,20 +88,25 @@ body {
   transform: scale(1.0);
 }
 .mat-stroked-button {
-    color: #334155;
+    background: #0A6887;
+    background: -webkit-linear-gradient(top left, #0A6887, #3B25CA);
+    background: -moz-linear-gradient(top left, #0A6887, #3B25CA);
+    background: linear-gradient(to bottom right, #0A6887, #3B25CA);
+    color: white;
+    border-radius: 12px !important;
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     transition: 0.2s !important;
-    background-color: #06b6d4;
-    border-radius: 64px !important;
 }
 
 [hidden] {
     display: none !important;
   }
 mat-option{
-  color: #06b6d4 !important;
+  color: hsl(213, 100%, 85%) !important;
 }
 .mat-form-field-type-mat-select .mat-form-field-label, .mat-select-value {
-  color: #06b6d4;
+  color: hsl(213, 100%, 85%);
 }
 .mat-select-panel {
   background-color: #475569;
@@ -103,42 +116,37 @@ mat-option{
 }
 
 .mat-form-field-label {
-    color: #06b6d4 !important;
+    color: hsl(213, 100%, 85%) !important;
   }
   .mat-input-element::placeholder{
-    color: #0e7490 ;
+    color: hsl(213, 100%, 85%);
  }
   
  .mat-focused .mat-form-field-label {
-  color: #06b6d4 !important;
+  color: hsl(213, 100%, 85%) !important;
 }
 ::ng-deep .mat-form-field-infix{
-  color: #06b6d4 !important;
+  color: hsl(213, 100%, 85%) !important;
 }
 .mat-form-field-ripple {
-  background-color: #06b6d4 !important;
+  background-color: hsl(213, 100%, 85%) !important;
 }
 
 .mat-form-field-empty.mat-form-field-label{
-    color: #06b6d4 !important;
+    color: hsl(213, 100%, 85%) !important;
 }
 
 .mat-form-field-underline{
-  color: #06b6d4 !important;
-  background-color: #06b6d4 !important;
-}
-
-.mat-form-field-underline {
-  color: #06b6d4 !important;
-  background-color: #06b6d4 !important;
+  color: hsl(213, 100%, 85%) !important;
+  background-color: hsl(213, 100%, 85%) !important;
 }
 
 input{
-    color: #06b6d4 !important;
+    color: hsl(213, 100%, 85%) !important;
 } 
  
  mat-datepicker-toggle {
-  color: #06b6d4 !important;
+  color: hsl(213, 100%, 85%) !important;
  }
  p{
   margin-bottom: 0px !important;

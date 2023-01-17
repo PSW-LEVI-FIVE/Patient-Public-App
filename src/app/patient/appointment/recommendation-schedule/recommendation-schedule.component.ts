@@ -160,7 +160,7 @@ export class RecommendationScheduleComponent implements OnInit {
         this.appointmentService.CreateAppointment(appointment).subscribe(res =>{
             this.toastService.success("Your appointment successfuly scheduled!")
             this.isLoading = false;
-            this.router.navigate(["/"])
+            this.router.navigate(["/patient/myAppointments"])
         },(error) => {
             this.isLoading = false;
             this.toastService.error("Oops there are no free rooms!")

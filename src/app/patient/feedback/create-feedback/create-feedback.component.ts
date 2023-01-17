@@ -34,7 +34,7 @@ export class CreateFeedbackComponent implements OnInit {
     this.feedbackService.createFeedback(this.feedback).subscribe(res => {
         this.toastService.success("Your feedback recorded!")
         this.isLoading = false;
-        this.router.navigate(['/']);
+        this.router.navigate(['/patient/myAppointments']);
     });
   }
 }

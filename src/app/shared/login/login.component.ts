@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('role', role);
         this.toastService.success("Successfully logged in!")
         this.updateData();
-        this.router.navigate(["/"])
+        this.router.navigate(["/patient/myAppointments"])
       });
   }
 
